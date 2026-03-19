@@ -89,6 +89,44 @@
 
         .links a:hover { color: var(--text); }
 
+        .screenshot {
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screenshot-caption {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .press-contact {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        .press-contact a { color: var(--muted); }
+
         #network-bg {
             position: fixed;
             top: 0;
@@ -113,9 +151,15 @@
         <h1>Barazo: Federated forums on the AT Protocol</h1>
         <p class="subtitle">A forum platform where your identity and data actually belong to you.</p>
 
-        <p>Barazo is a federated forum built on the AT Protocol. Your account and posts live on your PDS, not locked inside each community. One identity across every forum, and your contributions follow you.</p>
+        <p>Barazo is a federated forum built on the AT Protocol. Your account and posts live on your PDS (personal data server), not locked inside each community. One identity across every forum, and your contributions follow you.</p>
 
         <p>Barazo is in open alpha. It works, it has rough edges, and we're building in public. This is the right moment to get in if you want to help shape it.</p>
+
+        <div class="screenshot">
+            <!-- TODO: Replace with actual product screenshot (recommended: forum thread view showing AT Protocol identity) -->
+            <img src="/press/kit/barazo/barazo-logo-dark-bg.svg" alt="Barazo forum interface">
+            <div class="screenshot-caption">Barazo forum interface (screenshot coming soon)</div>
+        </div>
 
         <h2>Self-host it today</h2>
         <p>Everything is open source: AGPL for the backend, MIT for the frontend, lexicons, and deployment templates. Grab the <a href="https://github.com/singi-labs/barazo-deploy">Docker Compose template</a> and host it wherever you want.</p>
@@ -129,6 +173,8 @@
         <h2>Why now</h2>
         <p>Social networks are filling up with AI-generated content, and the signal-to-noise ratio keeps getting worse. Communities need places where real human contributions are tied to real, verifiable identities. The AT Protocol makes that possible.</p>
         <p>Governments and organizations across Europe, Canada, and beyond are moving away from platform dependency. Barazo is built for that world: open source, self-hostable, no lock-in.</p>
+
+        <blockquote>"I built Barazo because I wanted a forum where my community's data wasn't someone else's business model. The AT Protocol makes that technically possible now. The rest is execution." <br>— Guido Jansen, founder</blockquote>
 
         <h2>Where this goes</h2>
         <p>Managed hosting is coming in Q3 2026 for community managers who don't want to run their own infrastructure. Same open source stack, we just handle the ops. <a href="https://barazo.forum">Join the waitlist</a> if that's you.</p>
@@ -144,6 +190,11 @@
             <a href="https://github.com/singi-labs">github.com/singi-labs</a>
             <a href="https://bsky.app/profile/barazo.forum">@barazo.forum on Bluesky</a>
             <a href="/press/kit/">Press kit (logos and brand assets)</a>
+        </div>
+
+        <div class="press-contact">
+            Press contact: Guido Jansen · <a href="mailto:guido@singi.dev">guido@singi.dev</a> · <a href="https://bsky.app/profile/gui.do">@gui.do on Bluesky</a><br>
+            March 2026 · Announced at <a href="https://atmosphereconf.org">AtmosphereConf</a>, Vancouver
         </div>
     </div>
     <script src="/network-bg.js"></script>
