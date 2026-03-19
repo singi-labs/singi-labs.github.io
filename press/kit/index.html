@@ -128,9 +128,7 @@
             padding: 1.5rem;
         }
 
-        .logo-preview.dark-bg { background: var(--bg); }
-        .logo-preview.light-bg { background: #FFFCF0; }
-        .logo-preview.on-dark { background: var(--bg-surface); }
+        .logo-preview { background: var(--bg-surface); }
 
         .logo-preview img {
             max-width: 100%;
@@ -225,9 +223,20 @@
             .links-grid { grid-template-columns: 1fr; gap: 1rem; }
             .brand-section { padding: 1.25rem; }
         }
+
+        #network-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
+    <canvas id="network-bg"></canvas>
     <div class="container">
         <a class="back" href="https://singi.dev">&larr; singi.dev</a>
 
@@ -275,39 +284,18 @@
             </div>
             <p class="brand-desc">The parent organization. "Open source foundations for networked apps." Singi is from Swahili "msingi" (foundation).</p>
 
-            <h3>On dark backgrounds</h3>
             <div class="logo-grid">
-                <a class="logo-card" href="singi-labs/singi-logo-light.svg" download>
-                    <div class="logo-preview dark-bg"><img src="singi-labs/singi-logo-light.svg" alt="Singi Labs logo (light on dark)"></div>
-                    <div class="logo-info"><span>Light variant</span><span>SVG</span></div>
-                </a>
                 <a class="logo-card" href="singi-labs/singi-logo-dark-bg.svg" download>
-                    <div class="logo-preview on-dark"><img src="singi-labs/singi-logo-dark-bg.svg" alt="Singi Labs logo on dark background"></div>
-                    <div class="logo-info"><span>With background</span><span>SVG</span></div>
-                </a>
-            </div>
-
-            <h3>On light backgrounds</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="singi-labs/singi-logo-dark.svg" download>
-                    <div class="logo-preview light-bg"><img src="singi-labs/singi-logo-dark.svg" alt="Singi Labs logo (dark on light)"></div>
-                    <div class="logo-info"><span>Dark variant</span><span>SVG</span></div>
-                </a>
-            </div>
-
-            <h3>PNG downloads</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="singi-labs/singi-logo-dark-1024.png" download>
-                    <div class="logo-preview light-bg"><img src="singi-labs/singi-logo-dark-512.png" alt="Singi Labs dark PNG"></div>
-                    <div class="logo-info"><span>Dark 1024px</span><span>PNG</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-light-1024.png" download>
-                    <div class="logo-preview dark-bg"><img src="singi-labs/singi-logo-light-512.png" alt="Singi Labs light PNG"></div>
-                    <div class="logo-info"><span>Light 1024px</span><span>PNG</span></div>
+                    <div class="logo-preview"><img src="singi-labs/singi-logo-dark-bg.svg" alt="Singi Labs logo"></div>
+                    <div class="logo-info"><span>SVG</span><span>Vector</span></div>
                 </a>
                 <a class="logo-card" href="singi-labs/singi-logo-dark-bg-1024.png" download>
-                    <div class="logo-preview on-dark"><img src="singi-labs/singi-logo-dark-bg-512.png" alt="Singi Labs on dark bg PNG"></div>
-                    <div class="logo-info"><span>Dark bg 1024px</span><span>PNG</span></div>
+                    <div class="logo-preview"><img src="singi-labs/singi-logo-dark-bg-512.png" alt="Singi Labs logo PNG 1024px"></div>
+                    <div class="logo-info"><span>PNG 1024px</span><span>Raster</span></div>
+                </a>
+                <a class="logo-card" href="singi-labs/singi-logo-dark-bg-512.png" download>
+                    <div class="logo-preview"><img src="singi-labs/singi-logo-dark-bg-512.png" alt="Singi Labs logo PNG 512px"></div>
+                    <div class="logo-info"><span>PNG 512px</span><span>Raster</span></div>
                 </a>
             </div>
         </div>
@@ -319,39 +307,18 @@
             </div>
             <p class="brand-desc">Federated forum platform on the AT Protocol. "Community forums you control." Barazo is from Swahili "baraza" (community council).</p>
 
-            <h3>On dark backgrounds</h3>
             <div class="logo-grid">
-                <a class="logo-card" href="barazo/barazo-logo-light.svg" download>
-                    <div class="logo-preview dark-bg"><img src="barazo/barazo-logo-light.svg" alt="Barazo logo (light on dark)"></div>
-                    <div class="logo-info"><span>Light variant</span><span>SVG</span></div>
-                </a>
                 <a class="logo-card" href="barazo/barazo-logo-dark-bg.svg" download>
-                    <div class="logo-preview on-dark"><img src="barazo/barazo-logo-dark-bg.svg" alt="Barazo logo on dark background"></div>
-                    <div class="logo-info"><span>With background</span><span>SVG</span></div>
-                </a>
-            </div>
-
-            <h3>On light backgrounds</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="barazo/barazo-logo-dark.svg" download>
-                    <div class="logo-preview light-bg"><img src="barazo/barazo-logo-dark.svg" alt="Barazo logo (dark on light)"></div>
-                    <div class="logo-info"><span>Dark variant</span><span>SVG</span></div>
-                </a>
-            </div>
-
-            <h3>PNG downloads</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="barazo/barazo-logo-dark-1024.png" download>
-                    <div class="logo-preview light-bg"><img src="barazo/barazo-logo-dark-512.png" alt="Barazo dark PNG"></div>
-                    <div class="logo-info"><span>Dark 1024px</span><span>PNG</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-light-1024.png" download>
-                    <div class="logo-preview dark-bg"><img src="barazo/barazo-logo-light-512.png" alt="Barazo light PNG"></div>
-                    <div class="logo-info"><span>Light 1024px</span><span>PNG</span></div>
+                    <div class="logo-preview"><img src="barazo/barazo-logo-dark-bg.svg" alt="Barazo logo"></div>
+                    <div class="logo-info"><span>SVG</span><span>Vector</span></div>
                 </a>
                 <a class="logo-card" href="barazo/barazo-logo-dark-bg-1024.png" download>
-                    <div class="logo-preview on-dark"><img src="barazo/barazo-logo-dark-bg-512.png" alt="Barazo on dark bg PNG"></div>
-                    <div class="logo-info"><span>Dark bg 1024px</span><span>PNG</span></div>
+                    <div class="logo-preview"><img src="barazo/barazo-logo-dark-bg-512.png" alt="Barazo logo PNG 1024px"></div>
+                    <div class="logo-info"><span>PNG 1024px</span><span>Raster</span></div>
+                </a>
+                <a class="logo-card" href="barazo/barazo-logo-dark-bg-512.png" download>
+                    <div class="logo-preview"><img src="barazo/barazo-logo-dark-bg-512.png" alt="Barazo logo PNG 512px"></div>
+                    <div class="logo-info"><span>PNG 512px</span><span>Raster</span></div>
                 </a>
             </div>
         </div>
@@ -363,39 +330,18 @@
             </div>
             <p class="brand-desc">Professional identity layer for the AT Protocol. "Professional profiles and trust." Sifa is from Swahili "sifa" (reputation, praise).</p>
 
-            <h3>On dark backgrounds</h3>
             <div class="logo-grid">
-                <a class="logo-card" href="sifa/sifa-logo-light.svg" download>
-                    <div class="logo-preview dark-bg"><img src="sifa/sifa-logo-light.svg" alt="Sifa logo (light on dark)"></div>
-                    <div class="logo-info"><span>Light variant</span><span>SVG</span></div>
-                </a>
                 <a class="logo-card" href="sifa/sifa-logo-dark-bg.svg" download>
-                    <div class="logo-preview on-dark"><img src="sifa/sifa-logo-dark-bg.svg" alt="Sifa logo on dark background"></div>
-                    <div class="logo-info"><span>With background</span><span>SVG</span></div>
-                </a>
-            </div>
-
-            <h3>On light backgrounds</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="sifa/sifa-logo-dark.svg" download>
-                    <div class="logo-preview light-bg"><img src="sifa/sifa-logo-dark.svg" alt="Sifa logo (dark on light)"></div>
-                    <div class="logo-info"><span>Dark variant</span><span>SVG</span></div>
-                </a>
-            </div>
-
-            <h3>PNG downloads</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="sifa/sifa-logo-dark-1024.png" download>
-                    <div class="logo-preview light-bg"><img src="sifa/sifa-logo-dark-512.png" alt="Sifa dark PNG"></div>
-                    <div class="logo-info"><span>Dark 1024px</span><span>PNG</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-light-1024.png" download>
-                    <div class="logo-preview dark-bg"><img src="sifa/sifa-logo-light-512.png" alt="Sifa light PNG"></div>
-                    <div class="logo-info"><span>Light 1024px</span><span>PNG</span></div>
+                    <div class="logo-preview"><img src="sifa/sifa-logo-dark-bg.svg" alt="Sifa logo"></div>
+                    <div class="logo-info"><span>SVG</span><span>Vector</span></div>
                 </a>
                 <a class="logo-card" href="sifa/sifa-logo-dark-bg-1024.png" download>
-                    <div class="logo-preview on-dark"><img src="sifa/sifa-logo-dark-bg-512.png" alt="Sifa on dark bg PNG"></div>
-                    <div class="logo-info"><span>Dark bg 1024px</span><span>PNG</span></div>
+                    <div class="logo-preview"><img src="sifa/sifa-logo-dark-bg-512.png" alt="Sifa logo PNG 1024px"></div>
+                    <div class="logo-info"><span>PNG 1024px</span><span>Raster</span></div>
+                </a>
+                <a class="logo-card" href="sifa/sifa-logo-dark-bg-512.png" download>
+                    <div class="logo-preview"><img src="sifa/sifa-logo-dark-bg-512.png" alt="Sifa logo PNG 512px"></div>
+                    <div class="logo-info"><span>PNG 512px</span><span>Raster</span></div>
                 </a>
             </div>
         </div>
@@ -445,5 +391,6 @@
 
         <p style="margin-top: 3rem; color: var(--muted); font-size: 0.8125rem;">Questions? Reach out to Guido at <a href="https://bsky.app/profile/gui.do">@gui.do</a> on Bluesky or guido@singi.dev.</p>
     </div>
+    <script src="/network-bg.js"></script>
 </body>
 </html>
