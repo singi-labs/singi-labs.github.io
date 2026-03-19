@@ -89,6 +89,44 @@
 
         .links a:hover { color: var(--text); }
 
+        .screenshot {
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screenshot-caption {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .press-contact {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        .press-contact a { color: var(--muted); }
+
         #network-bg {
             position: fixed;
             top: 0;
@@ -117,8 +155,14 @@
 
         <p>Sifa is in open alpha. Profiles and LinkedIn import work today. We're adding more and building in public.</p>
 
+        <div class="screenshot">
+            <!-- TODO: Replace with actual product screenshot (recommended: a profile page showing Bluesky activity feed + imported LinkedIn history) -->
+            <img src="/press/kit/sifa/sifa-logo-dark-bg.svg" alt="Sifa profile interface">
+            <div class="screenshot-caption">Sifa profile interface (screenshot coming soon)</div>
+        </div>
+
         <h2>Claim your profile</h2>
-        <p>Your Bluesky posts already appear as your activity feed. Import your LinkedIn history in your browser (the data never leaves your device, it goes straight to your PDS). As more AT Protocol apps come online and Barazo communities grow, that real activity shows up on your profile too. Verified against your cryptographic identity, not self-reported.</p>
+        <p>Your Bluesky posts already appear as your activity feed. Import your LinkedIn history in your browser (the data never leaves your device, it goes straight to your PDS, your personal data server on the AT Protocol). As more AT Protocol apps come online and Barazo communities grow, that real activity shows up on your profile too. Verified against your cryptographic identity, not self-reported.</p>
 
         <h2>Show your work, not your claims</h2>
         <p>Social networks are filling up with AI-generated content and self-reported credentials. Sifa goes the other way: your profile shows real activity from real communities, tied to a cryptographic identity that can't be faked.</p>
@@ -128,6 +172,8 @@
         <p>Professional networks built on self-reported credentials are hitting a wall. Endorsements mean nothing. Feeds are drowning in AI-generated content. Ghost job listings waste people's time. And when those platforms get fined hundreds of millions for privacy violations or leak billions of records, users can't do anything about it because their professional identity is locked inside.</p>
         <p>The alternatives that tried to fix this shut down in early 2025 (Read.cv, Polywork). The demand is real, but centralized models break. Your professional profile shouldn't disappear when a company runs out of funding. On Sifa it can't: your data lives in your PDS, not on our servers.</p>
         <p>The AT Protocol ecosystem is now large enough to build on. 25 million people already have an identity on the protocol. The developer tooling matured in early 2026. And nobody has published professional networking schemas for it yet. Sifa is first.</p>
+
+        <blockquote>"I got tired of a professional network where the most visible signal is whether you've paid for a premium subscription. Your track record should speak for itself." <br>— Guido Jansen, founder</blockquote>
 
         <h2>Where this goes</h2>
         <p>The trust infrastructure (sybil detection, anti-abuse labels) is being built as a public labeler that any AT Protocol app can plug into. The point is protecting communities, not ranking people.</p>
@@ -143,6 +189,11 @@
             <a href="https://github.com/singi-labs">github.com/singi-labs</a>
             <a href="https://bsky.app/profile/sifa.id">@sifa.id on Bluesky</a>
             <a href="/press/kit/">Press kit (logos and brand assets)</a>
+        </div>
+
+        <div class="press-contact">
+            Press contact: Guido Jansen · <a href="mailto:guido@singi.dev">guido@singi.dev</a> · <a href="https://bsky.app/profile/gui.do">@gui.do on Bluesky</a><br>
+            March 2026 · Announced at <a href="https://atmosphereconf.org">AtmosphereConf</a>, Vancouver
         </div>
     </div>
     <script src="/network-bg.js"></script>
