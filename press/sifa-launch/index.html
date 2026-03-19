@@ -89,6 +89,16 @@
 
         .links a:hover { color: var(--text); }
 
+        #network-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         @media (max-width: 480px) {
             h1 { font-size: 1.5rem; }
             body { padding: 2rem 1.25rem; }
@@ -96,6 +106,7 @@
     </style>
 </head>
 <body>
+    <canvas id="network-bg"></canvas>
     <div class="container">
         <a class="back" href="https://singi.dev">&larr; singi.dev</a>
 
@@ -126,5 +137,6 @@
             <a href="/press/kit/">Press kit (logos and brand assets)</a>
         </div>
     </div>
+    <script src="/network-bg.js"></script>
 </body>
 </html>
