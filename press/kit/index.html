@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Kit — Singi Labs</title>
+    <meta name="description" content="Logos, brand colors, and product descriptions for Singi Labs, Barazo, and Sifa.">
+    <meta property="og:title" content="Press Kit — Singi Labs">
+    <meta property="og:description" content="Logos, brand colors, and product descriptions for Singi Labs, Barazo, and Sifa.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://singi.dev/press/kit/">
+    <link rel="canonical" href="https://singi.dev/press/kit/">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #100F0F;
+            --bg-surface: #1C1B1A;
+            --text: #FFFCF0;
+            --muted: #878580;
+            --border: #282726;
+            --singi: #DA702C;
+            --barazo: #3AA99F;
+            --sifa: #4385BE;
+            --purple: #8B7EC8;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 4rem 1.5rem;
+        }
+
+        .container { max-width: 800px; width: 100%; }
+
+        .back {
+            display: inline-block;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        .back:hover { color: var(--text); }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro {
+            color: var(--muted);
+            font-size: 1.0625rem;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.375rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--muted);
+        }
+
+        p { margin-bottom: 1rem; }
+
+        a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+        a:hover { color: var(--text); }
+
+        .brand-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .brand-desc {
+            color: var(--muted);
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .logo-card {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .logo-card:hover { border-color: var(--muted); }
+
+        .logo-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            padding: 1.5rem;
+        }
+
+        .logo-preview.dark-bg { background: var(--bg); }
+        .logo-preview.light-bg { background: #FFFCF0; }
+        .logo-preview.on-dark { background: var(--bg-surface); }
+
+        .logo-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-info {
+            padding: 0.5rem 0.75rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .colors {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .color-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .color-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .color-label {
+            font-size: 0.8125rem;
+        }
+
+        .color-hex {
+            font-family: "Source Code Pro", ui-monospace, monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .boilerplate {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .boilerplate h3 {
+            color: var(--text);
+            margin-top: 1.5rem;
+        }
+
+        .boilerplate p, .boilerplate .copy-text {
+            font-size: 0.9375rem;
+        }
+
+        .copy-text {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 0.75rem 0 1.5rem;
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .links-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .links-grid div { font-size: 0.9375rem; }
+        .links-grid strong { display: block; margin-bottom: 0.25rem; color: var(--text); }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.5rem; }
+            body { padding: 2rem 1.25rem; }
+            .logo-grid { grid-template-columns: 1fr 1fr; }
+            .links-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .brand-section { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="https://singi.dev">&larr; singi.dev</a>
+
+        <h1>Press kit</h1>
+        <p class="intro">Logos, brand colors, and copy-ready descriptions for Singi Labs and its products. All logos are available as SVG (vector) and PNG (512px and 1024px). Right-click to save, or grab the whole set from <a href="https://github.com/singi-labs/singi-labs.github.io/tree/main/press/kit">GitHub</a>.</p>
+
+        <!-- Colors -->
+        <h2>Brand colors</h2>
+        <div class="colors">
+            <div class="color-chip">
+                <div class="color-swatch" style="background: #DA702C;"></div>
+                <div>
+                    <div class="color-label">Singi Labs</div>
+                    <div class="color-hex">#DA702C</div>
+                </div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background: #3AA99F;"></div>
+                <div>
+                    <div class="color-label">Barazo</div>
+                    <div class="color-hex">#3AA99F</div>
+                </div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background: #4385BE;"></div>
+                <div>
+                    <div class="color-label">Sifa</div>
+                    <div class="color-hex">#4385BE</div>
+                </div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background: #8B7EC8;"></div>
+                <div>
+                    <div class="color-label">Shared accent</div>
+                    <div class="color-hex">#8B7EC8</div>
+                </div>
+            </div>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--muted);">Color system: <a href="https://stephango.com/flexoki">Flexoki</a> accent hues on <a href="https://www.radix-ui.com/colors">Radix Colors</a> neutral scales. Typography: system font stack. Icons: <a href="https://phosphoricons.com/">Phosphor</a>.</p>
+
+        <!-- Singi Labs -->
+        <div class="brand-section">
+            <div class="brand-header">
+                <div class="brand-name" style="color: var(--singi);">Singi Labs</div>
+            </div>
+            <p class="brand-desc">The parent organization. "Open source foundations for networked apps." Singi is from Swahili "msingi" (foundation).</p>
+
+            <h3>On dark backgrounds</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="singi-labs/singi-logo-light.svg" download>
+                    <div class="logo-preview dark-bg"><img src="singi-labs/singi-logo-light.svg" alt="Singi Labs logo (light on dark)"></div>
+                    <div class="logo-info"><span>Light variant</span><span>SVG</span></div>
+                </a>
+                <a class="logo-card" href="singi-labs/singi-logo-dark-bg.svg" download>
+                    <div class="logo-preview on-dark"><img src="singi-labs/singi-logo-dark-bg.svg" alt="Singi Labs logo on dark background"></div>
+                    <div class="logo-info"><span>With background</span><span>SVG</span></div>
+                </a>
+            </div>
+
+            <h3>On light backgrounds</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="singi-labs/singi-logo-dark.svg" download>
+                    <div class="logo-preview light-bg"><img src="singi-labs/singi-logo-dark.svg" alt="Singi Labs logo (dark on light)"></div>
+                    <div class="logo-info"><span>Dark variant</span><span>SVG</span></div>
+                </a>
+            </div>
+
+            <h3>PNG downloads</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="singi-labs/singi-logo-dark-1024.png" download>
+                    <div class="logo-preview light-bg"><img src="singi-labs/singi-logo-dark-512.png" alt="Singi Labs dark PNG"></div>
+                    <div class="logo-info"><span>Dark 1024px</span><span>PNG</span></div>
+                </a>
+                <a class="logo-card" href="singi-labs/singi-logo-light-1024.png" download>
+                    <div class="logo-preview dark-bg"><img src="singi-labs/singi-logo-light-512.png" alt="Singi Labs light PNG"></div>
+                    <div class="logo-info"><span>Light 1024px</span><span>PNG</span></div>
+                </a>
+                <a class="logo-card" href="singi-labs/singi-logo-dark-bg-1024.png" download>
+                    <div class="logo-preview on-dark"><img src="singi-labs/singi-logo-dark-bg-512.png" alt="Singi Labs on dark bg PNG"></div>
+                    <div class="logo-info"><span>Dark bg 1024px</span><span>PNG</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Barazo -->
+        <div class="brand-section">
+            <div class="brand-header">
+                <div class="brand-name" style="color: var(--barazo);">Barazo</div>
+            </div>
+            <p class="brand-desc">Federated forum platform on the AT Protocol. "Community forums you control." Barazo is from Swahili "baraza" (community council).</p>
+
+            <h3>On dark backgrounds</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="barazo/barazo-logo-light.svg" download>
+                    <div class="logo-preview dark-bg"><img src="barazo/barazo-logo-light.svg" alt="Barazo logo (light on dark)"></div>
+                    <div class="logo-info"><span>Light variant</span><span>SVG</span></div>
+                </a>
+                <a class="logo-card" href="barazo/barazo-logo-dark-bg.svg" download>
+                    <div class="logo-preview on-dark"><img src="barazo/barazo-logo-dark-bg.svg" alt="Barazo logo on dark background"></div>
+                    <div class="logo-info"><span>With background</span><span>SVG</span></div>
+                </a>
+            </div>
+
+            <h3>On light backgrounds</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="barazo/barazo-logo-dark.svg" download>
+                    <div class="logo-preview light-bg"><img src="barazo/barazo-logo-dark.svg" alt="Barazo logo (dark on light)"></div>
+                    <div class="logo-info"><span>Dark variant</span><span>SVG</span></div>
+                </a>
+            </div>
+
+            <h3>PNG downloads</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="barazo/barazo-logo-dark-1024.png" download>
+                    <div class="logo-preview light-bg"><img src="barazo/barazo-logo-dark-512.png" alt="Barazo dark PNG"></div>
+                    <div class="logo-info"><span>Dark 1024px</span><span>PNG</span></div>
+                </a>
+                <a class="logo-card" href="barazo/barazo-logo-light-1024.png" download>
+                    <div class="logo-preview dark-bg"><img src="barazo/barazo-logo-light-512.png" alt="Barazo light PNG"></div>
+                    <div class="logo-info"><span>Light 1024px</span><span>PNG</span></div>
+                </a>
+                <a class="logo-card" href="barazo/barazo-logo-dark-bg-1024.png" download>
+                    <div class="logo-preview on-dark"><img src="barazo/barazo-logo-dark-bg-512.png" alt="Barazo on dark bg PNG"></div>
+                    <div class="logo-info"><span>Dark bg 1024px</span><span>PNG</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Sifa -->
+        <div class="brand-section">
+            <div class="brand-header">
+                <div class="brand-name" style="color: var(--sifa);">Sifa</div>
+            </div>
+            <p class="brand-desc">Professional identity layer for the AT Protocol. "Professional profiles and trust." Sifa is from Swahili "sifa" (reputation, praise).</p>
+
+            <h3>On dark backgrounds</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="sifa/sifa-logo-light.svg" download>
+                    <div class="logo-preview dark-bg"><img src="sifa/sifa-logo-light.svg" alt="Sifa logo (light on dark)"></div>
+                    <div class="logo-info"><span>Light variant</span><span>SVG</span></div>
+                </a>
+                <a class="logo-card" href="sifa/sifa-logo-dark-bg.svg" download>
+                    <div class="logo-preview on-dark"><img src="sifa/sifa-logo-dark-bg.svg" alt="Sifa logo on dark background"></div>
+                    <div class="logo-info"><span>With background</span><span>SVG</span></div>
+                </a>
+            </div>
+
+            <h3>On light backgrounds</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="sifa/sifa-logo-dark.svg" download>
+                    <div class="logo-preview light-bg"><img src="sifa/sifa-logo-dark.svg" alt="Sifa logo (dark on light)"></div>
+                    <div class="logo-info"><span>Dark variant</span><span>SVG</span></div>
+                </a>
+            </div>
+
+            <h3>PNG downloads</h3>
+            <div class="logo-grid">
+                <a class="logo-card" href="sifa/sifa-logo-dark-1024.png" download>
+                    <div class="logo-preview light-bg"><img src="sifa/sifa-logo-dark-512.png" alt="Sifa dark PNG"></div>
+                    <div class="logo-info"><span>Dark 1024px</span><span>PNG</span></div>
+                </a>
+                <a class="logo-card" href="sifa/sifa-logo-light-1024.png" download>
+                    <div class="logo-preview dark-bg"><img src="sifa/sifa-logo-light-512.png" alt="Sifa light PNG"></div>
+                    <div class="logo-info"><span>Light 1024px</span><span>PNG</span></div>
+                </a>
+                <a class="logo-card" href="sifa/sifa-logo-dark-bg-1024.png" download>
+                    <div class="logo-preview on-dark"><img src="sifa/sifa-logo-dark-bg-512.png" alt="Sifa on dark bg PNG"></div>
+                    <div class="logo-info"><span>Dark bg 1024px</span><span>PNG</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Boilerplate copy -->
+        <div class="boilerplate">
+            <h2>Copy-ready descriptions</h2>
+            <p style="color: var(--muted); font-size: 0.875rem;">Use these as-is or adapt them. If you need something different, reach out.</p>
+
+            <h3>Singi Labs (one-liner)</h3>
+            <div class="copy-text">Singi Labs builds open source, decentralized software on the AT Protocol. Home of Barazo (community forums) and Sifa (professional identity and trust).</div>
+
+            <h3>Barazo (short)</h3>
+            <div class="copy-text">Barazo is a federated forum on the AT Protocol. Your identity and posts live on your PDS, not locked inside each community. One account across every forum, contributions follow you. Open source, self-hostable, privacy-native.</div>
+
+            <h3>Sifa (short)</h3>
+            <div class="copy-text">Sifa is a professional identity layer for the AT Protocol. Your profile shows verified activity from across the ecosystem: real contributions to real communities, tied to your cryptographic identity. No reputation scores, no tiers. Just what you actually did, verified.</div>
+
+            <h3>The flywheel (for longer pieces)</h3>
+            <div class="copy-text">Barazo and Sifa are two products that feed into each other. Activity across AT Protocol apps (and Barazo communities as they grow) builds your Sifa profile. Sifa's trust infrastructure (sybil detection, anti-abuse labels) protects Barazo communities. Neither makes full sense alone; together they create a loop that gets stronger with every community and app added to the network.</div>
+        </div>
+
+        <!-- Links -->
+        <div class="links-section">
+            <h2>Links</h2>
+            <div class="links-grid">
+                <div>
+                    <strong style="color: var(--singi);">Singi Labs</strong>
+                    <a href="https://singi.dev">singi.dev</a><br>
+                    <a href="https://github.com/singi-labs">GitHub</a><br>
+                    <a href="https://bsky.app/profile/singi.dev">Bluesky</a>
+                </div>
+                <div>
+                    <strong style="color: var(--barazo);">Barazo</strong>
+                    <a href="https://barazo.forum">barazo.forum</a><br>
+                    <a href="https://github.com/singi-labs">GitHub</a><br>
+                    <a href="https://bsky.app/profile/barazo.forum">Bluesky</a>
+                </div>
+                <div>
+                    <strong style="color: var(--sifa);">Sifa</strong>
+                    <a href="https://sifa.id">sifa.id</a><br>
+                    <a href="https://github.com/singi-labs">GitHub</a><br>
+                    <a href="https://bsky.app/profile/sifa.id">Bluesky</a>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-top: 3rem; color: var(--muted); font-size: 0.8125rem;">Questions? Reach out to Guido at <a href="https://bsky.app/profile/gui.do">@gui.do</a> on Bluesky or guido@singi.dev.</p>
+    </div>
+</body>
+</html>
