@@ -544,20 +544,22 @@
         // built from the map values, never from raw DOM strings -- this also
         // satisfies CodeQL's js/xss-through-dom check.
         (function () {
+            // Each map holds the canonical asset slug as a value -- never read
+            // back from the DOM. The DOM key is only used to look up the entry.
             var BRANDS = {
-                'singi-labs': { stem: 'singi-logo', name: 'Singi Labs' },
-                'barazo':     { stem: 'barazo-logo', name: 'Barazo Forums' },
-                'sifa':       { stem: 'sifa-logo',  name: 'Sifa ID' }
+                'singi-labs': { dir: 'singi-labs', stem: 'singi-logo', name: 'Singi Labs' },
+                'barazo':     { dir: 'barazo',     stem: 'barazo-logo', name: 'Barazo Forums' },
+                'sifa':       { dir: 'sifa',       stem: 'sifa-logo',  name: 'Sifa ID' }
             };
             var KINDS = {
                 'mark':     { suffix: '',          label: 'logo' },
                 'wordmark': { suffix: '-wordmark', label: 'wordmark lockup' }
             };
             var BGS = {
-                'dark-bg':              { surface: 'dark',  label: 'dark background' },
-                'light-bg':              { surface: 'light', label: 'light background' },
-                'transparent-on-dark':   { surface: 'dark',  label: 'transparent, on dark surface' },
-                'transparent-on-light':  { surface: 'light', label: 'transparent, on light surface' }
+                'dark-bg':              { slug: 'dark-bg',              surface: 'dark',  label: 'dark background' },
+                'light-bg':             { slug: 'light-bg',             surface: 'light', label: 'light background' },
+                'transparent-on-dark':  { slug: 'transparent-on-dark',  surface: 'dark',  label: 'transparent, on dark surface' },
+                'transparent-on-light': { slug: 'transparent-on-light', surface: 'light', label: 'transparent, on light surface' }
             };
             var has = Object.prototype.hasOwnProperty;
 
@@ -584,11 +586,9 @@
                     var bg = safeLookup(BGS, bgBtn && bgBtn.dataset.value);
                     if (!kind || !bg) return;
 
-                    var brandKey = section.dataset.brand;
-                    var bgKey = bgBtn.dataset.value;
-                    // brandKey is validated above (it's a key in BRANDS); kind.suffix
-                    // and bgKey are from the allowlists. Stems contain only [a-z-].
-                    var base = brandKey + '/' + brand.stem + kind.suffix + '-' + bgKey;
+                    // All path components below come from the static maps, never
+                    // from the DOM read (we only used the DOM value as a key).
+                    var base = brand.dir + '/' + brand.stem + kind.suffix + '-' + bg.slug;
                     var svgPath = base + '.svg';
                     var png1024Path = base + '-1024.png';
                     var png512Path = base + '-512.png';
