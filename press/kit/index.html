@@ -392,8 +392,8 @@
                 <div class="picker-row">
                     <span class="picker-label">Asset</span>
                     <div class="seg-control" data-control="kind">
-                        <button type="button" class="seg-btn" data-value="" aria-pressed="true">Mark</button>
-                        <button type="button" class="seg-btn" data-value="-wordmark" aria-pressed="false">Wordmark</button>
+                        <button type="button" class="seg-btn" data-value="mark" aria-pressed="true">Mark</button>
+                        <button type="button" class="seg-btn" data-value="wordmark" aria-pressed="false">Wordmark</button>
                     </div>
                 </div>
                 <div class="picker-row">
@@ -429,8 +429,8 @@
                 <div class="picker-row">
                     <span class="picker-label">Asset</span>
                     <div class="seg-control" data-control="kind">
-                        <button type="button" class="seg-btn" data-value="" aria-pressed="true">Mark</button>
-                        <button type="button" class="seg-btn" data-value="-wordmark" aria-pressed="false">Wordmark</button>
+                        <button type="button" class="seg-btn" data-value="mark" aria-pressed="true">Mark</button>
+                        <button type="button" class="seg-btn" data-value="wordmark" aria-pressed="false">Wordmark</button>
                     </div>
                 </div>
                 <div class="picker-row">
@@ -466,8 +466,8 @@
                 <div class="picker-row">
                     <span class="picker-label">Asset</span>
                     <div class="seg-control" data-control="kind">
-                        <button type="button" class="seg-btn" data-value="" aria-pressed="true">Mark</button>
-                        <button type="button" class="seg-btn" data-value="-wordmark" aria-pressed="false">Wordmark</button>
+                        <button type="button" class="seg-btn" data-value="mark" aria-pressed="true">Mark</button>
+                        <button type="button" class="seg-btn" data-value="wordmark" aria-pressed="false">Wordmark</button>
                     </div>
                 </div>
                 <div class="picker-row">
@@ -539,11 +539,35 @@
     </div>
     <script src="/network-bg.js"></script>
     <script>
+        // Static allowlists. The picker resolves user-clicked buttons against
+        // these maps; values that aren't present are ignored. Asset URLs are
+        // built from the map values, never from raw DOM strings -- this also
+        // satisfies CodeQL's js/xss-through-dom check.
         (function () {
+            var BRANDS = {
+                'singi-labs': { stem: 'singi-logo', name: 'Singi Labs' },
+                'barazo':     { stem: 'barazo-logo', name: 'Barazo Forums' },
+                'sifa':       { stem: 'sifa-logo',  name: 'Sifa ID' }
+            };
+            var KINDS = {
+                'mark':     { suffix: '',          label: 'logo' },
+                'wordmark': { suffix: '-wordmark', label: 'wordmark lockup' }
+            };
+            var BGS = {
+                'dark-bg':              { surface: 'dark',  label: 'dark background' },
+                'light-bg':              { surface: 'light', label: 'light background' },
+                'transparent-on-dark':   { surface: 'dark',  label: 'transparent, on dark surface' },
+                'transparent-on-light':  { surface: 'light', label: 'transparent, on light surface' }
+            };
+            var has = Object.prototype.hasOwnProperty;
+
+            function safeLookup(map, key) {
+                return has.call(map, key) ? map[key] : null;
+            }
+
             document.querySelectorAll('.brand-section[data-brand]').forEach(function (section) {
-                var brand = section.dataset.brand;
-                var stem = section.dataset.stem;
-                var name = section.dataset.name;
+                var brand = safeLookup(BRANDS, section.dataset.brand);
+                if (!brand) return;
 
                 var kindControl = section.querySelector('[data-control="kind"]');
                 var bgControl = section.querySelector('[data-control="bg"]');
@@ -556,19 +580,22 @@
                 function update() {
                     var kindBtn = kindControl.querySelector('[aria-pressed="true"]');
                     var bgBtn = bgControl.querySelector('[aria-pressed="true"]');
-                    var kind = kindBtn.dataset.value;     // '' or '-wordmark'
-                    var bg = bgBtn.dataset.value;
-                    var surface = bgBtn.dataset.surface;
+                    var kind = safeLookup(KINDS, kindBtn && kindBtn.dataset.value);
+                    var bg = safeLookup(BGS, bgBtn && bgBtn.dataset.value);
+                    if (!kind || !bg) return;
 
-                    var base = brand + '/' + stem + kind + '-' + bg;
+                    var brandKey = section.dataset.brand;
+                    var bgKey = bgBtn.dataset.value;
+                    // brandKey is validated above (it's a key in BRANDS); kind.suffix
+                    // and bgKey are from the allowlists. Stems contain only [a-z-].
+                    var base = brandKey + '/' + brand.stem + kind.suffix + '-' + bgKey;
                     var svgPath = base + '.svg';
                     var png1024Path = base + '-1024.png';
                     var png512Path = base + '-512.png';
 
                     previewImg.src = svgPath;
-                    previewImg.alt = name + ' ' + (kind ? 'wordmark lockup' : 'logo') +
-                        ' (' + bgBtn.textContent.trim().toLowerCase() + ')';
-                    previewArea.dataset.surface = surface;
+                    previewImg.alt = brand.name + ' ' + kind.label + ' (' + bg.label + ')';
+                    previewArea.dataset.surface = bg.surface;
                     dlSvg.href = svgPath;
                     dlPng1024.href = png1024Path;
                     dlPng512.href = png512Path;
