@@ -149,50 +149,90 @@
             margin-bottom: 1.5rem;
         }
 
-        .logo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1rem;
+        .asset-picker { margin-top: 1.5rem; }
+
+        .picker-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
         }
 
-        .logo-grid.wide {
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        .picker-label {
+            font-size: 0.8125rem;
+            color: var(--muted);
+            min-width: 5.5rem;
         }
 
-        .logo-preview.wide { height: 96px; }
-
-        .logo-card {
+        .seg-control {
+            display: inline-flex;
             border: 1px solid var(--border);
             border-radius: 6px;
             overflow: hidden;
-            text-decoration: none;
+            flex-wrap: wrap;
         }
 
-        .logo-card:hover { border-color: var(--muted); }
+        .seg-btn {
+            background: transparent;
+            color: var(--muted);
+            border: none;
+            border-right: 1px solid var(--border);
+            padding: 0.5rem 0.875rem;
+            font-family: inherit;
+            font-size: 0.8125rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color 0.1s ease, background-color 0.1s ease;
+        }
 
-        .logo-preview {
+        .seg-btn:last-child { border-right: none; }
+        .seg-btn:hover { color: var(--text); background: var(--bg-surface); }
+        .seg-btn[aria-pressed="true"] {
+            color: var(--text);
+            background: var(--bg-surface);
+        }
+
+        .preview-area {
+            margin: 1.25rem 0 1rem;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            min-height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 120px;
-            padding: 1.5rem;
+            transition: background-color 0.15s ease;
         }
+        .preview-area[data-surface="dark"] { background: var(--bg-surface); }
+        .preview-area[data-surface="light"] { background: var(--text); }
 
-        .logo-preview { background: var(--bg-surface); }
-
-        .logo-preview img {
+        .preview-img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 260px;
             object-fit: contain;
         }
 
-        .logo-info {
-            padding: 0.5rem 0.75rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.75rem;
-            color: var(--muted);
+        .download-row {
             display: flex;
-            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            flex: 1 1 8rem;
+            text-align: center;
+            padding: 0.625rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.8125rem;
+        }
+        .download-btn:hover {
+            border-color: var(--muted);
+            background: var(--bg-surface);
+            color: var(--text);
         }
 
         .colors {
@@ -269,9 +309,10 @@
         @media (max-width: 640px) {
             h1 { font-size: 1.5rem; }
             body { padding: 2rem 1.25rem; }
-            .logo-grid { grid-template-columns: 1fr 1fr; }
             .links-grid { grid-template-columns: 1fr; gap: 1rem; }
             .brand-section { padding: 1.25rem; }
+            .picker-label { min-width: 0; flex-basis: 100%; }
+            .download-btn { flex-basis: 100%; }
         }
 
         #network-bg {
@@ -291,7 +332,7 @@
         <a class="back" href="https://singi.dev">&larr; singi.dev</a>
 
         <h1>Press kit</h1>
-        <p class="intro">Logos, brand colors, and copy-ready descriptions for Singi Labs and its products. Each logo is available in dark- and light-background variants, as SVG (vector) and PNG (512px and 1024px). Right-click to save, or grab the whole set from <a href="https://github.com/singi-labs/singi-labs.github.io/tree/main/press/kit">GitHub</a>.</p>
+        <p class="intro">Logos, brand colors, and copy-ready descriptions for Singi Labs and its products. Pick the asset, the background it should sit on, and the format you want. Or grab the whole set from <a href="https://github.com/singi-labs/singi-labs.github.io/tree/main/press/kit">GitHub</a>.</p>
 
         <!-- Colors -->
         <h2>Brand colors</h2>
@@ -341,194 +382,113 @@
         </div>
 
         <!-- Singi Labs -->
-        <div class="brand-section">
+        <div class="brand-section" data-brand="singi-labs" data-stem="singi-logo" data-name="Singi Labs">
             <div class="brand-header">
                 <div class="brand-name" style="color: var(--singi);">Singi Labs</div>
             </div>
             <p class="brand-desc">The parent organization. "Open source foundations for networked apps." Singi is from Swahili "msingi" (foundation).</p>
 
-            <h3>Mark</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="singi-labs/singi-logo-dark-bg.svg" download>
-                    <div class="logo-preview"><img src="singi-labs/singi-logo-dark-bg.svg" alt="Singi Labs logo on dark background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-dark-bg-1024.png" download>
-                    <div class="logo-preview"><img src="singi-labs/singi-logo-dark-bg-512.png" alt="Singi Labs logo on dark background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-dark-bg-512.png" download>
-                    <div class="logo-preview"><img src="singi-labs/singi-logo-dark-bg-512.png" alt="Singi Labs logo on dark background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-light-bg.svg" download>
-                    <div class="logo-preview"><img src="singi-labs/singi-logo-light-bg.svg" alt="Singi Labs logo on light background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-light-bg-1024.png" download>
-                    <div class="logo-preview"><img src="singi-labs/singi-logo-light-bg-512.png" alt="Singi Labs logo on light background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-light-bg-512.png" download>
-                    <div class="logo-preview"><img src="singi-labs/singi-logo-light-bg-512.png" alt="Singi Labs logo on light background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Light bg</span></div>
-                </a>
-            </div>
+            <div class="asset-picker">
+                <div class="picker-row">
+                    <span class="picker-label">Asset</span>
+                    <div class="seg-control" data-control="kind">
+                        <button type="button" class="seg-btn" data-value="mark" aria-pressed="true">Mark</button>
+                        <button type="button" class="seg-btn" data-value="wordmark" aria-pressed="false">Wordmark</button>
+                    </div>
+                </div>
+                <div class="picker-row">
+                    <span class="picker-label">Background</span>
+                    <div class="seg-control" data-control="bg">
+                        <button type="button" class="seg-btn" data-value="dark-bg" data-surface="dark" aria-pressed="true">Dark</button>
+                        <button type="button" class="seg-btn" data-value="light-bg" data-surface="light" aria-pressed="false">Light</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-dark" data-surface="dark" aria-pressed="false">Transparent · for dark</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-light" data-surface="light" aria-pressed="false">Transparent · for light</button>
+                    </div>
+                </div>
 
-            <h3>Logo with wordmark</h3>
-            <div class="logo-grid wide">
-                <a class="logo-card" href="singi-labs/singi-logo-wordmark-dark-bg.svg" download>
-                    <div class="logo-preview wide"><img src="singi-labs/singi-logo-wordmark-dark-bg.svg" alt="Singi Labs wordmark lockup on dark background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-wordmark-dark-bg-1024.png" download>
-                    <div class="logo-preview wide"><img src="singi-labs/singi-logo-wordmark-dark-bg-512.png" alt="Singi Labs wordmark lockup on dark background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-wordmark-dark-bg-512.png" download>
-                    <div class="logo-preview wide"><img src="singi-labs/singi-logo-wordmark-dark-bg-512.png" alt="Singi Labs wordmark lockup on dark background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-wordmark-light-bg.svg" download>
-                    <div class="logo-preview wide"><img src="singi-labs/singi-logo-wordmark-light-bg.svg" alt="Singi Labs wordmark lockup on light background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-wordmark-light-bg-1024.png" download>
-                    <div class="logo-preview wide"><img src="singi-labs/singi-logo-wordmark-light-bg-512.png" alt="Singi Labs wordmark lockup on light background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="singi-labs/singi-logo-wordmark-light-bg-512.png" download>
-                    <div class="logo-preview wide"><img src="singi-labs/singi-logo-wordmark-light-bg-512.png" alt="Singi Labs wordmark lockup on light background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Light bg</span></div>
-                </a>
+                <div class="preview-area" data-surface="dark">
+                    <img class="preview-img" alt="">
+                </div>
+
+                <div class="download-row">
+                    <a class="download-btn" data-fmt="svg" download>↓ SVG</a>
+                    <a class="download-btn" data-fmt="png-1024" download>↓ PNG 1024px</a>
+                    <a class="download-btn" data-fmt="png-512" download>↓ PNG 512px</a>
+                </div>
             </div>
         </div>
 
-        <!-- Barazo -->
-        <div class="brand-section">
+        <!-- Barazo Forums -->
+        <div class="brand-section" data-brand="barazo" data-stem="barazo-logo" data-name="Barazo Forums">
             <div class="brand-header">
                 <div class="brand-name" style="color: var(--barazo);">Barazo Forums</div>
             </div>
             <p class="brand-desc">Federated forum platform on the AT Protocol. "Community forums you control." The name is from Swahili "baraza" (community council).</p>
 
-            <h3>Mark</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="barazo/barazo-logo-dark-bg.svg" download>
-                    <div class="logo-preview"><img src="barazo/barazo-logo-dark-bg.svg" alt="Barazo Forums logo on dark background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-dark-bg-1024.png" download>
-                    <div class="logo-preview"><img src="barazo/barazo-logo-dark-bg-512.png" alt="Barazo Forums logo on dark background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-dark-bg-512.png" download>
-                    <div class="logo-preview"><img src="barazo/barazo-logo-dark-bg-512.png" alt="Barazo Forums logo on dark background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-light-bg.svg" download>
-                    <div class="logo-preview"><img src="barazo/barazo-logo-light-bg.svg" alt="Barazo Forums logo on light background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-light-bg-1024.png" download>
-                    <div class="logo-preview"><img src="barazo/barazo-logo-light-bg-512.png" alt="Barazo Forums logo on light background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-light-bg-512.png" download>
-                    <div class="logo-preview"><img src="barazo/barazo-logo-light-bg-512.png" alt="Barazo Forums logo on light background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Light bg</span></div>
-                </a>
-            </div>
+            <div class="asset-picker">
+                <div class="picker-row">
+                    <span class="picker-label">Asset</span>
+                    <div class="seg-control" data-control="kind">
+                        <button type="button" class="seg-btn" data-value="mark" aria-pressed="true">Mark</button>
+                        <button type="button" class="seg-btn" data-value="wordmark" aria-pressed="false">Wordmark</button>
+                    </div>
+                </div>
+                <div class="picker-row">
+                    <span class="picker-label">Background</span>
+                    <div class="seg-control" data-control="bg">
+                        <button type="button" class="seg-btn" data-value="dark-bg" data-surface="dark" aria-pressed="true">Dark</button>
+                        <button type="button" class="seg-btn" data-value="light-bg" data-surface="light" aria-pressed="false">Light</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-dark" data-surface="dark" aria-pressed="false">Transparent · for dark</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-light" data-surface="light" aria-pressed="false">Transparent · for light</button>
+                    </div>
+                </div>
 
-            <h3>Logo with wordmark</h3>
-            <div class="logo-grid wide">
-                <a class="logo-card" href="barazo/barazo-logo-wordmark-dark-bg.svg" download>
-                    <div class="logo-preview wide"><img src="barazo/barazo-logo-wordmark-dark-bg.svg" alt="Barazo Forums wordmark lockup on dark background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-wordmark-dark-bg-1024.png" download>
-                    <div class="logo-preview wide"><img src="barazo/barazo-logo-wordmark-dark-bg-512.png" alt="Barazo Forums wordmark lockup on dark background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-wordmark-dark-bg-512.png" download>
-                    <div class="logo-preview wide"><img src="barazo/barazo-logo-wordmark-dark-bg-512.png" alt="Barazo Forums wordmark lockup on dark background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-wordmark-light-bg.svg" download>
-                    <div class="logo-preview wide"><img src="barazo/barazo-logo-wordmark-light-bg.svg" alt="Barazo Forums wordmark lockup on light background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-wordmark-light-bg-1024.png" download>
-                    <div class="logo-preview wide"><img src="barazo/barazo-logo-wordmark-light-bg-512.png" alt="Barazo Forums wordmark lockup on light background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="barazo/barazo-logo-wordmark-light-bg-512.png" download>
-                    <div class="logo-preview wide"><img src="barazo/barazo-logo-wordmark-light-bg-512.png" alt="Barazo Forums wordmark lockup on light background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Light bg</span></div>
-                </a>
+                <div class="preview-area" data-surface="dark">
+                    <img class="preview-img" alt="">
+                </div>
+
+                <div class="download-row">
+                    <a class="download-btn" data-fmt="svg" download>↓ SVG</a>
+                    <a class="download-btn" data-fmt="png-1024" download>↓ PNG 1024px</a>
+                    <a class="download-btn" data-fmt="png-512" download>↓ PNG 512px</a>
+                </div>
             </div>
         </div>
 
-        <!-- Sifa -->
-        <div class="brand-section">
+        <!-- Sifa ID -->
+        <div class="brand-section" data-brand="sifa" data-stem="sifa-logo" data-name="Sifa ID">
             <div class="brand-header">
                 <div class="brand-name" style="color: var(--sifa);">Sifa ID</div>
             </div>
             <p class="brand-desc">Professional identity layer for the AT Protocol. "Professional profiles and trust." The name is from Swahili "sifa" (reputation, praise).</p>
 
-            <h3>Mark</h3>
-            <div class="logo-grid">
-                <a class="logo-card" href="sifa/sifa-logo-dark-bg.svg" download>
-                    <div class="logo-preview"><img src="sifa/sifa-logo-dark-bg.svg" alt="Sifa ID logo on dark background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-dark-bg-1024.png" download>
-                    <div class="logo-preview"><img src="sifa/sifa-logo-dark-bg-512.png" alt="Sifa ID logo on dark background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-dark-bg-512.png" download>
-                    <div class="logo-preview"><img src="sifa/sifa-logo-dark-bg-512.png" alt="Sifa ID logo on dark background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-light-bg.svg" download>
-                    <div class="logo-preview"><img src="sifa/sifa-logo-light-bg.svg" alt="Sifa ID logo on light background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-light-bg-1024.png" download>
-                    <div class="logo-preview"><img src="sifa/sifa-logo-light-bg-512.png" alt="Sifa ID logo on light background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-light-bg-512.png" download>
-                    <div class="logo-preview"><img src="sifa/sifa-logo-light-bg-512.png" alt="Sifa ID logo on light background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Light bg</span></div>
-                </a>
-            </div>
+            <div class="asset-picker">
+                <div class="picker-row">
+                    <span class="picker-label">Asset</span>
+                    <div class="seg-control" data-control="kind">
+                        <button type="button" class="seg-btn" data-value="mark" aria-pressed="true">Mark</button>
+                        <button type="button" class="seg-btn" data-value="wordmark" aria-pressed="false">Wordmark</button>
+                    </div>
+                </div>
+                <div class="picker-row">
+                    <span class="picker-label">Background</span>
+                    <div class="seg-control" data-control="bg">
+                        <button type="button" class="seg-btn" data-value="dark-bg" data-surface="dark" aria-pressed="true">Dark</button>
+                        <button type="button" class="seg-btn" data-value="light-bg" data-surface="light" aria-pressed="false">Light</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-dark" data-surface="dark" aria-pressed="false">Transparent · for dark</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-light" data-surface="light" aria-pressed="false">Transparent · for light</button>
+                    </div>
+                </div>
 
-            <h3>Logo with wordmark</h3>
-            <div class="logo-grid wide">
-                <a class="logo-card" href="sifa/sifa-logo-wordmark-dark-bg.svg" download>
-                    <div class="logo-preview wide"><img src="sifa/sifa-logo-wordmark-dark-bg.svg" alt="Sifa ID wordmark lockup on dark background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-wordmark-dark-bg-1024.png" download>
-                    <div class="logo-preview wide"><img src="sifa/sifa-logo-wordmark-dark-bg-512.png" alt="Sifa ID wordmark lockup on dark background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-wordmark-dark-bg-512.png" download>
-                    <div class="logo-preview wide"><img src="sifa/sifa-logo-wordmark-dark-bg-512.png" alt="Sifa ID wordmark lockup on dark background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Dark bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-wordmark-light-bg.svg" download>
-                    <div class="logo-preview wide"><img src="sifa/sifa-logo-wordmark-light-bg.svg" alt="Sifa ID wordmark lockup on light background"></div>
-                    <div class="logo-info"><span>SVG</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-wordmark-light-bg-1024.png" download>
-                    <div class="logo-preview wide"><img src="sifa/sifa-logo-wordmark-light-bg-512.png" alt="Sifa ID wordmark lockup on light background, PNG 1024px"></div>
-                    <div class="logo-info"><span>PNG 1024px</span><span>Light bg</span></div>
-                </a>
-                <a class="logo-card" href="sifa/sifa-logo-wordmark-light-bg-512.png" download>
-                    <div class="logo-preview wide"><img src="sifa/sifa-logo-wordmark-light-bg-512.png" alt="Sifa ID wordmark lockup on light background, PNG 512px"></div>
-                    <div class="logo-info"><span>PNG 512px</span><span>Light bg</span></div>
-                </a>
+                <div class="preview-area" data-surface="dark">
+                    <img class="preview-img" alt="">
+                </div>
+
+                <div class="download-row">
+                    <a class="download-btn" data-fmt="svg" download>↓ SVG</a>
+                    <a class="download-btn" data-fmt="png-1024" download>↓ PNG 1024px</a>
+                    <a class="download-btn" data-fmt="png-512" download>↓ PNG 512px</a>
+                </div>
             </div>
         </div>
 
@@ -578,5 +538,89 @@
         <p style="margin-top: 3rem; color: var(--muted); font-size: 0.8125rem;">Questions? Reach out to Guido at <a href="https://bsky.app/profile/gui.do">@gui.do</a> on Bluesky or guido@singi.dev.</p>
     </div>
     <script src="/network-bg.js"></script>
+    <script>
+        // Static allowlists. The picker resolves user-clicked buttons against
+        // these maps; values that aren't present are ignored. Asset URLs are
+        // built from the map values, never from raw DOM strings -- this also
+        // satisfies CodeQL's js/xss-through-dom check.
+        (function () {
+            // Each map holds the canonical asset slug as a value -- never read
+            // back from the DOM. The DOM key is only used to look up the entry.
+            var BRANDS = {
+                'singi-labs': { dir: 'singi-labs', stem: 'singi-logo', name: 'Singi Labs' },
+                'barazo':     { dir: 'barazo',     stem: 'barazo-logo', name: 'Barazo Forums' },
+                'sifa':       { dir: 'sifa',       stem: 'sifa-logo',  name: 'Sifa ID' }
+            };
+            var KINDS = {
+                'mark':     { suffix: '',          label: 'logo' },
+                'wordmark': { suffix: '-wordmark', label: 'wordmark lockup' }
+            };
+            var BGS = {
+                'dark-bg':              { slug: 'dark-bg',              surface: 'dark',  label: 'dark background' },
+                'light-bg':             { slug: 'light-bg',             surface: 'light', label: 'light background' },
+                'transparent-on-dark':  { slug: 'transparent-on-dark',  surface: 'dark',  label: 'transparent, on dark surface' },
+                'transparent-on-light': { slug: 'transparent-on-light', surface: 'light', label: 'transparent, on light surface' }
+            };
+            var has = Object.prototype.hasOwnProperty;
+
+            function safeLookup(map, key) {
+                return has.call(map, key) ? map[key] : null;
+            }
+
+            document.querySelectorAll('.brand-section[data-brand]').forEach(function (section) {
+                var brand = safeLookup(BRANDS, section.dataset.brand);
+                if (!brand) return;
+
+                var kindControl = section.querySelector('[data-control="kind"]');
+                var bgControl = section.querySelector('[data-control="bg"]');
+                var previewArea = section.querySelector('.preview-area');
+                var previewImg = section.querySelector('.preview-img');
+                var dlSvg = section.querySelector('[data-fmt="svg"]');
+                var dlPng1024 = section.querySelector('[data-fmt="png-1024"]');
+                var dlPng512 = section.querySelector('[data-fmt="png-512"]');
+
+                function update() {
+                    var kindBtn = kindControl.querySelector('[aria-pressed="true"]');
+                    var bgBtn = bgControl.querySelector('[aria-pressed="true"]');
+                    var kind = safeLookup(KINDS, kindBtn && kindBtn.dataset.value);
+                    var bg = safeLookup(BGS, bgBtn && bgBtn.dataset.value);
+                    if (!kind || !bg) return;
+
+                    // All path components below come from the static maps, never
+                    // from the DOM read (we only used the DOM value as a key).
+                    var base = brand.dir + '/' + brand.stem + kind.suffix + '-' + bg.slug;
+                    var svgPath = base + '.svg';
+                    var png1024Path = base + '-1024.png';
+                    var png512Path = base + '-512.png';
+
+                    previewImg.src = svgPath;
+                    previewImg.alt = brand.name + ' ' + kind.label + ' (' + bg.label + ')';
+                    previewArea.dataset.surface = bg.surface;
+                    dlSvg.href = svgPath;
+                    dlPng1024.href = png1024Path;
+                    dlPng512.href = png512Path;
+                }
+
+                function activate(group, btn) {
+                    group.querySelectorAll('.seg-btn').forEach(function (b) {
+                        b.setAttribute('aria-pressed', 'false');
+                    });
+                    btn.setAttribute('aria-pressed', 'true');
+                    update();
+                }
+
+                kindControl.addEventListener('click', function (e) {
+                    var btn = e.target.closest('.seg-btn');
+                    if (btn) activate(kindControl, btn);
+                });
+                bgControl.addEventListener('click', function (e) {
+                    var btn = e.target.closest('.seg-btn');
+                    if (btn) activate(bgControl, btn);
+                });
+
+                update();
+            });
+        })();
+    </script>
 </body>
 </html>
