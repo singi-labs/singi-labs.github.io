@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>AT Protocol · unconference starter</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+
+  <style>
+    /* iA Writer Quattro — Singi Labs brand font */
+    @font-face { font-family: 'iA Writer Quattro'; src: url('fonts/quattro-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'iA Writer Quattro'; src: url('fonts/quattro-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'iA Writer Quattro'; src: url('fonts/quattro-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'iA Writer Quattro'; src: url('fonts/quattro-bold-italic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
+
+    :root {
+      /* Singi Labs Flexoki palette */
+      --singi-orange: #DA702C;
+      --singi-purple: #8B7EC8;
+      --barazo-cyan:  #3AA99F;
+      --sifa-blue:    #4385BE;
+      /* Neutrals */
+      --ink: #100F0F;
+      --muted: #6F6E69;
+      --paper: #FFFCF0;
+      --paper-soft: #F2F0E5;
+      --dark: #100F0F;
+      --dark-soft: #1C1B1A;
+      /* Roles */
+      --accent: var(--singi-orange);
+      --accent-2: var(--singi-purple);
+      --speech: #DDE8C0;
+      --reach: #F8D5B6;
+      --line: var(--singi-orange);
+    }
+
+    .reveal { font-family: 'iA Writer Quattro', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color: var(--ink); }
+    .reveal section { text-align: left; }
+    .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; letter-spacing: -0.02em; text-transform: none; color: var(--ink); }
+    .reveal h1 { font-size: 2.4em; line-height: 1.05; }
+    .reveal h2 { font-size: 1.8em; margin-bottom: 0.2em; }
+    .reveal h3 { font-size: 1.1em; color: var(--muted); font-weight: 500; margin-bottom: 0.6em; }
+    .reveal p, .reveal li { color: var(--ink); }
+    .reveal .muted { color: var(--muted); }
+    .reveal .center { text-align: center; }
+    .reveal .footer-note { position: absolute; bottom: 1.2em; left: 1.2em; font-size: 0.5em; color: var(--muted); }
+
+    /* Title slide */
+    .title-slide { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+    .title-slide .eyebrow { font-size: 0.9em; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1em; }
+    .title-slide .subtitle { font-size: 1.1em; color: var(--muted); margin-top: 0.4em; line-height: 1.3; }
+    .title-slide .disclaimer { margin-top: 1.2em; padding: 0.8em 1.2em; border-left: 4px solid var(--accent); background: var(--paper-soft); font-size: 0.6em; line-height: 1.4; max-width: 56em; }
+    .title-slide .disclaimer-tag { display: inline-block; font-size: 0.75em; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-right: 0.6em; }
+
+    /* Title slide — dark mode */
+    .reveal .title-section-dark h1 { color: var(--paper); }
+    .reveal .title-section-dark .eyebrow { color: var(--singi-purple); }
+    .reveal .title-section-dark .subtitle { color: #c0c4cb; }
+    .reveal .title-section-dark .subtitle strong { color: var(--singi-orange); }
+    .reveal .title-section-dark .disclaimer { background: rgba(255,255,255,0.05); border-left-color: var(--singi-orange); color: #d4d8de; }
+    .reveal .title-section-dark .disclaimer-tag { color: var(--singi-orange); }
+
+    /* Ecosystem slide */
+    .eco-vertical { display: flex; flex-direction: column; gap: 0.5em; align-items: center; margin: 0.3em auto 0; }
+    .eco-count-row { display: flex; align-items: baseline; gap: 0.4em; flex-wrap: wrap; justify-content: center; }
+    .eco-count-row .num { font-size: 2.5em; font-weight: 800; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+    .eco-count-row .num-suffix { font-size: 0.8em; color: var(--ink); font-weight: 600; }
+    .eco-count-row .counting { color: var(--muted); font-weight: 500; }
+    .eco-grid { display: flex; flex-direction: column; gap: 0.3em; width: calc(100% + 12vw); margin-left: -6vw; margin-right: -6vw; }
+    .eco-row { display: flex; gap: 0.3em; justify-content: center; }
+    .eco-grid .logo { width: calc((100% - 12 * 0.3em) / 13); max-width: 60px; aspect-ratio: 1 / 1; padding: 0.2em; background: white; border: 1px solid #e5e5e0; border-radius: 6px; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.6); transition: opacity 0.4s ease, transform 0.4s ease; flex-shrink: 0; }
+    .eco-grid .logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .eco-grid .logo.featured { border: 2px solid var(--sifa-blue); background: #eaf3ff; box-shadow: 0 0 0 3px rgba(67,133,190,0.18); }
+    .reveal .present .eco-grid .logo.shown { opacity: 1; transform: scale(1); }
+    .eco-replacing { margin-top: 0.8em; font-size: 0.6em; color: var(--ink); text-align: center; line-height: 1.5; }
+    .eco-replacing strong { color: var(--singi-orange); font-weight: 700; }
+    .eco-tagline { margin-top: 0.5em; font-size: 0.6em; color: var(--muted); text-align: center; line-height: 1.4; }
+    .eco-tagline strong { color: var(--ink); }
+    .eco-tagline .src { display: block; font-size: 0.75em; margin-top: 0.3em; opacity: 0.7; }
+
+    /* Closer slide */
+    .reveal .closer-section, .reveal .closer-section h1, .reveal .closer-section h2, .reveal .closer-section p { color: var(--paper); }
+    .closer { display: flex; flex-direction: column; justify-content: center; height: 100%; text-align: left; }
+    .closer-eyebrow { font-size: 0.7em; letter-spacing: 0.2em; text-transform: uppercase; color: var(--singi-purple); margin-bottom: 0.8em; font-weight: 600; }
+    .reveal .closer-q { color: var(--paper); font-size: 2em; line-height: 1.15; font-weight: 700; margin: 0; }
+    .reveal .closer-q em { color: var(--singi-orange); font-style: italic; }
+    .closer-links { margin-top: 1.4em; display: flex; gap: 0.8em; align-items: center; font-size: 0.7em; color: #c0c4cb; }
+    .closer-links a { color: var(--singi-orange); text-decoration: none; font-weight: 600; }
+    .closer-links a:hover { text-decoration: underline; }
+
+    /* Singi Labs slide (dark) */
+    .reveal .singi-section { color: var(--paper); }
+    .reveal .singi-section h2, .reveal .singi-section h3 { color: var(--paper); }
+    .singi-hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 0.5em; }
+    .singi-hero .brand { display: flex; align-items: center; gap: 0.4em; margin-bottom: 0.3em; }
+    .singi-hero .brand img { height: 3.6em; width: 3.6em; }
+    .singi-hero .brand .wordmark { font-size: 1.8em; font-weight: 700; letter-spacing: -0.02em; color: var(--paper); }
+    .singi-hero .tagline { font-size: 0.85em; color: #c0c4cb; }
+    .singi-products { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; margin-top: 0.3em; }
+    .singi-products .card { border: 1px solid #2a2f37; border-radius: 12px; padding: 1em 1.1em; background: rgba(255,255,255,0.04); display: flex; flex-direction: column; gap: 0.4em; backdrop-filter: blur(2px); }
+    .singi-products .card .head { display: flex; align-items: center; gap: 0.4em; }
+    .singi-products .card .head img { height: 2.8em; width: 2.8em; flex-shrink: 0; }
+    .singi-products .card .name { font-size: 1.1em; font-weight: 700; color: var(--paper); }
+    .singi-products .card .domain { font-size: 0.5em; color: #8aa1c2; letter-spacing: 0.1em; text-transform: uppercase; }
+    .singi-products .card .desc { font-size: 0.6em; color: #d4d8de; line-height: 1.4; }
+    .singi-products .card.barazo .desc strong { color: var(--barazo-cyan); }
+    .singi-products .card.sifa .desc strong { color: var(--sifa-blue); }
+    .singi-products .card.barazo { border-color: rgba(58,169,159,0.4); }
+    .singi-products .card.sifa { border-color: rgba(67,133,190,0.4); }
+    .singi-principles { display: flex; justify-content: center; gap: 0.6em; margin-top: 0.6em; flex-wrap: wrap; font-size: 0.45em; color: #c0c4cb; text-transform: uppercase; letter-spacing: 0.1em; }
+    .singi-principles span { padding: 0.25em 0.7em; border: 1px solid #4a5260; border-radius: 999px; white-space: nowrap; }
+    .singi-url { text-align: center; margin-top: 0.5em; font-size: 0.65em; }
+    .singi-url a { color: var(--singi-orange); text-decoration: none; font-weight: 600; }
+
+    /* Network canvas (singi.dev style nodes-and-lines) */
+    .reveal .singi-section { position: relative; }
+    .singi-network-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .reveal .singi-section > *:not(.singi-network-bg) { position: relative; z-index: 1; }
+
+    /* Bridge slide — "What if it didn't have to be this way?" */
+    .bridge-slide { display: flex; flex-direction: column; justify-content: center; height: 100%; max-width: 32em; }
+    .bridge-eyebrow { font-size: 0.75em; letter-spacing: 0.18em; text-transform: uppercase; color: var(--singi-orange); font-weight: 700; margin-bottom: 0.8em; }
+    .reveal .bridge-q { font-size: 2.6em; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin: 0; }
+    .bridge-sub { font-size: 1.2em; color: var(--muted); margin-top: 0.8em; line-height: 1.4; }
+    .reveal .bridge-sub em { color: var(--singi-orange); font-style: italic; }
+
+    /* Problem with the current stack slide */
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9em; margin-top: 0.2em; }
+    .problem-card { padding: 0.7em 0.9em; border-radius: 10px; background: white; border: 1px solid #e5e2d5; display: flex; flex-direction: column; gap: 0.3em; }
+    .problem-card .pc-tag { font-size: 0.45em; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+    .problem-card .pc-title { font-size: 0.85em; font-weight: 700; line-height: 1.2; color: var(--ink); }
+    .problem-card ul { margin: 0; padding-left: 1.1em; font-size: 0.5em; line-height: 1.5; color: var(--ink); }
+    .problem-card ul li { margin-bottom: 0.08em; }
+    .problem-card.users { border-left: 4px solid var(--singi-orange); }
+    .problem-card.creators { border-left: 4px solid var(--singi-purple); }
+    .problem-card.creators .pc-tag { color: var(--singi-purple); }
+    .problem-takeaway { margin-top: 0.6em; padding: 0.6em 0.9em; border-left: 4px solid var(--accent); background: var(--paper-soft); font-size: 0.65em; line-height: 1.4; text-align: center; }
+    .problem-takeaway strong { color: var(--ink); }
+
+    /* What's in it for you slide (roles) */
+    .role-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.7em; margin-top: 0.2em; }
+    .role-card { padding: 0.65em 0.8em; border-radius: 10px; background: white; border: 1px solid #e5e2d5; display: flex; flex-direction: column; gap: 0.25em; }
+    .role-card .role-tag { font-size: 0.4em; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+    .role-card .role-title { font-size: 0.78em; font-weight: 700; line-height: 1.2; color: var(--ink); }
+    .role-card .role-body { font-size: 0.5em; color: var(--ink); line-height: 1.5; }
+    .role-card.role-vendor { border-left: 4px solid var(--barazo-cyan); }
+    .role-card.role-vendor .role-tag { color: var(--barazo-cyan); }
+    .role-card.role-agency { border-left: 4px solid var(--sifa-blue); }
+    .role-card.role-agency .role-tag { color: var(--sifa-blue); }
+    .role-card.role-brand { border-left: 4px solid var(--singi-orange); }
+    .role-takeaway { margin-top: 0.7em; padding: 0.6em 0.9em; border-left: 4px solid var(--singi-purple); background: var(--paper-soft); font-size: 0.65em; line-height: 1.4; text-align: center; }
+    .role-takeaway strong { color: var(--ink); }
+    .role-stakes { margin-top: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5em; }
+    .role-stakes .rt-line { padding: 0.55em 0.8em; font-size: 0.55em; line-height: 1.5; border-radius: 8px; }
+    .role-stakes .rt-line.take { background: #ecf5ec; border-left: 4px solid #2f7a3a; }
+    .role-stakes .rt-line.skip { background: #fbeeec; border-left: 4px solid #b04a3a; color: var(--ink); }
+    .role-stakes .rt-tag { font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85em; display: block; margin-bottom: 0.2em; }
+    .role-stakes .rt-line.take .rt-tag { color: #2f7a3a; }
+    .role-stakes .rt-line.skip .rt-tag { color: #b04a3a; }
+    .role-stakes strong { color: var(--ink); }
+    .role-realism { margin-top: 0.5em; padding: 0.5em 0.9em; font-size: 0.5em; line-height: 1.5; color: var(--muted); text-align: center; border-top: 1px dashed #c5c1b3; }
+    .role-realism strong { color: var(--ink); }
+
+    /* Why this matters / SSoT slide — visual flow */
+    .ssot-visual { display: flex; flex-direction: column; align-items: center; gap: 0.3em; margin-top: 0.3em; }
+    .ssot-chips { display: flex; gap: 0.4em; flex-wrap: wrap; justify-content: center; }
+    .ssot-chip { padding: 0.25em 0.7em; background: var(--paper-soft); border: 1px solid #d8d4c1; border-radius: 999px; font-size: 0.5em; color: var(--ink); font-weight: 500; }
+    .ssot-arrow { font-size: 0.9em; color: var(--singi-orange); line-height: 1; }
+    .ssot-hub { padding: 0.6em 1.4em; background: var(--singi-orange); color: var(--paper); border-radius: 12px; text-align: center; box-shadow: 0 4px 16px rgba(218,112,44,0.25); }
+    .ssot-hub-name { font-size: 1.3em; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+    .ssot-hub-label { font-size: 0.4em; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.85; margin-bottom: 0.25em; }
+    .ssot-hub-sub { font-size: 0.45em; opacity: 0.85; margin-top: 0.25em; font-style: italic; }
+    .ssot-apps { display: flex; gap: 0.5em; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .ssot-app-box { padding: 0.3em 0.9em; background: white; border: 1px solid #d8d4c1; border-radius: 6px; font-size: 0.5em; color: var(--muted); font-weight: 500; }
+    .ssot-app-box.dotted { border-style: dashed; }
+    .ssot-caption { font-size: 0.45em; color: var(--muted); font-style: italic; margin-top: 0.1em; }
+    .why-takeaway { margin-top: 0.6em; padding: 0.55em 1em; border-left: 4px solid var(--accent); background: var(--paper-soft); font-size: 0.6em; line-height: 1.4; text-align: center; max-width: 48em; margin-left: auto; margin-right: auto; }
+    .why-takeaway strong { color: var(--ink); }
+
+    /* Conference example slide */
+    .ba-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.7em; align-items: stretch; margin-top: 0.2em; }
+    .ba-grid .arrow-col { display: flex; align-items: center; justify-content: center; font-size: 1.4em; color: var(--accent); }
+    .ba-card { border-radius: 12px; padding: 0.6em 0.85em; display: flex; flex-direction: column; }
+    .ba-card .ba-tag { font-size: 0.45em; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.25em; }
+    .ba-card .ba-title { font-size: 0.78em; font-weight: 700; margin-bottom: 0.25em; line-height: 1.2; }
+    .ba-card ol { margin: 0; padding-left: 1.1em; font-size: 0.5em; line-height: 1.5; color: var(--ink); }
+    .ba-card ol li { margin-bottom: 0.05em; }
+    .ba-card .punch { margin-top: auto; padding-top: 0.35em; font-size: 0.45em; color: var(--muted); font-style: italic; line-height: 1.4; }
+    /* Auto-animate BEFORE bullets when slide is presenting */
+    .reveal section.present .ba-card.before ol li { opacity: 0; transform: translateY(6px); animation: liFade 0.5s ease forwards; }
+    .reveal section.present .ba-card.before ol li:nth-child(1) { animation-delay: 0.3s; }
+    .reveal section.present .ba-card.before ol li:nth-child(2) { animation-delay: 0.8s; }
+    .reveal section.present .ba-card.before ol li:nth-child(3) { animation-delay: 1.3s; }
+    .reveal section.present .ba-card.before ol li:nth-child(4) { animation-delay: 1.8s; }
+    .reveal section.present .ba-card.before ol li:nth-child(5) { animation-delay: 2.3s; }
+    @keyframes liFade { to { opacity: 1; transform: translateY(0); } }
+    .ba-card.before { background: #fbeeec; border: 1px solid #e8c8c2; }
+    .ba-card.before .ba-tag { color: #b04a3a; }
+    .ba-card.after { background: #ecf5ec; border: 1px solid #c2dec2; }
+    .ba-card.after .ba-tag { color: #2f7a3a; }
+    .ba-card.after .one-step { font-size: 0.72em; font-weight: 700; padding: 0.4em 0.6em; background: white; border-radius: 8px; border: 2px solid #2f7a3a; margin-bottom: 0.35em; line-height: 1.2; }
+    .ba-card.after .one-step .num { color: #2f7a3a; font-size: 1.3em; margin-right: 0.3em; }
+    .ba-card.after .then { font-size: 0.45em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2em; }
+    .ba-card.after ul { margin: 0; padding-left: 1.1em; font-size: 0.5em; line-height: 1.5; color: var(--ink); list-style: '✓  '; }
+    .ba-card.after ul li { margin-bottom: 0.05em; }
+    .ba-frame { font-size: 0.55em; color: var(--muted); text-align: center; margin-top: 0.4em; line-height: 1.4; }
+    .ba-frame strong { color: var(--ink); }
+
+    /* Speech vs reach diagram */
+    .stack { display: flex; flex-direction: column; gap: 0.4em; margin: 0.4em 0; }
+    .stack .layer { padding: 0.6em 1em; border-radius: 8px; border: 2px solid var(--ink); }
+    .stack .layer .label { font-size: 0.55em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.1em; }
+    .stack .layer .body { font-size: 0.95em; font-weight: 600; }
+    .stack .reach { background: var(--reach); }
+    .stack .speech { background: var(--speech); }
+    .stack .divider { text-align: center; font-size: 0.55em; color: var(--muted); letter-spacing: 0.1em; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; margin-top: 0.4em; font-size: 0.6em; }
+    .compare .col h4 { margin: 0 0 0.2em 0; font-size: 1em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .compare .col p { margin: 0; line-height: 1.4; }
+
+    /* Architecture diagram */
+    .arch { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8em; align-items: stretch; margin: 0.6em 0 0.3em; }
+    .arch .box { border: 2px solid var(--ink); border-radius: 10px; padding: 0.7em 0.8em; background: white; position: relative; }
+    .arch .box .name { font-size: 1.1em; font-weight: 700; margin-bottom: 0.1em; }
+    .arch .box .role { font-size: 0.5em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3em; }
+    .arch .box .desc { font-size: 0.55em; line-height: 1.4; }
+    .arch .box.pds { background: #eaf3ff; }
+    .arch .box.relay { background: #fff5e0; }
+    .arch .box.appview { background: #ecf7ec; }
+    .arch-flow { display: flex; justify-content: space-between; align-items: center; font-size: 0.5em; color: var(--muted); padding: 0 8%; margin-top: 0.2em; }
+    .arch-flow .arrow { font-size: 1.4em; color: var(--line); }
+    .takeaway { margin-top: 0.6em; padding: 0.6em 0.9em; border-left: 4px solid var(--accent); background: #f4f7fb; font-size: 0.65em; line-height: 1.4; }
+
+    /* Discussion slide */
+    .pillars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8em; margin: 0.6em 0 0.8em; }
+    .pillars .pillar { padding: 0.8em; border-radius: 8px; border: 1px solid #d8d8d2; background: white; }
+    .pillars .pillar .h { font-weight: 700; font-size: 0.85em; margin-bottom: 0.2em; }
+    .pillars .pillar .d { font-size: 0.55em; color: var(--muted); line-height: 1.4; }
+    .question { font-size: 1.2em; font-weight: 700; line-height: 1.3; padding: 0.6em 0.8em; background: var(--ink); color: var(--paper); border-radius: 10px; }
+    .question .q-label { display: block; font-size: 0.5em; letter-spacing: 0.2em; text-transform: uppercase; color: #c0c4cb; margin-bottom: 0.3em; font-weight: 500; }
+
+    /* Speaker notes hint, only visible at very bottom */
+    .reveal .slide-number { font-size: 0.6em; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Slide 1: Title (dark) -->
+      <section data-background-color="#100F0F" class="title-section-dark">
+        <div class="title-slide">
+          <div class="eyebrow">unconference starter</div>
+          <h1>A new Open Social Web<br>is emerging…</h1>
+          <div class="subtitle"><strong>atproto</strong> is to social data<br>what open source was to code.</div>
+          <div class="disclaimer">
+            <span class="disclaimer-tag">fyi</span>
+            It's the protocol behind Bluesky. (Not feature flags or A/B tests, sorry.)
+          </div>
+        </div>
+        <aside class="notes">
+          Goal of these slides: get just enough shared vocabulary to have a real discussion.
+          Don't lecture — set up the frame, then ask questions.
+          The disclaimer is the icebreaker — this room is full of A/B testers, name the elephant.
+        </aside>
+      </section>
+
+      <!-- Slide 2: The problem with the current stack -->
+      <section data-background-color="#FFFCF0">
+        <h2>What if the platform locks down tomorrow?</h2>
+        <h3>Twitter/Reddit API lockdown. Instagram/Facebook feed changes. Substack subscriptions no longer by email.</h3>
+
+        <div class="problem-grid">
+          <div class="problem-card users fragment fade-up">
+            <div class="pc-tag">If you're a user</div>
+            <div class="pc-title">You start over. Again.</div>
+            <ul>
+              <li>Switch platforms? Start from zero.</li>
+              <li>Account suspended? Lose everything.</li>
+              <li>Algorithm shifts? Your feed changes.</li>
+              <li>Platform dies? Your data dies with it.</li>
+            </ul>
+          </div>
+          <div class="problem-card creators fragment fade-up">
+            <div class="pc-tag">If you're a brand or creator</div>
+            <div class="pc-title">Your audience evaporates.</div>
+            <ul>
+              <li>Your audience belongs to the platform, not you.</li>
+              <li>One algorithm change kills your reach overnight.</li>
+              <li>API changes break every tool built on top.</li>
+              <li>Migrate? You can't take your community with you.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="problem-takeaway fragment fade-in">
+          Same lesson, every cycle: <strong>you're a tenant on someone else's platform.</strong>
+        </div>
+
+        <aside class="notes">
+          The "lockdown tomorrow" framing is concrete — drop named examples (Twitter API kill, Instagram graph closure, Reddit's 2023 API debacle, TikTok ban threats).
+          Don't dwell. This slide sets up "imagine an alternative" which is the next slide (conference example).
+          If asked "isn't decentralization just trading one problem for another?" — fair point. The bet is shifting from platform-risk to user-agency. Trade-offs are real (less polish, harder UX) but the structural shift is real too.
+        </aside>
+      </section>
+
+      <!-- Slide 3: Bridge — "What if it didn't have to be this way?" -->
+      <section data-background-color="#FFFCF0">
+        <div class="bridge-slide">
+          <div class="bridge-eyebrow">A different bet</div>
+          <h1 class="bridge-q">What if it didn't have to be this way?</h1>
+          <div class="bridge-sub">What if your data, your audience, your identity travelled with <em>you</em>?</div>
+        </div>
+        <aside class="notes">
+          Pause here. Let the question land. Don't rush to the next slide.
+          This is the pivot from "platforms own you" to "imagine an alternative."
+        </aside>
+      </section>
+
+      <!-- Slide 4: Conference example (with click-reveal) -->
+      <section data-background-color="#FFFCF0">
+        <h2>What <em>could</em> it feel like?</h2>
+        <h3>A conference networking app.</h3>
+
+        <div class="ba-grid">
+          <div class="ba-card before">
+            <div class="ba-tag">Today, every conf app</div>
+            <div class="ba-title">A new silo. An empty profile. Again.</div>
+            <ol>
+              <li>Make a new account</li>
+              <li>Re-type your name, role, bio, photo</li>
+              <li>Re-import your socials</li>
+              <li>Hand-pick the people you already know</li>
+              <li>Tick interests, swipe through strangers</li>
+            </ol>
+            <div class="punch">By the time it's any use, the conference is over.</div>
+          </div>
+
+          <div class="arrow-col fragment fade-in" data-fragment-index="1">→</div>
+
+          <div class="ba-card after fragment fade-in" data-fragment-index="1">
+            <div class="ba-tag">On atproto</div>
+            <div class="ba-title">Sign in. The app already knows you.</div>
+            <div class="one-step"><span class="num">1.</span>Log in with your atproto account</div>
+            <div class="then">Right away:</div>
+            <ul>
+              <li>Friends and follows who are also going</li>
+              <li>People worth talking to, by shared interest</li>
+              <li>Warm intros from shared context</li>
+              <li>"Invite these friends" in one tap</li>
+            </ul>
+            <div class="punch">No new account. Same identity, graph, and data.</div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          This is the killer-app argument. Every conference app today starts from zero, every time.
+          Same shape: hiring platforms, niche communities, recipe sharing — anything where "who do I know" or "what have I done" matters.
+          First click reveals the "after" column.
+
+          ALSO talk verbally: this isn't just an attendee win. Organizers benefit too — easier signups, richer attendee profiles without manual data collection, network effects from day 1, no GDPR headache for re-collected data, etc. Mention these out loud, don't list on slide.
+
+          Then ask the room: which of YOUR products has this same cold-start problem?
+        </aside>
+      </section>
+
+      <!-- Slide 5: Why this matters — PDS as single source of truth (visual) -->
+      <section data-background-color="#FFFCF0">
+        <h2>Data lives with the <em>person</em>, not the platform.</h2>
+
+        <div class="ssot-visual">
+          <div class="ssot-chips">
+            <span class="ssot-chip">posts</span>
+            <span class="ssot-chip">follows</span>
+            <span class="ssot-chip">identity</span>
+            <span class="ssot-chip">profile</span>
+          </div>
+          <div class="ssot-arrow">↓</div>
+          <div class="ssot-hub">
+            <div class="ssot-hub-label">Personal Data Server</div>
+            <div class="ssot-hub-name">PDS</div>
+            <div class="ssot-hub-sub">single source of truth</div>
+          </div>
+          <div class="ssot-arrow">↓</div>
+          <div class="ssot-apps">
+            <span class="ssot-app-box">App</span>
+            <span class="ssot-app-box">App</span>
+            <span class="ssot-app-box">App</span>
+            <span class="ssot-app-box">App</span>
+            <span class="ssot-app-box dotted">…</span>
+          </div>
+          <div class="ssot-caption">many apps · all read from the same PDS</div>
+        </div>
+
+        <div class="why-takeaway fragment fade-in">
+          Move providers any time. <strong>Data, followers, identity travel with the person.</strong>
+        </div>
+
+        <aside class="notes">
+          Visual: contents (posts/follows/identity/profile) flow into the PDS. Apps below read from it.
+          The PDS is the focal point — orange, prominent, central.
+          Verbal narration: "the data — your posts, follows, identity — lives in your PDS. Whether you're using Bluesky, a forum, a podcast app — they all read from this single source. You can move PDS providers any time, and your data follows you."
+          The "person" wording is deliberate — for an audience of brands/agencies/builders, "you" is ambiguous. "Person" = the human whose account it is.
+          Architecture details (Relay, AppView) are in the backup slide if asked.
+        </aside>
+      </section>
+
+      <!-- BACKUP: Architecture (hidden from linear nav; URL-accessible if asked) -->
+      <section data-background-color="#FFFCF0" data-visibility="hidden" id="backup-architecture">
+        <h2>Three pluggable services.</h2>
+        <h3>Anyone can run any of them. Users own their data.</h3>
+
+        <div class="arch">
+          <div class="box pds">
+            <div class="role">Speech layer</div>
+            <div class="name">PDS</div>
+            <div class="desc">Personal Data Server. Hosts your <strong>signed repository</strong>: posts, likes, follows, profile. Tied to your <strong>DID</strong> (portable identity). Self-host or use a provider, switch any time.</div>
+          </div>
+          <div class="box relay">
+            <div class="role">Network layer</div>
+            <div class="name">Relay</div>
+            <div class="desc">Crawls every PDS, emits a single <strong>firehose</strong> of all events. Stateless plumbing. Anyone can run one. Think: "the public bus."</div>
+          </div>
+          <div class="box appview">
+            <div class="role">Reach layer</div>
+            <div class="name">AppView</div>
+            <div class="desc">Subscribes to the firehose, indexes it, serves an app. Bluesky is one. A forum, a podcast directory, a CV network are others. <strong>Same data, many apps.</strong></div>
+          </div>
+        </div>
+        <div class="arch-flow">
+          <span>you write here</span>
+          <span class="arrow">→</span>
+          <span>aggregated here</span>
+          <span class="arrow">→</span>
+          <span>read here</span>
+        </div>
+
+        <div class="takeaway">
+          Glue: <strong>Lexicons</strong> are shared schemas so different AppViews understand the same data. Any AppView that speaks the same lexicon can read a "post" from Bluesky.
+        </div>
+
+        <aside class="notes">
+          If someone asks "what about moderation?" — labelers are a fourth service: independent moderation feeds users can subscribe to. Decoupled from the AppView too.
+        </aside>
+      </section>
+
+      <!-- Slide 4: Ecosystem -->
+      <section data-background-color="#FFFCF0" id="eco-slide">
+        <h2>One identity. Many apps.</h2>
+        <h3>The same account works across the whole Atmosphere.</h3>
+
+        <div class="eco-vertical">
+          <div class="eco-count-row">
+            <span class="num" data-count-target="221">0</span>
+            <span class="num-suffix">apps in the Atmosphere<span class="counting">, and counting</span></span>
+          </div>
+          <div class="eco-grid" id="eco-grid">
+            <!-- logos injected by JS -->
+          </div>
+        </div>
+
+        <div class="eco-replacing">
+          Replacing <strong>blogs</strong>, <strong>Substack</strong>, <strong>GitHub</strong>, <strong>LinkedIn</strong>, <strong>Discourse</strong>, <strong>Instagram</strong>, <strong>TikTok</strong>, <strong>YouTube</strong> — and counting.
+        </div>
+        <div class="eco-tagline">
+          One <strong>signed-in</strong> account. One <strong>portable</strong> identity. <strong>221</strong> apps to use it in.
+        </div>
+
+        <aside class="notes">
+          221 apps as of May 2026 (atstore.fyi). Forums, blogs, photo, podcasts, books, check-ins, code hosting.
+          The point isn't the count — it's that switching apps doesn't mean rebuilding your identity, graph, or content.
+          Twitter/Meta migration cost: total. atproto migration cost: log in.
+        </aside>
+      </section>
+
+      <!-- Slide 6: What's in it for you (roles) -->
+      <section data-background-color="#FFFCF0">
+        <h2>What's in it for <em>you</em>?</h2>
+        <h3>If you build for, advise, or own a community online — atproto changes the math.</h3>
+
+        <div class="role-grid">
+          <div class="role-card role-brand fragment fade-up">
+            <div class="role-tag">Brands &amp; communities</div>
+            <div class="role-title">Own your audience.</div>
+            <div class="role-body">Self-host your community (Barazo). Customer data, follower data, all yours. Platform shifts don't kill your reach.</div>
+          </div>
+          <div class="role-card role-vendor fragment fade-up">
+            <div class="role-tag">Builders &amp; vendors</div>
+            <div class="role-title">Skip the registration funnel.</div>
+            <div class="role-body">Any atproto user signs in with one tap. Same identity, your app. Reach the whole Atmosphere, no API tax.</div>
+          </div>
+          <div class="role-card role-agency fragment fade-up">
+            <div class="role-tag">Agencies &amp; consultants</div>
+            <div class="role-title">Bet on protocol, not platform.</div>
+            <div class="role-body">Recommend tools clients can actually own. Build solutions that don't break when a platform changes its API or its mind. Open protocols outlive platforms.</div>
+          </div>
+        </div>
+
+        <div class="role-stakes fragment fade-in">
+          <div class="rt-line take">
+            <span class="rt-tag">Take the deal:</span> Less platform risk. Direct customer relationships. <strong>Your work doesn't get held hostage.</strong>
+          </div>
+          <div class="rt-line skip">
+            <span class="rt-tag">Skip it:</span> Keep paying rent on someone else's platform, hoping the lease doesn't change.
+          </div>
+        </div>
+
+        <div class="role-realism fragment fade-in">
+          <strong>Reality check:</strong> ~60M atproto users today (vs Twitter's 600M, Meta's 3B). Adoption is early. Growth is real. Being early means catching the curve.
+        </div>
+
+        <aside class="notes">
+          Audience here = experimentation/CRO/agency/brand mix.
+          Brand angle: own the relationship, self-host community, customer data portability.
+          Builder angle: zero-friction signup via atproto, reach the Atmosphere user base, no platform tax.
+          Agency angle: recommend tools that won't break, experimentation across apps with shared identity.
+        </aside>
+      </section>
+
+      <!-- Slide 7: What I'm building -->
+      <section data-background-color="#100F0F" class="singi-section">
+        <canvas class="singi-network-bg" id="singi-network-bg"></canvas>
+
+        <div class="singi-hero">
+          <div class="brand">
+            <img src="logos/singi-animation.svg" alt="">
+            <span class="wordmark">Singi Labs</span>
+          </div>
+          <div class="tagline">Open source foundations for networked apps.</div>
+        </div>
+
+        <div class="singi-products">
+          <div class="card barazo">
+            <div class="head">
+              <img src="logos/barazo-darkbg.svg" alt="Barazo">
+              <div>
+                <div class="name">Barazo</div>
+                <div class="domain">barazo.forum</div>
+              </div>
+            </div>
+            <div class="desc">A <strong>federated forum</strong> on the AT Protocol. Self-hostable, with communities you actually control. Reddit or Discourse without the lock-in.</div>
+          </div>
+          <div class="card sifa">
+            <div class="head">
+              <img src="logos/sifa-id-darkbg.svg" alt="Sifa ID">
+              <div>
+                <div class="name">Sifa ID</div>
+                <div class="domain">sifa.id</div>
+              </div>
+            </div>
+            <div class="desc">A <strong>professional identity</strong> layer on atproto. A career profile that travels with you, a social graph that's yours, sybil-resistant trust under the hood.</div>
+          </div>
+        </div>
+
+        <div class="singi-url"><a href="https://singi.dev" target="_blank">singi.dev</a></div>
+
+        <aside class="notes">
+          Why these two products together: Barazo generates the activity (forum posts, helpful answers, community work).
+          Sifa surfaces it as a verifiable professional track record.
+          Same identity. Same data. The "networked apps flywheel" that ATProto makes possible.
+          This is the answer to slide 5's discussion question — go ahead, ask them theirs.
+        </aside>
+      </section>
+
+      <!-- Slide 7: Closing — discussion question -->
+      <section data-background="#100F0F" data-background-color="#100F0F" class="closer-section">
+        <div class="closer">
+          <div class="closer-eyebrow">Your turn</div>
+          <h1 class="closer-q">What would <em>you</em> build,<br>now that you don't have to start from zero?</h1>
+          <div class="closer-links">
+            <a href="https://singi.dev" target="_blank">singi.dev</a>
+            <span>·</span>
+            <a href="https://gui.do" target="_blank">gui.do</a>
+            <span>·</span>
+            <a href="https://atproto.com" target="_blank">atproto.com</a>
+            <span>·</span>
+            <a href="https://atstore.fyi" target="_blank">atstore.fyi</a>
+          </div>
+        </div>
+        <aside class="notes">
+          Stay quiet. Wait. Let the room fill the silence.
+          If they need a nudge: hiring? events? niche communities? anything where "who do I know" or "what have I done" matters.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 800,
+      margin: 0.06,
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'fade',
+      transitionSpeed: 'fast',
+      controlsTutorial: false,
+      plugins: [ RevealNotes ]
+    });
+
+    // Inject logos into the ecosystem slide and animate them
+    const LOGOS = [
+      'bluesky', 'sifa-id', 'tangled', 'leaflet', 'graze',
+      'roomy', 'bookhive', 'pdsls', 'surf', 'spark',
+      'eurosky', 'grain', 'plyr.fm', 'sill', 'popfeed',
+      'blacksky', 'offprint', 'pckt', 'kipclip', 'semble',
+      'anisota', 'blento', 'blueat', 'cartridge', 'margin',
+    ];
+    const FEATURED = new Set(['sifa-id']);
+
+    const grid = document.getElementById('eco-grid');
+    if (grid) {
+      const row1 = document.createElement('div');
+      row1.className = 'eco-row';
+      const row2 = document.createElement('div');
+      row2.className = 'eco-row';
+      const split = Math.ceil(LOGOS.length / 2); // 13 in row 1, 12 in row 2
+      LOGOS.forEach((name, i) => {
+        const cell = document.createElement('div');
+        cell.className = 'logo' + (FEATURED.has(name) ? ' featured' : '');
+        cell.title = name;
+        const img = document.createElement('img');
+        img.alt = name;
+        img.src = `logos/${name}.svg`;
+        cell.appendChild(img);
+        (i < split ? row1 : row2).appendChild(cell);
+      });
+      grid.appendChild(row1);
+      grid.appendChild(row2);
+    }
+
+    function animateEcoSlide() {
+      // Count-up
+      const numEl = document.querySelector('#eco-slide .num');
+      if (numEl) {
+        const target = parseInt(numEl.dataset.countTarget, 10);
+        const duration = 1400;
+        const start = performance.now();
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          numEl.textContent = Math.round(target * eased).toString();
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        numEl.textContent = '0';
+        requestAnimationFrame(tick);
+      }
+      // Stagger logos
+      const cells = document.querySelectorAll('#eco-grid .logo');
+      cells.forEach((c) => c.classList.remove('shown'));
+      cells.forEach((c, i) => {
+        setTimeout(() => c.classList.add('shown'), 80 * i + 200);
+      });
+    }
+
+    Reveal.on('slidechanged', (event) => {
+      if (event.currentSlide && event.currentSlide.id === 'eco-slide') {
+        animateEcoSlide();
+      }
+    });
+    Reveal.on('ready', (event) => {
+      if (event.currentSlide && event.currentSlide.id === 'eco-slide') {
+        animateEcoSlide();
+      }
+    });
+
+    // Force viewport bg color per slide — bypasses Reveal's slide-background quirks
+    function setViewportBg() {
+      const current = Reveal.getCurrentSlide();
+      if (!current) return;
+      const isDark = current.classList.contains('closer-section') || current.classList.contains('singi-section') || current.classList.contains('title-section-dark');
+      const color = isDark ? '#100F0F' : '#FFFCF0';
+      const vp = document.querySelector('.reveal-viewport') || document.querySelector('.reveal');
+      if (vp) vp.style.setProperty('background-color', color, 'important');
+      document.body.style.setProperty('background-color', color, 'important');
+    }
+    Reveal.on('ready', setViewportBg);
+    Reveal.on('slidechanged', setViewportBg);
+    // Belt-and-suspenders: also set on a delayed tick in case Reveal events are slow
+    setTimeout(setViewportBg, 100);
+    setTimeout(setViewportBg, 500);
+
+
+    // Network background canvas — adapted from singi.dev/network-bg.js
+    (function () {
+      const canvas = document.getElementById('singi-network-bg');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const COLORS = ['#DA702C', '#8B7EC8', '#3AA99F', '#4385BE'];
+      const TIERS = [
+        { minR: 2, maxR: 3.5, weight: 0.3, pulse: 0.3 },
+        { minR: 3, maxR: 5,   weight: 0.6, pulse: 0.5 },
+        { minR: 4.5, maxR: 7, weight: 1.0, pulse: 0.8 }
+      ];
+      let W, H, dpr, nodes, edges, particles, edgeTimer = 0;
+      const EDGE_REBUILD_INTERVAL = 600;
+
+      const rand = (min, max) => min + Math.random() * (max - min);
+      const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+      const dist = (a, b) => { const dx = a.x - b.x, dy = a.y - b.y; return Math.sqrt(dx*dx + dy*dy); };
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        W = rect.width || 1280;
+        H = rect.height || 800;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      function createNodes() {
+        const count = Math.max(18, Math.min(50, Math.floor((W*H)/25000)));
+        nodes = [];
+        for (let i = 0; i < count; i++) {
+          const tier = Math.random() < 0.15 ? 2 : (Math.random() < 0.4 ? 1 : 0);
+          const t = TIERS[tier];
+          nodes.push({
+            x: rand(40, W-40), y: rand(40, H-40),
+            vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15),
+            r: rand(t.minR, t.maxR), tier, color: pick(COLORS),
+            pulse: t.pulse, phase: rand(0, Math.PI*2)
+          });
+        }
+      }
+      function createEdges() {
+        edges = [];
+        const maxDist = Math.min(W, H) * 0.3;
+        for (let i = 0; i < nodes.length; i++) {
+          const ds = [];
+          for (let j = i+1; j < nodes.length; j++) {
+            const d = dist(nodes[i], nodes[j]);
+            if (d < maxDist) ds.push({ j, d });
+          }
+          ds.sort((a, b) => a.d - b.d);
+          const cc = Math.min(ds.length, Math.floor(rand(1, 3.5)));
+          for (let k = 0; k < cc; k++) {
+            const ct = Math.max(nodes[i].tier, nodes[ds[k].j].tier);
+            edges.push({
+              a: i, b: ds[k].j, weight: TIERS[ct].weight,
+              color: Math.random() < 0.5 ? nodes[i].color : nodes[ds[k].j].color
+            });
+          }
+        }
+      }
+      function spawnParticle() {
+        const e = edges[Math.floor(Math.random()*edges.length)];
+        if (!e) return;
+        particles.push({ edge: e, t: 0, speed: rand(0.002, 0.008), size: rand(1.2, 2.5), color: e.color, forward: Math.random() < 0.5 });
+      }
+      function createParticles() {
+        particles = [];
+        const count = Math.max(4, Math.floor(edges.length / 3));
+        for (let i = 0; i < count; i++) spawnParticle();
+      }
+      function init() { resize(); createNodes(); createEdges(); createParticles(); }
+      function updateNodes() {
+        for (const n of nodes) {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 20 || n.x > W-20) n.vx *= -1;
+          if (n.y < 20 || n.y > H-20) n.vy *= -1;
+          n.x = Math.max(10, Math.min(W-10, n.x));
+          n.y = Math.max(10, Math.min(H-10, n.y));
+        }
+      }
+      function updateParticles() {
+        for (let i = particles.length-1; i >= 0; i--) {
+          particles[i].t += particles[i].speed;
+          if (particles[i].t >= 1) { particles.splice(i, 1); spawnParticle(); }
+        }
+      }
+      function draw(time) {
+        ctx.clearRect(0, 0, W, H);
+        edgeTimer++;
+        if (edgeTimer >= EDGE_REBUILD_INTERVAL) {
+          edgeTimer = 0;
+          createEdges();
+          while (particles.length < Math.max(4, Math.floor(edges.length/3))) spawnParticle();
+        }
+        updateNodes();
+        updateParticles();
+        const maxDist = Math.min(W, H) * 0.3;
+        for (const e of edges) {
+          const a = nodes[e.a], b = nodes[e.b], d = dist(a, b);
+          const fade = 1 - Math.pow(d / maxDist, 2);
+          if (fade <= 0) continue;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = e.color;
+          ctx.globalAlpha = 0.08 * e.weight * fade;
+          ctx.lineWidth = 0.5 + e.weight * 1.5;
+          ctx.stroke();
+        }
+        for (const p of particles) {
+          const a = nodes[p.edge.a], b = nodes[p.edge.b];
+          const t = p.forward ? p.t : 1 - p.t;
+          const px = a.x + (b.x - a.x) * t;
+          const py = a.y + (b.y - a.y) * t;
+          let alpha = Math.min(p.t, 1 - p.t) * 4;
+          alpha = Math.min(alpha, 1);
+          ctx.beginPath(); ctx.arc(px, py, p.size, 0, Math.PI*2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = 0.25 * alpha;
+          ctx.fill();
+        }
+        const tt = time * 0.001;
+        for (const n of nodes) {
+          const ps = 1 + Math.sin(tt * 1.5 + n.phase) * 0.15 * n.pulse;
+          const r = n.r * ps;
+          ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+          ctx.fillStyle = n.color;
+          ctx.globalAlpha = 0.15 + n.tier * 0.08;
+          ctx.fill();
+          if (n.tier === 2) {
+            ctx.beginPath(); ctx.arc(n.x, n.y, r + 3, 0, Math.PI*2);
+            ctx.strokeStyle = n.color;
+            ctx.globalAlpha = 0.06 + Math.sin(tt * 1.5 + n.phase) * 0.03;
+            ctx.lineWidth = 1; ctx.stroke();
+          }
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!reduce.matches) {
+        // Wait for layout, then init
+        requestAnimationFrame(() => { init(); requestAnimationFrame(draw); });
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => { resize(); createNodes(); createEdges(); createParticles(); }, 200);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

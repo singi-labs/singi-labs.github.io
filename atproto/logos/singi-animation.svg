@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Singi Labs homepage animation: each element animates independently -->
+<!-- @ color: smooth crossfade (9s) | Outlined shapes: horizontal flip (7s / 11s) | Symbol: spinwheel (8s) -->
+<!-- Different cycle lengths create organic, non-repeating feel -->
+<svg viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
+    <defs>
+        <style>
+            /* ===== @ SYMBOL — smooth color crossfade, 9s cycle ===== */
+            @keyframes at-1 {
+                0%   { opacity: 1; } 30%  { opacity: 1; }
+                33%  { opacity: 0; } 97%  { opacity: 0; }
+                100% { opacity: 1; }
+            }
+            @keyframes at-2 {
+                0%   { opacity: 0; } 30%  { opacity: 0; }
+                33%  { opacity: 1; } 63%  { opacity: 1; }
+                67%  { opacity: 0; } 100% { opacity: 0; }
+            }
+            @keyframes at-3 {
+                0%   { opacity: 0; } 63%  { opacity: 0; }
+                67%  { opacity: 1; } 97%  { opacity: 1; }
+                100% { opacity: 0; }
+            }
+            .at-singi  { animation: at-1 9s ease-in-out infinite; }
+            .at-barazo { animation: at-2 9s ease-in-out infinite; }
+            .at-sifa   { animation: at-3 9s ease-in-out infinite; }
+
+            /* ===== HORIZONTAL FLIP — shared keyframes, different durations ===== */
+            /* Container squishes to scaleX(0) then expands back */
+            @keyframes flip {
+                0%    { transform: scaleX(1); }
+                29%   { transform: scaleX(1); }
+                31.5% { transform: scaleX(0); }
+                34%   { transform: scaleX(1); }
+                62.5% { transform: scaleX(1); }
+                65%   { transform: scaleX(0); }
+                67.5% { transform: scaleX(1); }
+                96%   { transform: scaleX(1); }
+                98.5% { transform: scaleX(0); }
+                100%  { transform: scaleX(1); }
+            }
+            /* Shape opacity swaps at the scaleX(0) midpoints */
+            @keyframes shape-1 {
+                0% { opacity: 1; } 31% { opacity: 1; } 32% { opacity: 0; }
+                98% { opacity: 0; } 99% { opacity: 1; } 100% { opacity: 1; }
+            }
+            @keyframes shape-2 {
+                0% { opacity: 0; } 31% { opacity: 0; } 32% { opacity: 1; }
+                64% { opacity: 1; } 66% { opacity: 0; } 100% { opacity: 0; }
+            }
+            @keyframes shape-3 {
+                0% { opacity: 0; } 64% { opacity: 0; } 66% { opacity: 1; }
+                98% { opacity: 1; } 99% { opacity: 0; } 100% { opacity: 0; }
+            }
+
+            /* TOP-RIGHT — 7s cycle */
+            .flip-tr {
+                animation: flip 7s ease-in-out infinite;
+                transform-origin: 176px 80px;
+            }
+            .tr-1 { animation: shape-1 7s linear infinite; }
+            .tr-2 { animation: shape-2 7s linear infinite; }
+            .tr-3 { animation: shape-3 7s linear infinite; }
+
+            /* BOTTOM-LEFT — 11s cycle */
+            .flip-bl {
+                animation: flip 11s ease-in-out infinite;
+                transform-origin: 80px 176px;
+            }
+            .bl-1 { animation: shape-1 11s linear infinite; }
+            .bl-2 { animation: shape-2 11s linear infinite; }
+            .bl-3 { animation: shape-3 11s linear infinite; }
+
+            /* ===== BOTTOM-RIGHT SPINWHEEL — 8s cycle ===== */
+            @keyframes spin {
+                0%    { transform: rotate(0deg); }
+                27%   { transform: rotate(0deg); }
+                34%   { transform: rotate(360deg); }
+                60%   { transform: rotate(360deg); }
+                67%   { transform: rotate(720deg); }
+                93%   { transform: rotate(720deg); }
+                100%  { transform: rotate(1080deg); }
+            }
+            @keyframes icon-1 {
+                0% { opacity: 1; } 30% { opacity: 1; } 31% { opacity: 0; }
+                96% { opacity: 0; } 97% { opacity: 1; } 100% { opacity: 1; }
+            }
+            @keyframes icon-2 {
+                0% { opacity: 0; } 30% { opacity: 0; } 31% { opacity: 1; }
+                63% { opacity: 1; } 64% { opacity: 0; } 100% { opacity: 0; }
+            }
+            @keyframes icon-3 {
+                0% { opacity: 0; } 63% { opacity: 0; } 64% { opacity: 1; }
+                96% { opacity: 1; } 97% { opacity: 0; } 100% { opacity: 0; }
+            }
+            .spin-br {
+                animation: spin 8s ease-in-out infinite;
+                transform-origin: 176px 176px;
+            }
+            .br-1 { animation: icon-1 8s linear infinite; }
+            .br-2 { animation: icon-2 8s linear infinite; }
+            .br-3 { animation: icon-3 8s linear infinite; }
+        </style>
+    </defs>
+
+    <!-- ==================== @ SYMBOL (color cycles: orange → teal → blue) ==================== -->
+    <!-- Singi orange -->
+    <g class="at-singi">
+        <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+            <path d="M128,71.5C159.183,71.5 184.5,96.817 184.5,128C184.5,159.183 159.183,184.5 128,184.5C96.817,184.5 71.5,159.183 71.5,128C71.5,96.817 96.817,71.5 128,71.5ZM128,104.5C115.03,104.5 104.5,115.03 104.5,128C104.5,140.97 115.03,151.5 128,151.5C140.97,151.5 151.5,140.97 151.5,128C151.5,115.03 140.97,104.5 128,104.5Z" style="fill:#DA702C;"/>
+        </g>
+        <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+            <path d="M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z" style="fill:#DA702C;"/>
+        </g>
+    </g>
+    <!-- Barazo teal -->
+    <g class="at-barazo">
+        <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+            <path d="M128,71.5C159.183,71.5 184.5,96.817 184.5,128C184.5,159.183 159.183,184.5 128,184.5C96.817,184.5 71.5,159.183 71.5,128C71.5,96.817 96.817,71.5 128,71.5ZM128,104.5C115.03,104.5 104.5,115.03 104.5,128C104.5,140.97 115.03,151.5 128,151.5C140.97,151.5 151.5,140.97 151.5,128C151.5,115.03 140.97,104.5 128,104.5Z" style="fill:#3AA99F;"/>
+        </g>
+        <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+            <path d="M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z" style="fill:#3AA99F;"/>
+        </g>
+    </g>
+    <!-- Sifa blue -->
+    <g class="at-sifa">
+        <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+            <path d="M128,71.5C159.183,71.5 184.5,96.817 184.5,128C184.5,159.183 159.183,184.5 128,184.5C96.817,184.5 71.5,159.183 71.5,128C71.5,96.817 96.817,71.5 128,71.5ZM128,104.5C115.03,104.5 104.5,115.03 104.5,128C104.5,140.97 115.03,151.5 128,151.5C140.97,151.5 151.5,140.97 151.5,128C151.5,115.03 140.97,104.5 128,104.5Z" style="fill:#4385BE;"/>
+        </g>
+        <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+            <path d="M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z" style="fill:#4385BE;"/>
+        </g>
+    </g>
+
+    <!-- ==================== TOP-RIGHT: horizontal flip (7s cycle) ==================== -->
+    <g class="flip-tr">
+        <!-- Singi: rounded square -->
+        <rect class="tr-1" x="148" y="51.75" width="56" height="56" rx="10" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
+        <!-- Barazo: circle -->
+        <circle class="tr-2" cx="176" cy="79.75" r="32" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
+        <!-- Sifa: diamond -->
+        <path class="tr-3" d="M176,47.75 L208,79.75 L176,111.75 L144,79.75 Z" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
+    </g>
+
+    <!-- ==================== BOTTOM-LEFT: horizontal flip (11s cycle) ==================== -->
+    <g class="flip-bl">
+        <!-- Singi: rounded square -->
+        <rect class="bl-1" x="52" y="148" width="56" height="56" rx="10" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
+        <!-- Barazo: circle -->
+        <circle class="bl-2" cx="80" cy="176" r="32" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
+        <!-- Sifa: diamond -->
+        <path class="bl-3" d="M80,144 L112,176 L80,208 L48,176 Z" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
+    </g>
+
+    <!-- ==================== BOTTOM-RIGHT: spinwheel (8s cycle) ==================== -->
+    <g class="spin-br">
+        <!-- Singi: three dots -->
+        <g class="br-1">
+            <circle cx="176" cy="156" r="10" style="fill:#8B7EC8;"/>
+            <circle cx="158" cy="192" r="10" style="fill:#8B7EC8;"/>
+            <circle cx="194" cy="192" r="10" style="fill:#8B7EC8;"/>
+        </g>
+        <!-- Barazo: plus -->
+        <g class="br-2">
+            <path d="M176,144L176,208" style="fill:none;fill-rule:nonzero;stroke:#8B7EC8;stroke-width:11px;"/>
+            <path d="M208,176L144,176" style="fill:none;fill-rule:nonzero;stroke:#8B7EC8;stroke-width:11px;"/>
+        </g>
+        <!-- Sifa: chevron -->
+        <g class="br-3">
+            <path d="M152,192 L176,160 L200,192" style="fill:none;stroke:#8B7EC8;stroke-width:11px;"/>
+        </g>
+    </g>
+</svg>
