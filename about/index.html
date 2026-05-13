@@ -179,13 +179,15 @@
         .prose a {
             color: var(--text);
             text-decoration: underline;
-            text-decoration-color: var(--border);
+            text-decoration-color: var(--accent-singi);
+            text-decoration-thickness: 1.5px;
             text-underline-offset: 3px;
-            transition: text-decoration-color 0.2s;
+            transition: color 0.2s, text-decoration-thickness 0.2s;
         }
 
         .prose a:hover {
-            text-decoration-color: var(--accent-singi);
+            color: var(--accent-singi);
+            text-decoration-thickness: 2.5px;
         }
 
         .prose ul {
@@ -220,19 +222,30 @@
 
         .product-link {
             color: var(--text);
-            text-decoration: none;
+            text-decoration: underline;
+            text-decoration-thickness: 1.5px;
+            text-underline-offset: 3px;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
-            border-bottom: 1px solid var(--border);
-            transition: border-color 0.2s;
+            transition: color 0.2s, text-decoration-thickness 0.2s;
+        }
+
+        .product-link--barazo {
+            text-decoration-color: var(--accent-barazo);
         }
 
         .product-link--barazo:hover {
-            border-color: var(--accent-barazo);
+            color: var(--accent-barazo);
+            text-decoration-thickness: 2.5px;
+        }
+
+        .product-link--sifa {
+            text-decoration-color: var(--accent-sifa);
         }
 
         .product-link--sifa:hover {
-            border-color: var(--accent-sifa);
+            color: var(--accent-sifa);
+            text-decoration-thickness: 2.5px;
         }
 
         .footer {
