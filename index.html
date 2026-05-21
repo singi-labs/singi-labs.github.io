@@ -316,90 +316,99 @@
         <svg class="logo" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
             <defs>
                 <style>
-                    @keyframes at-1 {
-                        0%   { opacity: 1; } 30%  { opacity: 1; }
-                        33%  { opacity: 0; } 97%  { opacity: 0; }
-                        100% { opacity: 1; }
+                    /* Static fallback: when motion is reduced, only the Singi
+                       mark is visible. The other brand variants and the
+                       alternate icon shapes are hidden by default and only
+                       revealed by the animation cycle. */
+                    .at-barazo, .at-sifa { opacity: 0; }
+                    .tr-2, .tr-3, .bl-2, .bl-3, .br-2, .br-3 { opacity: 0; }
+
+                    @media (prefers-reduced-motion: no-preference) {
+                        @keyframes at-1 {
+                            0%   { opacity: 1; } 30%  { opacity: 1; }
+                            33%  { opacity: 0; } 97%  { opacity: 0; }
+                            100% { opacity: 1; }
+                        }
+                        @keyframes at-2 {
+                            0%   { opacity: 0; } 30%  { opacity: 0; }
+                            33%  { opacity: 1; } 63%  { opacity: 1; }
+                            67%  { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        @keyframes at-3 {
+                            0%   { opacity: 0; } 63%  { opacity: 0; }
+                            67%  { opacity: 1; } 97%  { opacity: 1; }
+                            100% { opacity: 0; }
+                        }
+                        .at-singi  { animation: at-1 9s ease-in-out infinite; }
+                        .at-barazo { animation: at-2 9s ease-in-out infinite; }
+                        .at-sifa   { animation: at-3 9s ease-in-out infinite; }
+                        @keyframes flip {
+                            0%    { transform: scaleX(1); }
+                            29%   { transform: scaleX(1); }
+                            31.5% { transform: scaleX(0); }
+                            34%   { transform: scaleX(1); }
+                            62.5% { transform: scaleX(1); }
+                            65%   { transform: scaleX(0); }
+                            67.5% { transform: scaleX(1); }
+                            96%   { transform: scaleX(1); }
+                            98.5% { transform: scaleX(0); }
+                            100%  { transform: scaleX(1); }
+                        }
+                        @keyframes shape-1 {
+                            0% { opacity: 1; } 31% { opacity: 1; } 32% { opacity: 0; }
+                            98% { opacity: 0; } 99% { opacity: 1; } 100% { opacity: 1; }
+                        }
+                        @keyframes shape-2 {
+                            0% { opacity: 0; } 31% { opacity: 0; } 32% { opacity: 1; }
+                            64% { opacity: 1; } 66% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        @keyframes shape-3 {
+                            0% { opacity: 0; } 64% { opacity: 0; } 66% { opacity: 1; }
+                            98% { opacity: 1; } 99% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        .flip-tr {
+                            animation: flip 7s ease-in-out infinite;
+                            transform-origin: 176px 80px;
+                        }
+                        .tr-1 { animation: shape-1 7s linear infinite; }
+                        .tr-2 { animation: shape-2 7s linear infinite; }
+                        .tr-3 { animation: shape-3 7s linear infinite; }
+                        .flip-bl {
+                            animation: flip 11s ease-in-out infinite;
+                            transform-origin: 80px 176px;
+                        }
+                        .bl-1 { animation: shape-1 11s linear infinite; }
+                        .bl-2 { animation: shape-2 11s linear infinite; }
+                        .bl-3 { animation: shape-3 11s linear infinite; }
+                        @keyframes spin {
+                            0%    { transform: rotate(0deg); }
+                            27%   { transform: rotate(0deg); }
+                            34%   { transform: rotate(360deg); }
+                            60%   { transform: rotate(360deg); }
+                            67%   { transform: rotate(720deg); }
+                            93%   { transform: rotate(720deg); }
+                            100%  { transform: rotate(1080deg); }
+                        }
+                        @keyframes icon-1 {
+                            0% { opacity: 1; } 30% { opacity: 1; } 31% { opacity: 0; }
+                            96% { opacity: 0; } 97% { opacity: 1; } 100% { opacity: 1; }
+                        }
+                        @keyframes icon-2 {
+                            0% { opacity: 0; } 30% { opacity: 0; } 31% { opacity: 1; }
+                            63% { opacity: 1; } 64% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        @keyframes icon-3 {
+                            0% { opacity: 0; } 63% { opacity: 0; } 64% { opacity: 1; }
+                            96% { opacity: 1; } 97% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        .spin-br {
+                            animation: spin 8s ease-in-out infinite;
+                            transform-origin: 176px 176px;
+                        }
+                        .br-1 { animation: icon-1 8s linear infinite; }
+                        .br-2 { animation: icon-2 8s linear infinite; }
+                        .br-3 { animation: icon-3 8s linear infinite; }
                     }
-                    @keyframes at-2 {
-                        0%   { opacity: 0; } 30%  { opacity: 0; }
-                        33%  { opacity: 1; } 63%  { opacity: 1; }
-                        67%  { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    @keyframes at-3 {
-                        0%   { opacity: 0; } 63%  { opacity: 0; }
-                        67%  { opacity: 1; } 97%  { opacity: 1; }
-                        100% { opacity: 0; }
-                    }
-                    .at-singi  { animation: at-1 9s ease-in-out infinite; }
-                    .at-barazo { animation: at-2 9s ease-in-out infinite; }
-                    .at-sifa   { animation: at-3 9s ease-in-out infinite; }
-                    @keyframes flip {
-                        0%    { transform: scaleX(1); }
-                        29%   { transform: scaleX(1); }
-                        31.5% { transform: scaleX(0); }
-                        34%   { transform: scaleX(1); }
-                        62.5% { transform: scaleX(1); }
-                        65%   { transform: scaleX(0); }
-                        67.5% { transform: scaleX(1); }
-                        96%   { transform: scaleX(1); }
-                        98.5% { transform: scaleX(0); }
-                        100%  { transform: scaleX(1); }
-                    }
-                    @keyframes shape-1 {
-                        0% { opacity: 1; } 31% { opacity: 1; } 32% { opacity: 0; }
-                        98% { opacity: 0; } 99% { opacity: 1; } 100% { opacity: 1; }
-                    }
-                    @keyframes shape-2 {
-                        0% { opacity: 0; } 31% { opacity: 0; } 32% { opacity: 1; }
-                        64% { opacity: 1; } 66% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    @keyframes shape-3 {
-                        0% { opacity: 0; } 64% { opacity: 0; } 66% { opacity: 1; }
-                        98% { opacity: 1; } 99% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    .flip-tr {
-                        animation: flip 7s ease-in-out infinite;
-                        transform-origin: 176px 80px;
-                    }
-                    .tr-1 { animation: shape-1 7s linear infinite; }
-                    .tr-2 { animation: shape-2 7s linear infinite; }
-                    .tr-3 { animation: shape-3 7s linear infinite; }
-                    .flip-bl {
-                        animation: flip 11s ease-in-out infinite;
-                        transform-origin: 80px 176px;
-                    }
-                    .bl-1 { animation: shape-1 11s linear infinite; }
-                    .bl-2 { animation: shape-2 11s linear infinite; }
-                    .bl-3 { animation: shape-3 11s linear infinite; }
-                    @keyframes spin {
-                        0%    { transform: rotate(0deg); }
-                        27%   { transform: rotate(0deg); }
-                        34%   { transform: rotate(360deg); }
-                        60%   { transform: rotate(360deg); }
-                        67%   { transform: rotate(720deg); }
-                        93%   { transform: rotate(720deg); }
-                        100%  { transform: rotate(1080deg); }
-                    }
-                    @keyframes icon-1 {
-                        0% { opacity: 1; } 30% { opacity: 1; } 31% { opacity: 0; }
-                        96% { opacity: 0; } 97% { opacity: 1; } 100% { opacity: 1; }
-                    }
-                    @keyframes icon-2 {
-                        0% { opacity: 0; } 30% { opacity: 0; } 31% { opacity: 1; }
-                        63% { opacity: 1; } 64% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    @keyframes icon-3 {
-                        0% { opacity: 0; } 63% { opacity: 0; } 64% { opacity: 1; }
-                        96% { opacity: 1; } 97% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    .spin-br {
-                        animation: spin 8s ease-in-out infinite;
-                        transform-origin: 176px 176px;
-                    }
-                    .br-1 { animation: icon-1 8s linear infinite; }
-                    .br-2 { animation: icon-2 8s linear infinite; }
-                    .br-3 { animation: icon-3 8s linear infinite; }
                 </style>
             </defs>
             <g class="at-singi">
