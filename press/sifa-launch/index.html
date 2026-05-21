@@ -10,26 +10,18 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://singi.dev/press/sifa-launch/">
     <link rel="canonical" href="https://singi.dev/press/sifa-launch/">
+    <link rel="icon" href="/favicon.svg">
+    <link rel="preload" href="/fonts/space-grotesk/space-grotesk-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ia-writer-quattro/quattro-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --bg: #100F0F;
-            --text: #FFFCF0;
-            --muted: #878580;
-            --border: #1C1B1A;
-            --accent: #4385BE;
+            --accent: var(--accent-sifa);
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 4rem 1.5rem;
         }
 
         .container {
@@ -127,16 +119,6 @@
 
         .press-contact a { color: var(--muted); }
 
-        #network-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
         @media (max-width: 480px) {
             h1 { font-size: 1.5rem; }
             body { padding: 2rem 1.25rem; }
@@ -144,8 +126,9 @@
     </style>
 </head>
 <body>
-    <canvas id="network-bg"></canvas>
-    <div class="container">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <canvas id="network-bg" aria-hidden="true"></canvas>
+    <main class="container" id="main">
         <a class="back" href="https://singi.dev">&larr; singi.dev</a>
 
         <h1>Sifa ID: A professional profile you don't have to fake</h1>
@@ -166,7 +149,7 @@
         <p>Want to bring your existing career history? Import your LinkedIn data in your browser. The data never leaves your device; it goes straight to your personal data server.</p>
 
         <div class="screenshot">
-            <img src="screenshot.png" alt="Sifa ID profile showing career summary, skills, activity heatmap across Bluesky and AT Protocol communities, and track record with endorsements and verified accounts">
+            <img src="screenshot.png" alt="Sifa ID profile showing career summary, skills, activity heatmap across Bluesky and AT Protocol communities, and track record with endorsements and verified accounts" width="874" height="1067" fetchpriority="high" decoding="async">
             <div class="screenshot-caption">A Sifa ID profile: career history, real activity across apps, and a track record built by your network</div>
         </div>
 
@@ -204,11 +187,11 @@
             <a href="/press/kit/">Press kit (logos and brand assets)</a>
         </div>
 
-        <div class="press-contact">
+        <footer class="press-contact">
             Press contact: Guido X Jansen · <a href="mailto:guido@singi.dev">guido@singi.dev</a> · <a href="https://sifa.id/p/gui.do" target="_blank" rel="noopener">@gui.do on Sifa</a><br>
             March 27, 2026 · 9:00 AM PT · Announced at <a href="https://atmosphereconf.org">ATmosphereConf</a>, Vancouver
-        </div>
-    </div>
+        </footer>
+    </main>
     <script src="/network-bg.js"></script>
     <script>
     fetch("https://sifa.id/api/stats")

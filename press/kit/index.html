@@ -10,70 +10,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://singi.dev/press/kit/">
     <link rel="canonical" href="https://singi.dev/press/kit/">
+    <link rel="icon" href="/favicon.svg">
+    <link rel="preload" href="/fonts/space-grotesk/space-grotesk-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ia-writer-quattro/quattro-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
     <style>
-        @font-face {
-            font-family: 'Space Grotesk';
-            src: url('../../fonts/space-grotesk/space-grotesk-bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('../../fonts/ia-writer-quattro/quattro-regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('../../fonts/ia-writer-quattro/quattro-bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('../../fonts/ia-writer-quattro/quattro-italic.woff2') format('woff2');
-            font-weight: 400;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('../../fonts/ia-writer-quattro/quattro-bold-italic.woff2') format('woff2');
-            font-weight: 700;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --bg: #100F0F;
-            --bg-surface: #1C1B1A;
-            --text: #FFFCF0;
-            --muted: #878580;
-            --border: #282726;
-            --singi: #DA702C;
-            --barazo: #3AA99F;
-            --sifa: #4385BE;
-            --purple: #8B7EC8;
+            --bg-surface: #232220;
+            --singi: var(--accent-singi);
+            --barazo: var(--accent-barazo);
+            --sifa: var(--accent-sifa);
+            --purple: var(--accent-secondary);
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'iA Writer Quattro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 4rem 1.5rem;
         }
 
         .container { max-width: 800px; width: 100%; }
@@ -314,21 +265,12 @@
             .picker-label { min-width: 0; flex-basis: 100%; }
             .download-btn { flex-basis: 100%; }
         }
-
-        #network-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
-    <canvas id="network-bg"></canvas>
-    <div class="container">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <canvas id="network-bg" aria-hidden="true"></canvas>
+    <main class="container" id="main">
         <a class="back" href="https://singi.dev">&larr; singi.dev</a>
 
         <h1>Press kit</h1>
@@ -407,7 +349,7 @@
                 </div>
 
                 <div class="preview-area" data-surface="dark">
-                    <img class="preview-img" alt="">
+                    <img class="preview-img" alt="" loading="lazy" decoding="async">
                 </div>
 
                 <div class="download-row">
@@ -444,7 +386,7 @@
                 </div>
 
                 <div class="preview-area" data-surface="dark">
-                    <img class="preview-img" alt="">
+                    <img class="preview-img" alt="" loading="lazy" decoding="async">
                 </div>
 
                 <div class="download-row">
@@ -481,7 +423,7 @@
                 </div>
 
                 <div class="preview-area" data-surface="dark">
-                    <img class="preview-img" alt="">
+                    <img class="preview-img" alt="" loading="lazy" decoding="async">
                 </div>
 
                 <div class="download-row">
@@ -536,7 +478,7 @@
         </div>
 
         <p style="margin-top: 3rem; color: var(--muted); font-size: 0.8125rem;">Questions? Reach out to Guido at <a href="https://bsky.app/profile/gui.do">@gui.do</a> on Bluesky or guido@singi.dev.</p>
-    </div>
+    </main>
     <script src="/network-bg.js"></script>
     <script>
         // Static allowlists. The picker resolves user-clicked buttons against

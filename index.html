@@ -17,88 +17,11 @@
     <meta name="twitter:description" content="Singi Labs builds open, decentralized software on the AT Protocol. Home of Barazo (community forums) and Sifa (professional identity and trust).">
     <meta name="twitter:image" content="https://singi.dev/og-image.png">
     <script defer src="https://u.a11y.nl/script.js" data-website-id="e3b70b96-e433-45f8-bfab-9496f66c572d"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round'><g transform='matrix(0.333333,0,0,0.333333,37.583333,37.083333)'><path d='M128,71.5C159.183,71.5 184.5,96.817 184.5,128C184.5,159.183 159.183,184.5 128,184.5C96.817,184.5 71.5,159.183 71.5,128C71.5,96.817 96.817,71.5 128,71.5ZM128,104.5C115.03,104.5 104.5,115.03 104.5,128C104.5,140.97 115.03,151.5 128,151.5C140.97,151.5 151.5,140.97 151.5,128C151.5,115.03 140.97,104.5 128,104.5Z' fill='%23DA702C'/></g><g transform='matrix(0.333333,0,0,0.333333,37.583333,37.083333)'><path d='M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z' fill='%23DA702C'/></g><rect x='148' y='51.75' width='56' height='56' rx='10' fill='none' stroke='%23FFFCF0' stroke-width='12'/><rect x='52' y='148' width='56' height='56' rx='10' fill='none' stroke='%23FFFCF0' stroke-width='12'/><circle cx='176' cy='156' r='10' fill='%238B7EC8'/><circle cx='158' cy='192' r='10' fill='%238B7EC8'/><circle cx='194' cy='192' r='10' fill='%238B7EC8'/></svg>">
+    <link rel="icon" href="/favicon.svg">
+    <link rel="preload" href="/fonts/space-grotesk/space-grotesk-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ia-writer-quattro/quattro-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/styles/base.css">
     <style>
-        @font-face {
-            font-family: 'Space Grotesk';
-            src: url('fonts/space-grotesk/space-grotesk-bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('fonts/ia-writer-quattro/quattro-regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('fonts/ia-writer-quattro/quattro-bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('fonts/ia-writer-quattro/quattro-italic.woff2') format('woff2');
-            font-weight: 400;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('fonts/ia-writer-quattro/quattro-bold-italic.woff2') format('woff2');
-            font-weight: 700;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        @view-transition {
-            navigation: auto;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #100F0F;
-            --text: #FFFCF0;
-            --muted: #878580;
-            --border: #1C1B1A;
-            --accent-barazo: #3AA99F;
-            --accent-sifa: #4385BE;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'iA Writer Quattro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 4rem 1.5rem;
-        }
-
-        #network-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
         .container {
             max-width: 600px;
             width: 100%;
@@ -390,95 +313,105 @@
     </style>
 </head>
 <body>
-    <canvas id="network-bg"></canvas>
-    <div class="container">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <canvas id="network-bg" aria-hidden="true"></canvas>
+    <main class="container" id="main">
         <svg class="logo" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
             <defs>
                 <style>
-                    @keyframes at-1 {
-                        0%   { opacity: 1; } 30%  { opacity: 1; }
-                        33%  { opacity: 0; } 97%  { opacity: 0; }
-                        100% { opacity: 1; }
+                    /* Static fallback: when motion is reduced, only the Singi
+                       mark is visible. The other brand variants and the
+                       alternate icon shapes are hidden by default and only
+                       revealed by the animation cycle. */
+                    .at-barazo, .at-sifa { opacity: 0; }
+                    .tr-2, .tr-3, .bl-2, .bl-3, .br-2, .br-3 { opacity: 0; }
+
+                    @media (prefers-reduced-motion: no-preference) {
+                        @keyframes at-1 {
+                            0%   { opacity: 1; } 30%  { opacity: 1; }
+                            33%  { opacity: 0; } 97%  { opacity: 0; }
+                            100% { opacity: 1; }
+                        }
+                        @keyframes at-2 {
+                            0%   { opacity: 0; } 30%  { opacity: 0; }
+                            33%  { opacity: 1; } 63%  { opacity: 1; }
+                            67%  { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        @keyframes at-3 {
+                            0%   { opacity: 0; } 63%  { opacity: 0; }
+                            67%  { opacity: 1; } 97%  { opacity: 1; }
+                            100% { opacity: 0; }
+                        }
+                        .at-singi  { animation: at-1 9s ease-in-out infinite; }
+                        .at-barazo { animation: at-2 9s ease-in-out infinite; }
+                        .at-sifa   { animation: at-3 9s ease-in-out infinite; }
+                        @keyframes flip {
+                            0%    { transform: scaleX(1); }
+                            29%   { transform: scaleX(1); }
+                            31.5% { transform: scaleX(0); }
+                            34%   { transform: scaleX(1); }
+                            62.5% { transform: scaleX(1); }
+                            65%   { transform: scaleX(0); }
+                            67.5% { transform: scaleX(1); }
+                            96%   { transform: scaleX(1); }
+                            98.5% { transform: scaleX(0); }
+                            100%  { transform: scaleX(1); }
+                        }
+                        @keyframes shape-1 {
+                            0% { opacity: 1; } 31% { opacity: 1; } 32% { opacity: 0; }
+                            98% { opacity: 0; } 99% { opacity: 1; } 100% { opacity: 1; }
+                        }
+                        @keyframes shape-2 {
+                            0% { opacity: 0; } 31% { opacity: 0; } 32% { opacity: 1; }
+                            64% { opacity: 1; } 66% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        @keyframes shape-3 {
+                            0% { opacity: 0; } 64% { opacity: 0; } 66% { opacity: 1; }
+                            98% { opacity: 1; } 99% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        .flip-tr {
+                            animation: flip 7s ease-in-out infinite;
+                            transform-origin: 176px 80px;
+                        }
+                        .tr-1 { animation: shape-1 7s linear infinite; }
+                        .tr-2 { animation: shape-2 7s linear infinite; }
+                        .tr-3 { animation: shape-3 7s linear infinite; }
+                        .flip-bl {
+                            animation: flip 11s ease-in-out infinite;
+                            transform-origin: 80px 176px;
+                        }
+                        .bl-1 { animation: shape-1 11s linear infinite; }
+                        .bl-2 { animation: shape-2 11s linear infinite; }
+                        .bl-3 { animation: shape-3 11s linear infinite; }
+                        @keyframes spin {
+                            0%    { transform: rotate(0deg); }
+                            27%   { transform: rotate(0deg); }
+                            34%   { transform: rotate(360deg); }
+                            60%   { transform: rotate(360deg); }
+                            67%   { transform: rotate(720deg); }
+                            93%   { transform: rotate(720deg); }
+                            100%  { transform: rotate(1080deg); }
+                        }
+                        @keyframes icon-1 {
+                            0% { opacity: 1; } 30% { opacity: 1; } 31% { opacity: 0; }
+                            96% { opacity: 0; } 97% { opacity: 1; } 100% { opacity: 1; }
+                        }
+                        @keyframes icon-2 {
+                            0% { opacity: 0; } 30% { opacity: 0; } 31% { opacity: 1; }
+                            63% { opacity: 1; } 64% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        @keyframes icon-3 {
+                            0% { opacity: 0; } 63% { opacity: 0; } 64% { opacity: 1; }
+                            96% { opacity: 1; } 97% { opacity: 0; } 100% { opacity: 0; }
+                        }
+                        .spin-br {
+                            animation: spin 8s ease-in-out infinite;
+                            transform-origin: 176px 176px;
+                        }
+                        .br-1 { animation: icon-1 8s linear infinite; }
+                        .br-2 { animation: icon-2 8s linear infinite; }
+                        .br-3 { animation: icon-3 8s linear infinite; }
                     }
-                    @keyframes at-2 {
-                        0%   { opacity: 0; } 30%  { opacity: 0; }
-                        33%  { opacity: 1; } 63%  { opacity: 1; }
-                        67%  { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    @keyframes at-3 {
-                        0%   { opacity: 0; } 63%  { opacity: 0; }
-                        67%  { opacity: 1; } 97%  { opacity: 1; }
-                        100% { opacity: 0; }
-                    }
-                    .at-singi  { animation: at-1 9s ease-in-out infinite; }
-                    .at-barazo { animation: at-2 9s ease-in-out infinite; }
-                    .at-sifa   { animation: at-3 9s ease-in-out infinite; }
-                    @keyframes flip {
-                        0%    { transform: scaleX(1); }
-                        29%   { transform: scaleX(1); }
-                        31.5% { transform: scaleX(0); }
-                        34%   { transform: scaleX(1); }
-                        62.5% { transform: scaleX(1); }
-                        65%   { transform: scaleX(0); }
-                        67.5% { transform: scaleX(1); }
-                        96%   { transform: scaleX(1); }
-                        98.5% { transform: scaleX(0); }
-                        100%  { transform: scaleX(1); }
-                    }
-                    @keyframes shape-1 {
-                        0% { opacity: 1; } 31% { opacity: 1; } 32% { opacity: 0; }
-                        98% { opacity: 0; } 99% { opacity: 1; } 100% { opacity: 1; }
-                    }
-                    @keyframes shape-2 {
-                        0% { opacity: 0; } 31% { opacity: 0; } 32% { opacity: 1; }
-                        64% { opacity: 1; } 66% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    @keyframes shape-3 {
-                        0% { opacity: 0; } 64% { opacity: 0; } 66% { opacity: 1; }
-                        98% { opacity: 1; } 99% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    .flip-tr {
-                        animation: flip 7s ease-in-out infinite;
-                        transform-origin: 176px 80px;
-                    }
-                    .tr-1 { animation: shape-1 7s linear infinite; }
-                    .tr-2 { animation: shape-2 7s linear infinite; }
-                    .tr-3 { animation: shape-3 7s linear infinite; }
-                    .flip-bl {
-                        animation: flip 11s ease-in-out infinite;
-                        transform-origin: 80px 176px;
-                    }
-                    .bl-1 { animation: shape-1 11s linear infinite; }
-                    .bl-2 { animation: shape-2 11s linear infinite; }
-                    .bl-3 { animation: shape-3 11s linear infinite; }
-                    @keyframes spin {
-                        0%    { transform: rotate(0deg); }
-                        27%   { transform: rotate(0deg); }
-                        34%   { transform: rotate(360deg); }
-                        60%   { transform: rotate(360deg); }
-                        67%   { transform: rotate(720deg); }
-                        93%   { transform: rotate(720deg); }
-                        100%  { transform: rotate(1080deg); }
-                    }
-                    @keyframes icon-1 {
-                        0% { opacity: 1; } 30% { opacity: 1; } 31% { opacity: 0; }
-                        96% { opacity: 0; } 97% { opacity: 1; } 100% { opacity: 1; }
-                    }
-                    @keyframes icon-2 {
-                        0% { opacity: 0; } 30% { opacity: 0; } 31% { opacity: 1; }
-                        63% { opacity: 1; } 64% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    @keyframes icon-3 {
-                        0% { opacity: 0; } 63% { opacity: 0; } 64% { opacity: 1; }
-                        96% { opacity: 1; } 97% { opacity: 0; } 100% { opacity: 0; }
-                    }
-                    .spin-br {
-                        animation: spin 8s ease-in-out infinite;
-                        transform-origin: 176px 176px;
-                    }
-                    .br-1 { animation: icon-1 8s linear infinite; }
-                    .br-2 { animation: icon-2 8s linear infinite; }
-                    .br-3 { animation: icon-3 8s linear infinite; }
                 </style>
             </defs>
             <g class="at-singi">
@@ -599,12 +532,12 @@
 
         <div class="badges">
             <span class="badge">
-                <img src="goosetopher.png" alt="Goosetopher, the AT Protocol mascot">
+                <img src="goosetopher.png" alt="Goosetopher, the AT Protocol mascot" width="40" height="40" loading="lazy" decoding="async">
                 Building on <a href="https://atproto.com/" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: underline; text-underline-offset: 2px;">AT Protocol</a>
             </span>
         </div>
 
-        <div class="footer">
+        <footer class="footer">
             <div class="footer-links">
                 <a href="https://bsky.app/profile/singi.dev" target="_blank" rel="noopener" aria-label="Bluesky">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.63 3.651 3.495 6.295 3.146-4.738.81-8.887 2.787-5.01 8.066C4.718 24.863 7.3 22.401 9.14 20.13 10.604 18.327 11.304 16.66 12 15.388c.696 1.272 1.396 2.94 2.86 4.742 1.84 2.271 4.422 4.733 7.231 1.329 3.877-5.28-.272-7.256-5.01-8.066 2.644.349 5.51-.517 6.295-3.146C23.622 9.418 24 4.458 24 3.768c0-.69-.139-1.861-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8"/></svg>
@@ -622,8 +555,8 @@
                 <a href="https://singi.dev/press/kit/">Press Kit</a>
             </div>
             <span>Made with <span style="color:#DA702C">&hearts;</span> in &#x1F1EA;&#x1F1FA;</span>
-        </div>
-    </div>
+        </footer>
+    </main>
     <script src="/network-bg.js"></script>
 </body>
 </html>
