@@ -10,26 +10,15 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://singi.dev/press/sifa-launch/">
     <link rel="canonical" href="https://singi.dev/press/sifa-launch/">
+    <link rel="stylesheet" href="/styles/base.css">
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --bg: #100F0F;
-            --text: #FFFCF0;
-            --muted: #878580;
-            --border: #1C1B1A;
-            --accent: #4385BE;
+            --accent: var(--accent-sifa);
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 4rem 1.5rem;
         }
 
         .container {
@@ -126,16 +115,6 @@
         }
 
         .press-contact a { color: var(--muted); }
-
-        #network-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
 
         @media (max-width: 480px) {
             h1 { font-size: 1.5rem; }
