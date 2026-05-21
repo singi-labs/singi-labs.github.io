@@ -126,8 +126,9 @@
     </style>
 </head>
 <body>
-    <canvas id="network-bg"></canvas>
-    <div class="container">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <canvas id="network-bg" aria-hidden="true"></canvas>
+    <main class="container" id="main">
         <a class="back" href="https://singi.dev">&larr; singi.dev</a>
 
         <h1>Sifa ID: A professional profile you don't have to fake</h1>
@@ -186,11 +187,11 @@
             <a href="/press/kit/">Press kit (logos and brand assets)</a>
         </div>
 
-        <div class="press-contact">
+        <footer class="press-contact">
             Press contact: Guido X Jansen · <a href="mailto:guido@singi.dev">guido@singi.dev</a> · <a href="https://sifa.id/p/gui.do" target="_blank" rel="noopener">@gui.do on Sifa</a><br>
             March 27, 2026 · 9:00 AM PT · Announced at <a href="https://atmosphereconf.org">ATmosphereConf</a>, Vancouver
-        </div>
-    </div>
+        </footer>
+    </main>
     <script src="/network-bg.js"></script>
     <script>
     fetch("https://sifa.id/api/stats")

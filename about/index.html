@@ -274,8 +274,9 @@
     </style>
 </head>
 <body>
-    <canvas id="network-bg"></canvas>
-    <div class="container">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <canvas id="network-bg" aria-hidden="true"></canvas>
+    <main class="container" id="main">
         <a href="/" class="home-link" aria-label="Back to singi.dev home">
             <svg class="home-link-logo" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
                 <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
@@ -354,7 +355,7 @@
             <p>All our code lives on <a href="https://github.com/singi-labs">GitHub</a>. The roadmap is <a href="https://github.com/orgs/singi-labs/projects/2">public</a>. If you want to contribute, sponsor, or just say hi, a Bluesky DM is the most reliable channel.</p>
         </section>
 
-        <div class="footer">
+        <footer class="footer">
             <div class="footer-links">
                 <a href="https://bsky.app/profile/singi.dev" target="_blank" rel="noopener" aria-label="Bluesky">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.63 3.651 3.495 6.295 3.146-4.738.81-8.887 2.787-5.01 8.066C4.718 24.863 7.3 22.401 9.14 20.13 10.604 18.327 11.304 16.66 12 15.388c.696 1.272 1.396 2.94 2.86 4.742 1.84 2.271 4.422 4.733 7.231 1.329 3.877-5.28-.272-7.256-5.01-8.066 2.644.349 5.51-.517 6.295-3.146C23.622 9.418 24 4.458 24 3.768c0-.69-.139-1.861-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8"/></svg>
@@ -372,8 +373,8 @@
                 <a href="https://singi.dev/press/kit/">Press Kit</a>
             </div>
             <span>Made with <span style="color:#DA702C">&hearts;</span> in &#x1F1EA;&#x1F1FA;</span>
-        </div>
-    </div>
+        </footer>
+    </main>
     <script src="/network-bg.js"></script>
 </body>
 </html>
