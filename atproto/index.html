@@ -24,12 +24,12 @@
       --barazo-cyan:  #3AA99F;
       --sifa-blue:    #4385BE;
       /* Neutrals */
-      --ink: #100F0F;
+      --ink: #1C1B1A;
       --muted: #6F6E69;
       --paper: #FFFCF0;
       --paper-soft: #F2F0E5;
-      --dark: #100F0F;
-      --dark-soft: #1C1B1A;
+      --dark: #1C1B1A;
+      --dark-soft: #282726;
       /* Roles */
       --accent: var(--singi-orange);
       --accent-2: var(--singi-purple);
@@ -263,7 +263,7 @@
     <div class="slides">
 
       <!-- Slide 1: Title (dark) -->
-      <section data-background-color="#100F0F" class="title-section-dark">
+      <section data-background-color="#1C1B1A" class="title-section-dark">
         <div class="title-slide">
           <div class="eyebrow">unconference starter</div>
           <h1>A new Open Social Web<br>is emerging…</h1>
@@ -533,7 +533,7 @@
       </section>
 
       <!-- Slide 7: What I'm building -->
-      <section data-background-color="#100F0F" class="singi-section">
+      <section data-background-color="#1C1B1A" class="singi-section">
         <canvas class="singi-network-bg" id="singi-network-bg"></canvas>
 
         <div class="singi-hero">
@@ -578,7 +578,7 @@
       </section>
 
       <!-- Slide 7: Closing — discussion question -->
-      <section data-background="#100F0F" data-background-color="#100F0F" class="closer-section">
+      <section data-background="#1C1B1A" data-background-color="#1C1B1A" class="closer-section">
         <div class="closer">
           <div class="closer-eyebrow">Your turn</div>
           <h1 class="closer-q">What would <em>you</em> build,<br>now that you don't have to start from zero?</h1>
@@ -687,7 +687,7 @@
       const current = Reveal.getCurrentSlide();
       if (!current) return;
       const isDark = current.classList.contains('closer-section') || current.classList.contains('singi-section') || current.classList.contains('title-section-dark');
-      const color = isDark ? '#100F0F' : '#FFFCF0';
+      const color = isDark ? '#1C1B1A' : '#FFFCF0';
       const vp = document.querySelector('.reveal-viewport') || document.querySelector('.reveal');
       if (vp) vp.style.setProperty('background-color', color, 'important');
       document.body.style.setProperty('background-color', color, 'important');
