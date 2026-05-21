@@ -1,18 +1,18 @@
 (function () {
-    var canvas = document.getElementById('network-bg');
+    const canvas = document.getElementById('network-bg');
     if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W, H, nodes, edges, particles;
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let W, H, nodes, edges, particles;
 
-    var COLORS = [
+    const COLORS = [
         '#DA702C',
         '#8B7EC8',
         '#3AA99F',
         '#4385BE'
     ];
 
-    var TIERS = [
+    const TIERS = [
         { minR: 2, maxR: 3.5, weight: 0.3, pulse: 0.3 },
         { minR: 3, maxR: 5,   weight: 0.6, pulse: 0.5 },
         { minR: 4.5, maxR: 7, weight: 1.0, pulse: 0.8 }
@@ -30,15 +30,15 @@
 
     function rand(min, max) { return min + Math.random() * (max - min); }
     function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-    function dist(a, b) { var dx = a.x - b.x, dy = a.y - b.y; return Math.sqrt(dx * dx + dy * dy); }
+    function dist(a, b) { const dx = a.x - b.x, dy = a.y - b.y; return Math.sqrt(dx * dx + dy * dy); }
 
     function createNodes() {
-        var area = W * H;
-        var count = Math.max(18, Math.min(50, Math.floor(area / 25000)));
+        const area = W * H;
+        const count = Math.max(18, Math.min(50, Math.floor(area / 25000)));
         nodes = [];
-        for (var i = 0; i < count; i++) {
-            var tier = Math.random() < 0.15 ? 2 : (Math.random() < 0.4 ? 1 : 0);
-            var t = TIERS[tier];
+        for (let i = 0; i < count; i++) {
+            const tier = Math.random() < 0.15 ? 2 : (Math.random() < 0.4 ? 1 : 0);
+            const t = TIERS[tier];
             nodes.push({
                 x: rand(40, W - 40),
                 y: rand(40, H - 40),
@@ -55,18 +55,18 @@
 
     function createEdges() {
         edges = [];
-        var maxDist = Math.min(W, H) * 0.3;
-        for (var i = 0; i < nodes.length; i++) {
-            var distances = [];
-            for (var j = i + 1; j < nodes.length; j++) {
-                var d = dist(nodes[i], nodes[j]);
+        const maxDist = Math.min(W, H) * 0.3;
+        for (let i = 0; i < nodes.length; i++) {
+            const distances = [];
+            for (let j = i + 1; j < nodes.length; j++) {
+                const d = dist(nodes[i], nodes[j]);
                 if (d < maxDist) distances.push({ j: j, d: d });
             }
             distances.sort(function (a, b) { return a.d - b.d; });
-            var connectCount = Math.min(distances.length, Math.floor(rand(1, 3.5)));
-            for (var k = 0; k < connectCount; k++) {
-                var combinedTier = Math.max(nodes[i].tier, nodes[distances[k].j].tier);
-                var wt = TIERS[combinedTier].weight;
+            const connectCount = Math.min(distances.length, Math.floor(rand(1, 3.5)));
+            for (let k = 0; k < connectCount; k++) {
+                const combinedTier = Math.max(nodes[i].tier, nodes[distances[k].j].tier);
+                const wt = TIERS[combinedTier].weight;
                 edges.push({
                     a: i,
                     b: distances[k].j,
@@ -79,14 +79,14 @@
 
     function createParticles() {
         particles = [];
-        var count = Math.max(4, Math.floor(edges.length / 3));
-        for (var i = 0; i < count; i++) {
+        const count = Math.max(4, Math.floor(edges.length / 3));
+        for (let i = 0; i < count; i++) {
             spawnParticle();
         }
     }
 
     function spawnParticle() {
-        var edge = edges[Math.floor(Math.random() * edges.length)];
+        const edge = edges[Math.floor(Math.random() * edges.length)];
         particles.push({
             edge: edge,
             t: 0,
@@ -105,8 +105,8 @@
     }
 
     function updateNodes() {
-        for (var i = 0; i < nodes.length; i++) {
-            var n = nodes[i];
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
             n.x += n.vx;
             n.y += n.vy;
             if (n.x < 20 || n.x > W - 20) n.vx *= -1;
@@ -117,8 +117,8 @@
     }
 
     function updateParticles() {
-        for (var i = particles.length - 1; i >= 0; i--) {
-            var p = particles[i];
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
             p.t += p.speed;
             if (p.t >= 1) {
                 particles.splice(i, 1);
@@ -127,8 +127,11 @@
         }
     }
 
-    var edgeTimer = 0;
-    var EDGE_REBUILD_INTERVAL = 600;
+    let edgeTimer = 0;
+    const EDGE_REBUILD_INTERVAL = 600;
+    let rafId = null;
+    let inViewport = true;
+    let tabVisible = !document.hidden;
 
     function draw(time) {
         ctx.clearRect(0, 0, W, H);
@@ -145,13 +148,13 @@
         updateNodes();
         updateParticles();
 
-        for (var i = 0; i < edges.length; i++) {
-            var e = edges[i];
-            var a = nodes[e.a];
-            var b = nodes[e.b];
-            var d = dist(a, b);
-            var maxDist = Math.min(W, H) * 0.3;
-            var fade = 1 - Math.pow(d / maxDist, 2);
+        for (let i = 0; i < edges.length; i++) {
+            const e = edges[i];
+            const a = nodes[e.a];
+            const b = nodes[e.b];
+            const d = dist(a, b);
+            const maxDist = Math.min(W, H) * 0.3;
+            const fade = 1 - Math.pow(d / maxDist, 2);
             if (fade <= 0) continue;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -162,14 +165,14 @@
             ctx.stroke();
         }
 
-        for (var i = 0; i < particles.length; i++) {
-            var p = particles[i];
-            var a = nodes[p.edge.a];
-            var b = nodes[p.edge.b];
-            var t = p.forward ? p.t : 1 - p.t;
-            var px = a.x + (b.x - a.x) * t;
-            var py = a.y + (b.y - a.y) * t;
-            var alpha = Math.min(p.t, 1 - p.t) * 4;
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const a = nodes[p.edge.a];
+            const b = nodes[p.edge.b];
+            const t = p.forward ? p.t : 1 - p.t;
+            const px = a.x + (b.x - a.x) * t;
+            const py = a.y + (b.y - a.y) * t;
+            let alpha = Math.min(p.t, 1 - p.t) * 4;
             alpha = Math.min(alpha, 1);
             ctx.beginPath();
             ctx.arc(px, py, p.size, 0, Math.PI * 2);
@@ -178,11 +181,11 @@
             ctx.fill();
         }
 
-        var t = time * 0.001;
-        for (var i = 0; i < nodes.length; i++) {
-            var n = nodes[i];
-            var pulseScale = 1 + Math.sin(t * 1.5 + n.phase) * 0.15 * n.pulse;
-            var r = n.r * pulseScale;
+        const t = time * 0.001;
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            const pulseScale = 1 + Math.sin(t * 1.5 + n.phase) * 0.15 * n.pulse;
+            const r = n.r * pulseScale;
             ctx.beginPath();
             ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
             ctx.fillStyle = n.color;
@@ -199,15 +202,46 @@
         }
 
         ctx.globalAlpha = 1;
-        requestAnimationFrame(draw);
+        rafId = requestAnimationFrame(draw);
     }
 
-    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function shouldAnimate() {
+        return inViewport && tabVisible;
+    }
+
+    function start() {
+        if (rafId !== null) return;
+        rafId = requestAnimationFrame(draw);
+    }
+
+    function stop() {
+        if (rafId === null) return;
+        cancelAnimationFrame(rafId);
+        rafId = null;
+    }
+
+    function syncRunState() {
+        if (shouldAnimate()) start();
+        else stop();
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (!prefersReducedMotion.matches) {
         init();
-        requestAnimationFrame(draw);
+        start();
 
-        var resizeTimer;
+        const observer = new IntersectionObserver(function (entries) {
+            inViewport = entries[0].isIntersecting;
+            syncRunState();
+        });
+        observer.observe(canvas);
+
+        document.addEventListener('visibilitychange', function () {
+            tabVisible = !document.hidden;
+            syncRunState();
+        });
+
+        let resizeTimer;
         window.addEventListener('resize', function () {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function () {
@@ -216,6 +250,6 @@
                 createEdges();
                 createParticles();
             }, 200);
-        });
+        }, { passive: true });
     }
 })();
