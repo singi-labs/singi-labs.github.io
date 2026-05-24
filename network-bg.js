@@ -20,7 +20,7 @@
 
     function createInstance(canvas) {
         const ctx = canvas.getContext('2d');
-        const mode = canvas.getAttribute('data-network-bg') === 'container' ? 'container' : 'viewport';
+        const isContained = canvas.getAttribute('data-network-bg') === 'container';
         let W, H, nodes, edges, particles;
         let edgeTimer = 0;
         let rafId = null;
@@ -29,7 +29,7 @@
 
         function resize() {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            if (mode === 'container') {
+            if (isContained) {
                 const rect = canvas.getBoundingClientRect();
                 W = rect.width || 1280;
                 H = rect.height || 800;
@@ -100,9 +100,13 @@
             });
         }
 
+        function targetParticleCount() {
+            return Math.max(4, Math.floor(edges.length / 3));
+        }
+
         function createParticles() {
             particles = [];
-            const count = Math.max(4, Math.floor(edges.length / 3));
+            const count = targetParticleCount();
             for (let i = 0; i < count; i++) spawnParticle();
         }
 
@@ -143,7 +147,7 @@
             if (edgeTimer >= EDGE_REBUILD_INTERVAL) {
                 edgeTimer = 0;
                 createEdges();
-                while (particles.length < Math.max(4, Math.floor(edges.length / 3))) {
+                while (particles.length < targetParticleCount()) {
                     spawnParticle();
                 }
             }
@@ -151,13 +155,13 @@
             updateNodes();
             updateParticles();
 
-            const maxDist = Math.min(W, H) * 0.3;
+            const drawMaxDist = Math.min(W, H) * 0.3;
             for (let i = 0; i < edges.length; i++) {
                 const e = edges[i];
                 const a = nodes[e.a];
                 const b = nodes[e.b];
                 const d = dist(a, b);
-                const fade = 1 - Math.pow(d / maxDist, 2);
+                const fade = 1 - Math.pow(d / drawMaxDist, 2);
                 if (fade <= 0) continue;
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y);
@@ -224,7 +228,7 @@
         }
 
         // Container mode needs layout before measuring, so defer one frame.
-        if (mode === 'container') {
+        if (isContained) {
             requestAnimationFrame(function () { init(); start(); });
         } else {
             init();
