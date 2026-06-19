@@ -37,7 +37,10 @@
             width: clamp(180px, 38vw, 300px);
             height: auto;
             aspect-ratio: 1 / 1;
-            margin-left: -0.4rem;
+            /* The SVG mark has ~16.7% transparent padding on each side. Pull
+               left by that amount so the visible glyph aligns with the text
+               column edge (only the invisible padding shifts off-column). */
+            margin-left: calc(clamp(180px, 38vw, 300px) * -0.167);
             margin-bottom: var(--space-lg);
         }
 
@@ -53,7 +56,7 @@
         .tagline {
             font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.5rem);
             color: var(--muted);
-            max-width: 30ch;
+            text-wrap: balance;
             margin-bottom: var(--space-2xl);
         }
 
@@ -62,7 +65,7 @@
             flex-direction: column;
             gap: var(--space-lg);
             width: 100%;
-            max-width: 36rem;
+            max-width: 30rem;
             margin-bottom: var(--space-2xl);
         }
 
@@ -98,6 +101,7 @@
 
         .products {
             width: 100%;
+            max-width: 30rem;
             display: flex;
             flex-direction: column;
             gap: var(--space-sm);
@@ -478,7 +482,7 @@
             <div class="footer-text-links">
                 <a href="/about/">About</a>
                 <span class="sep" aria-hidden="true">·</span>
-                <a href="https://singi.dev/press/kit/">Press Kit</a>
+                <a href="/press/kit/">Press Kit</a>
             </div>
             <span>Made with <span style="color:#DA702C">&hearts;</span> in &#x1F1EA;&#x1F1FA;</span>
         </footer>
