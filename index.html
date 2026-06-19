@@ -21,6 +21,7 @@
     <link rel="icon" href="/favicon.svg">
     <meta name="theme-color" content="#1C1B1A">
     <link rel="preload" href="/fonts/space-grotesk/space-grotesk-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/space-grotesk/space-grotesk-medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/ia-writer-quattro/quattro-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles/base.css">
     <style>
@@ -29,62 +30,78 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .logo {
-            width: 256px;
-            height: 256px;
-            max-width: 100%;
-            margin-bottom: 2rem;
+            width: clamp(180px, 38vw, 300px);
+            height: auto;
+            aspect-ratio: 1 / 1;
+            margin-left: -0.4rem;
+            margin-bottom: var(--space-lg);
         }
 
         h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
+            font-size: clamp(1.875rem, 1.1rem + 3.4vw, 2.6rem);
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-            text-align: center;
+            line-height: 1.05;
+            margin-bottom: var(--space-2xs);
         }
 
         .tagline {
-            font-size: 1.125rem;
+            font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.5rem);
             color: var(--muted);
-            text-align: center;
-            margin-bottom: 3rem;
+            max-width: 30ch;
+            margin-bottom: var(--space-2xl);
         }
 
         .pillars {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
             width: 100%;
-            margin-bottom: 3rem;
+            max-width: 36rem;
+            margin-bottom: var(--space-2xl);
         }
 
         .pillar {
-            text-align: center;
+            display: grid;
+            grid-template-columns: 1.75rem 1fr;
+            column-gap: var(--space-md);
+            align-items: baseline;
+        }
+
+        .pillar-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--accent-singi);
+            font-variant-numeric: tabular-nums;
+            grid-row: 1 / span 2;
         }
 
         .pillar-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 0.125rem;
+            font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
+            font-weight: 500;
+            grid-column: 2;
+            margin-bottom: var(--space-3xs);
         }
 
         .pillar-desc {
-            font-size: 0.8125rem;
+            font-size: clamp(0.875rem, 0.85rem + 0.2vw, 1rem);
             color: var(--muted);
+            grid-column: 2;
         }
 
         .products {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 3rem;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-2xl);
         }
 
         .product {
@@ -92,11 +109,11 @@
             align-items: center;
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 1.25rem;
+            padding: var(--space-md);
             text-decoration: none;
             color: var(--text);
             transition: border-color 0.2s, box-shadow 0.2s;
-            gap: 1rem;
+            gap: var(--space-sm);
         }
 
         .product:hover {
@@ -105,17 +122,17 @@
 
         .product--barazo:hover {
             border-color: var(--accent-barazo);
-            box-shadow: 0 0 16px rgba(58, 169, 159, 0.15);
+            box-shadow: 0 0 16px color-mix(in oklch, var(--accent-barazo) 18%, transparent);
         }
 
         .product--sifa:hover {
             border-color: var(--accent-sifa);
-            box-shadow: 0 0 16px rgba(67, 133, 190, 0.15);
+            box-shadow: 0 0 16px color-mix(in oklch, var(--accent-sifa) 18%, transparent);
         }
 
         .product-logo {
-            width: 40px;
-            height: 40px;
+            width: clamp(40px, 8vw, 52px);
+            height: clamp(40px, 8vw, 52px);
             flex-shrink: 0;
         }
 
@@ -126,13 +143,13 @@
 
         .product-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.125rem;
+            font-size: clamp(1rem, 0.95rem + 0.5vw, 1.25rem);
+            font-weight: 700;
+            margin-bottom: var(--space-3xs);
         }
 
         .product-desc {
-            font-size: 0.875rem;
+            font-size: clamp(0.875rem, 0.85rem + 0.3vw, 1.0625rem);
             color: var(--muted);
         }
 
@@ -140,22 +157,27 @@
             color: var(--muted);
             font-size: 1.25rem;
             flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .product:hover .product-arrow {
+            transform: translateX(3px);
         }
 
         .badges {
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
             flex-wrap: wrap;
-            justify-content: center;
+            align-items: center;
         }
 
         .badge {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--space-2xs);
             color: var(--muted);
-            font-size: 0.8125rem;
+            font-size: clamp(0.8125rem, 0.8rem + 0.15vw, 1rem);
         }
 
         .badge svg {
@@ -165,7 +187,7 @@
         }
 
         .badge img {
-            height: 40px;
+            height: clamp(40px, 8vw, 48px);
             width: auto;
             flex-shrink: 0;
         }
@@ -174,84 +196,18 @@
             .container {
                 max-width: 780px;
             }
-
-            .logo {
-                width: 333px;
-                height: 333px;
-            }
-
-            h1 {
-                font-size: 2.6rem;
-            }
-
-            .tagline {
-                font-size: 1.5rem;
-                margin-bottom: 4rem;
-            }
-
-            .pillars {
-                gap: 1.75rem 2.5rem;
-                margin-bottom: 4rem;
-            }
-
-            .pillar-title {
-                font-size: 1.125rem;
-            }
-
-            .pillar-desc {
-                font-size: 1rem;
-            }
-
-            .products {
-                gap: 1rem;
-                margin-bottom: 4rem;
-            }
-
-            .product {
-                padding: 1.5rem;
-            }
-
-            .product-logo {
-                width: 52px;
-                height: 52px;
-            }
-
-            .product-name {
-                font-size: 1.25rem;
-            }
-
-            .product-desc {
-                font-size: 1.0625rem;
-            }
-
-            .badge {
-                font-size: 1rem;
-            }
-
-            .badge svg {
-                width: 24px;
-                height: 24px;
-            }
-
-            .badge img {
-                height: 48px;
-            }
-
         }
 
-        @media (max-width: 480px) {
-            .pillars {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+        @media (prefers-reduced-motion: no-preference) {
+            @keyframes rise {
+                from { opacity: 0; transform: translateY(12px); }
+                to   { opacity: 1; transform: translateY(0); }
             }
 
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            .logo {
-                width: 192px;
-                height: 192px;
+            .reveal {
+                opacity: 0;
+                animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+                animation-delay: var(--reveal-delay, 0s);
             }
         }
     </style>
@@ -282,7 +238,7 @@
     <a href="#main" class="skip-link">Skip to content</a>
     <canvas id="network-bg" aria-hidden="true"></canvas>
     <main class="container" id="main">
-        <svg class="logo" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
+        <svg class="logo reveal" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
             <defs>
                 <style>
                     /* Static fallback: when motion is reduced, only the Singi
@@ -430,29 +386,33 @@
             </g>
         </svg>
 
-        <h1>Singi Labs</h1>
-        <p class="tagline">Open foundations for networked apps</p>
+        <h1 class="reveal" style="--reveal-delay:.06s">Singi Labs</h1>
+        <p class="tagline reveal" style="--reveal-delay:.12s">Open foundations for networked apps</p>
 
-        <div class="pillars">
+        <div class="pillars reveal" style="--reveal-delay:.18s">
             <div class="pillar">
+                <span class="pillar-num" aria-hidden="true">01</span>
                 <div class="pillar-title">Decentralize power</div>
                 <div class="pillar-desc">No single entity should control the network</div>
             </div>
             <div class="pillar">
+                <span class="pillar-num" aria-hidden="true">02</span>
                 <div class="pillar-title">Users own their stuff</div>
                 <div class="pillar-desc">Data belongs to people who create it</div>
             </div>
             <div class="pillar">
+                <span class="pillar-num" aria-hidden="true">03</span>
                 <div class="pillar-title">Build in the open</div>
                 <div class="pillar-desc">Open protocol, open code</div>
             </div>
             <div class="pillar">
+                <span class="pillar-num" aria-hidden="true">04</span>
                 <div class="pillar-title">Earn trust, don't demand it</div>
                 <div class="pillar-desc">Prove value instead of creating lock-in</div>
             </div>
         </div>
 
-        <div class="products">
+        <div class="products reveal" style="--reveal-delay:.26s">
             <a class="product product--barazo" href="https://barazo.forum" target="_blank" rel="noopener">
                 <!-- Barazo logo (dark variant) -->
                 <svg class="product-logo" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
@@ -496,14 +456,14 @@
             </a>
         </div>
 
-        <div class="badges">
+        <div class="badges reveal" style="--reveal-delay:.34s">
             <span class="badge">
                 <img src="goosetopher.png" alt="Goosetopher, the AT Protocol mascot" width="40" height="40" loading="lazy" decoding="async">
                 Building on <a href="https://atproto.com/" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: underline; text-underline-offset: 2px;">AT Protocol</a>
             </span>
         </div>
 
-        <footer class="footer">
+        <footer class="footer reveal" style="--reveal-delay:.4s">
             <div class="footer-links">
                 <a href="https://bsky.app/profile/singi.dev" target="_blank" rel="noopener" aria-label="Bluesky">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.63 3.651 3.495 6.295 3.146-4.738.81-8.887 2.787-5.01 8.066C4.718 24.863 7.3 22.401 9.14 20.13 10.604 18.327 11.304 16.66 12 15.388c.696 1.272 1.396 2.94 2.86 4.742 1.84 2.271 4.422 4.733 7.231 1.329 3.877-5.28-.272-7.256-5.01-8.066 2.644.349 5.51-.517 6.295-3.146C23.622 9.418 24 4.458 24 3.768c0-.69-.139-1.861-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8"/></svg>
