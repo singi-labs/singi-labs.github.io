@@ -21,6 +21,7 @@
     <link rel="icon" href="/favicon.svg">
     <meta name="theme-color" content="#1C1B1A">
     <link rel="preload" href="/fonts/space-grotesk/space-grotesk-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/space-grotesk/space-grotesk-medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/ia-writer-quattro/quattro-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles/base.css">
     <style>
@@ -39,7 +40,7 @@
             text-decoration: none;
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 2.5rem;
             transition: color 0.2s;
             align-self: flex-start;
@@ -57,21 +58,23 @@
 
         h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.25rem;
+            font-size: clamp(1.875rem, 1.2rem + 3vw, 3rem);
             font-weight: 700;
             letter-spacing: -0.02em;
+            line-height: 1.08;
             margin-bottom: 1rem;
         }
 
         .lead {
-            font-size: 1.0625rem;
+            font-size: clamp(1.0625rem, 1rem + 0.6vw, 1.25rem);
             color: var(--muted);
+            max-width: 60ch;
             margin-bottom: 3rem;
         }
 
         .prose h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.375rem, 1.1rem + 1.4vw, 1.875rem);
             font-weight: 700;
             letter-spacing: -0.01em;
             margin-top: 3rem;
@@ -84,8 +87,8 @@
 
         .prose h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.125rem;
-            font-weight: 600;
+            font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+            font-weight: 500;
             margin-top: 2rem;
             margin-bottom: 0.25rem;
         }
@@ -97,6 +100,8 @@
         }
 
         .prose p {
+            font-size: clamp(1rem, 0.97rem + 0.18vw, 1.0625rem);
+            max-width: 68ch;
             margin-bottom: 1rem;
         }
 
@@ -120,12 +125,14 @@
 
         .prose ul {
             list-style: none;
+            max-width: 68ch;
             margin-bottom: 1rem;
             padding-left: 0;
         }
 
         .prose li {
             position: relative;
+            font-size: clamp(1rem, 0.97rem + 0.18vw, 1.0625rem);
             padding-left: 1.25rem;
             margin-bottom: 0.625rem;
         }
@@ -186,37 +193,8 @@
                 max-width: 720px;
             }
 
-            h1 {
-                font-size: 3rem;
-            }
-
-            .lead {
-                font-size: 1.25rem;
-            }
-
             .prose h2 {
-                font-size: 1.875rem;
                 margin-top: 3.5rem;
-            }
-
-            .prose h3 {
-                font-size: 1.25rem;
-            }
-
-            .prose p,
-            .prose li {
-                font-size: 1.0625rem;
-            }
-
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.875rem;
-            }
-
-            .prose h2 {
-                font-size: 1.375rem;
             }
         }
     </style>
@@ -289,8 +267,6 @@
             <h2>Who we are</h2>
             <p>Singi Labs is two people, both in the Netherlands.</p>
 
-            <!-- TODO: once Tessa's Sifa profile is populated, replace both bios below with two Sifa identity-card embed widgets (issue: sifa #13). -->
-
             <h3>Guido X Jansen</h3>
             <p class="bio-role">Product &amp; Tech</p>
             <p>Community builder with 25+ years experience growing ecosystems around open source platforms. Founded Dutchento / Meet Magento (600+ annual attendees), created the CRO.CAFE podcast (200+ episodes in four languages), and led Spryker's B2B enterprise community (130+ clients). Cognitive psychology background that informs how he thinks about participation, trust, and onboarding for the open social web. Long-time advocate for open source, privacy, and data sovereignty, running self-hosted, EU-first infrastructure. On Bluesky as <a href="https://bsky.app/profile/gui.do">@gui.do</a>.</p>
@@ -330,7 +306,7 @@
                 </a>
             </div>
             <div class="footer-text-links">
-                <a href="/about/">About</a>
+                <span aria-current="page">About</span>
                 <span class="sep" aria-hidden="true">·</span>
                 <a href="https://singi.dev/press/kit/">Press Kit</a>
             </div>
