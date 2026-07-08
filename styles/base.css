@@ -132,75 +132,197 @@ a {
     transform: translateY(0);
 }
 
-.footer {
-    display: flex;
+/* ============================================================
+   Standardized site chrome — shared across every page except
+   the atproto slide deck. Pages opt in with class="site" on
+   <body>, which reshapes the base flex-centered layout into a
+   full-height column: sticky header, growing content, footer.
+   The animated background is the shared canvas in /network-bg.js.
+   ============================================================ */
+
+:root {
+    --page-max: 1180px;
+    --page-pad: clamp(20px, 5vw, 64px);
+    --hair-strong: rgba(255, 252, 240, 0.14);
+    --hair-weak: rgba(255, 252, 240, 0.10);
+}
+
+body.site {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+body.site > main {
+    flex: 1 0 auto;
     width: 100%;
-    gap: var(--space-xs);
+}
+
+/* Article/content pages center their column and restore the page
+   padding that the base flex-centered body used to provide. */
+body.site > main.container {
+    margin-inline: auto;
+    padding: var(--space-xl) var(--page-pad) var(--space-2xl);
+}
+
+/* --- Sticky header --- */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    background: color-mix(in oklch, var(--bg) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hair-weak);
+}
+
+.site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding: 0.75rem var(--page-pad);
+}
+
+.site-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.0625rem;
+    letter-spacing: -0.01em;
+}
+
+.site-lockup svg {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-family: 'iA Writer Quattro', sans-serif;
+    font-size: 0.875rem;
+}
+
+.site-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.site-nav a:hover,
+.site-nav [aria-current="page"] {
+    color: var(--text);
+}
+
+.site-nav [aria-current="page"] {
+    cursor: default;
+}
+
+/* --- Footer (standardized, not sticky) --- */
+.site-footer {
+    width: 100%;
+    border-top: 1px solid var(--hair-weak);
+    margin-top: var(--space-2xl);
+}
+
+.site-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm) var(--space-md);
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding: var(--space-md) var(--page-pad);
     color: var(--muted);
     font-size: 0.8125rem;
 }
 
-.footer-links {
-    display: flex;
-    gap: 1.25rem;
+.footer-brand {
+    display: inline-flex;
     align-items: center;
+    gap: 0.625rem;
 }
 
-.footer-links a {
+.footer-brand img {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.footer-brand a {
     color: var(--muted);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
+    text-decoration: underline;
+    text-underline-offset: 2px;
     transition: color 0.2s;
 }
 
-.footer-links a:hover,
-.footer-text-links a:hover {
+.footer-brand a:hover {
     color: var(--text);
 }
 
-.footer-links a svg {
-    width: 24px;
-    height: 24px;
-}
-
-.footer-text-links {
+.footer-social {
     display: flex;
-    gap: 0.75rem;
     align-items: center;
+    gap: 1.1rem;
 }
 
-.footer-text-links a {
+.footer-social a {
     color: var(--muted);
-    text-decoration: none;
+    display: inline-flex;
     transition: color 0.2s;
 }
 
-.footer-text-links .sep {
-    color: var(--border);
-    user-select: none;
+.footer-social a:hover {
+    color: var(--text);
+}
+
+.footer-social svg {
+    width: 22px;
+    height: 22px;
+}
+
+.footer-made {
+    white-space: nowrap;
 }
 
 @media (min-width: 769px) {
-    .footer {
-        font-size: 1rem;
+    .site-footer-inner {
+        font-size: 0.9375rem;
     }
-    .footer-links a svg {
-        width: 28px;
-        height: 28px;
+    .footer-social svg {
+        width: 24px;
+        height: 24px;
     }
 }
 
-.back {
-    display: inline-block;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.875rem;
-    margin-bottom: 2rem;
+@media (max-width: 600px) {
+    .site-footer-inner {
+        justify-content: center;
+        text-align: center;
+    }
 }
 
-.back:hover {
-    color: var(--text);
+/* Global reduced-motion kill switch — the logo SVG handles its own
+   reduced-motion fallback internally. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }
