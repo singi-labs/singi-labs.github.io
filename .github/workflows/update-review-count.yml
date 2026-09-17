@@ -1,0 +1,57 @@
+name: Update Sifa review count
+
+# Refreshes the Sifa review badge in index.html from atstore.fyi once a day.
+# atstore has no API and no CORS, so the count is scraped server-side here.
+# main requires a pull request, so changes land via a short-lived PR that is
+# merged automatically (0 required approvals, no required checks); GitHub Pages
+# then redeploys from main.
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # daily, 06:17 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-review-count
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Refresh review badge from atstore
+        run: node scripts/update-review-count.mjs
+
+      - name: Open and merge PR if the count changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "No change to index.html."
+            exit 0
+          fi
+
+          BRANCH="bot/review-count-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add index.html
+          git commit -m "chore: refresh Sifa review count from atstore"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "chore: refresh Sifa review count from atstore" \
+            --body "Automated daily refresh of the Sifa review badge on singi.dev from atstore.fyi."
+          gh pr merge "$BRANCH" --squash --delete-branch
