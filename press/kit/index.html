@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Press Kit — Singi Labs</title>
-    <meta name="description" content="Logos, brand colors, and product descriptions for Singi Labs, Barazo Forums, and Sifa ID.">
+    <meta name="description" content="Logos, brand colors, and product descriptions for Singi Labs, Barazo Forums, Sifa ID, and Kootana.">
     <meta property="og:title" content="Press Kit — Singi Labs">
-    <meta property="og:description" content="Logos, brand colors, and product descriptions for Singi Labs, Barazo Forums, and Sifa ID.">
+    <meta property="og:description" content="Logos, brand colors, and product descriptions for Singi Labs, Barazo Forums, Sifa ID, and Kootana.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://singi.dev/press/kit/">
     <link rel="canonical" href="https://singi.dev/press/kit/">
@@ -21,6 +21,7 @@
             --singi: var(--accent-singi);
             --barazo: var(--accent-barazo);
             --sifa: var(--accent-sifa);
+            --kootana: var(--accent-kootana);
             --purple: var(--accent-secondary);
         }
 
@@ -241,7 +242,7 @@
 
         .links-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1.5rem;
             margin-top: 1rem;
         }
@@ -314,6 +315,13 @@
                 </div>
             </div>
             <div class="color-chip">
+                <div class="color-swatch" style="background: #CE5D97;"></div>
+                <div>
+                    <div class="color-label">Kootana</div>
+                    <div class="color-hex">#CE5D97</div>
+                </div>
+            </div>
+            <div class="color-chip">
                 <div class="color-swatch" style="background: #8B7EC8;"></div>
                 <div>
                     <div class="color-label">Shared accent</div>
@@ -378,7 +386,7 @@
             <div class="brand-header">
                 <div class="brand-name" style="color: var(--barazo);">Barazo Forums</div>
             </div>
-            <p class="brand-desc">Federated forum platform on the AT Protocol. "Community forums you control." The name is from Swahili "baraza" (community council).</p>
+            <p class="brand-desc">Federated forum platform on AT Protocol. "Community forums you control." The name is from Swahili "baraza" (community council).</p>
 
             <div class="asset-picker">
                 <div class="picker-row">
@@ -415,7 +423,7 @@
             <div class="brand-header">
                 <div class="brand-name" style="color: var(--sifa);">Sifa ID</div>
             </div>
-            <p class="brand-desc">Professional identity layer for the AT Protocol. "Professional profiles and trust." The name is from Swahili "sifa" (reputation, praise).</p>
+            <p class="brand-desc">Professional identity layer for AT Protocol. "Professional profiles and trust." The name is from Swahili "sifa" (reputation, praise).</p>
 
             <div class="asset-picker">
                 <div class="picker-row">
@@ -447,22 +455,56 @@
             </div>
         </div>
 
+        <!-- Kootana -->
+        <div class="brand-section" data-brand="kootana" data-stem="kootana-logo" data-name="Kootana">
+            <div class="brand-header">
+                <div class="brand-name" style="color: var(--kootana);">Kootana</div>
+            </div>
+            <p class="brand-desc">Cross-event networking on AT Protocol. "Your professional network, made useful at the events you already attend." The name is from Swahili "kutana" (to meet).</p>
+
+            <div class="asset-picker">
+                <div class="picker-row">
+                    <span class="picker-label">Background</span>
+                    <div class="seg-control" data-control="bg">
+                        <button type="button" class="seg-btn" data-value="dark-bg" data-surface="dark" aria-pressed="true">Dark</button>
+                        <button type="button" class="seg-btn" data-value="light-bg" data-surface="light" aria-pressed="false">Light</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-dark" data-surface="dark" aria-pressed="false">Transparent · for dark</button>
+                        <button type="button" class="seg-btn" data-value="transparent-on-light" data-surface="light" aria-pressed="false">Transparent · for light</button>
+                    </div>
+                </div>
+
+                <div class="preview-area" data-surface="dark">
+                    <img class="preview-img" alt="" loading="lazy" decoding="async">
+                </div>
+
+                <div class="download-row">
+                    <a class="download-btn" data-fmt="svg" download>↓ SVG</a>
+                    <a class="download-btn" data-fmt="png-1024" download>↓ PNG 1024px</a>
+                    <a class="download-btn" data-fmt="png-512" download>↓ PNG 512px</a>
+                </div>
+                <p style="font-size: 0.8125rem; color: var(--muted); margin-top: 1rem;">Symbol only for now. The Kootana wordmark lockup is on the way.</p>
+            </div>
+        </div>
+
         <!-- Boilerplate copy -->
         <div class="boilerplate">
             <h2>Copy-ready descriptions</h2>
             <p style="color: var(--muted); font-size: 0.875rem;">Use these as-is or adapt them. If you need something different, reach out.</p>
 
             <h3>Singi Labs (short)</h3>
-            <div class="copy-text">Singi Labs builds open source, decentralized software on the AT Protocol. Home of Barazo Forums (federated communities) and Sifa ID (professional identity and trust).</div>
+            <div class="copy-text">Singi Labs builds open source, decentralized software on AT Protocol. Home of Barazo Forums (federated communities) and Sifa ID (professional identity and trust).</div>
 
             <h3>Barazo Forums (short)</h3>
-            <div class="copy-text">Barazo Forums is a federated forum platform on the AT Protocol. Your identity and posts live on your PDS, not locked inside each community. One account across every forum, contributions follow you. Open source, self-hostable, privacy-native.</div>
+            <div class="copy-text">Barazo Forums is a federated forum platform on AT Protocol. Your identity and posts live on your PDS, not locked inside each community. One account across every forum, contributions follow you. Open source, self-hostable, privacy-native.</div>
 
             <h3>Sifa ID (short)</h3>
-            <div class="copy-text">Sifa ID is a professional identity layer for the AT Protocol. Your profile shows verified activity from across the ecosystem: real contributions to real communities, tied to your cryptographic identity. No reputation scores, no tiers. Just what you actually did, verified.</div>
+            <div class="copy-text">Sifa ID is a professional identity layer for AT Protocol. Your profile shows verified activity from across the ecosystem: real contributions to real communities, tied to your cryptographic identity. No reputation scores, no tiers. Just what you actually did, verified.</div>
+
+            <h3>Kootana (short)</h3>
+            <div class="copy-text">Kootana makes your professional network useful at the events you already attend. Built on AT Protocol, it connects your portable identity and track record to the people in the room, so a conference or meetup turns into lasting, verifiable connections instead of a stack of forgotten business cards.</div>
 
             <h3>The flywheel (for longer pieces)</h3>
-            <div class="copy-text">Barazo Forums and Sifa ID each work on their own. Forums are a proven model (Discourse, Flarum), and so are professional-identity networks (LinkedIn). But because both run on the AT Protocol, they reinforce each other: activity in Barazo communities builds your Sifa profile, and Sifa's trust infrastructure (sybil detection, anti-abuse labels) protects Barazo communities. Both use open lexicons, so the rest of the atproto network benefits too.</div>
+            <div class="copy-text">Barazo Forums and Sifa ID each work on their own. Forums are a proven model (Discourse, Flarum), and so are professional-identity networks (LinkedIn). But because both run on AT Protocol, they reinforce each other: activity in Barazo communities builds your Sifa profile, and Sifa's trust infrastructure (sybil detection, anti-abuse labels) protects Barazo communities. Both use open lexicons, so the rest of the atproto network benefits too.</div>
         </div>
 
         <!-- Links -->
@@ -487,6 +529,12 @@
                     <a href="https://github.com/singi-labs">GitHub</a><br>
                     <a href="https://bsky.app/profile/sifa.id">Bluesky</a>
                 </div>
+                <div>
+                    <strong style="color: var(--kootana);">Kootana</strong>
+                    <a href="https://kootana.social">kootana.social</a><br>
+                    <a href="https://github.com/singi-labs">GitHub</a><br>
+                    <a href="https://bsky.app/profile/kootana.social">Bluesky</a>
+                </div>
             </div>
         </div>
 
@@ -494,7 +542,7 @@
         <div class="links-section">
             <h2>Usage &amp; license</h2>
             <p>The logo SVG and PNG files on this page are released under the <a href="https://opensource.org/license/mit">MIT License</a>. You can copy, redistribute, and embed them &mdash; for example, to link to our products from your own site, list us in a &ldquo;tools we use&rdquo; page, or illustrate an article about Barazo or Sifa.</p>
-            <p>The names &ldquo;Singi Labs&rdquo;, &ldquo;Barazo&rdquo;, and &ldquo;Sifa&rdquo;, together with their respective logos as product identifiers, remain our trademarks. The MIT license covers the artwork as artwork; it does not grant permission to use the marks to identify a different product, suggest endorsement or affiliation we have not given, or create derivative branding. If you are not sure whether your use is OK, just ask.</p>
+            <p>The names &ldquo;Singi Labs&rdquo;, &ldquo;Barazo&rdquo;, &ldquo;Sifa&rdquo;, and &ldquo;Kootana&rdquo;, together with their respective logos as product identifiers, remain our trademarks. The MIT license covers the artwork as artwork; it does not grant permission to use the marks to identify a different product, suggest endorsement or affiliation we have not given, or create derivative branding. If you are not sure whether your use is OK, just ask.</p>
         </div>
 
         <p style="margin-top: 3rem; color: var(--muted); font-size: 0.8125rem;">Questions? Reach out to Guido at <a href="https://bsky.app/profile/gui.do">@gui.do</a> on Bluesky or guido@singi.dev.</p>
@@ -533,7 +581,8 @@
             var BRANDS = {
                 'singi-labs': { dir: 'singi-labs', stem: 'singi-logo', name: 'Singi Labs' },
                 'barazo':     { dir: 'barazo',     stem: 'barazo-logo', name: 'Barazo Forums' },
-                'sifa':       { dir: 'sifa',       stem: 'sifa-logo',  name: 'Sifa ID' }
+                'sifa':       { dir: 'sifa',       stem: 'sifa-logo',  name: 'Sifa ID' },
+                'kootana':    { dir: 'kootana',    stem: 'kootana-logo', name: 'Kootana' }
             };
             var KINDS = {
                 'mark':     { suffix: '',          label: 'logo' },
@@ -564,9 +613,12 @@
                 var dlPng512 = section.querySelector('[data-fmt="png-512"]');
 
                 function update() {
-                    var kindBtn = kindControl.querySelector('[aria-pressed="true"]');
+                    // Some brands (e.g. Kootana) ship the mark only, with no
+                    // wordmark yet, so they omit the Asset control entirely.
+                    // Default those to the plain mark.
+                    var kindBtn = kindControl && kindControl.querySelector('[aria-pressed="true"]');
                     var bgBtn = bgControl.querySelector('[aria-pressed="true"]');
-                    var kind = safeLookup(KINDS, kindBtn && kindBtn.dataset.value);
+                    var kind = kindControl ? safeLookup(KINDS, kindBtn && kindBtn.dataset.value) : KINDS.mark;
                     var bg = safeLookup(BGS, bgBtn && bgBtn.dataset.value);
                     if (!kind || !bg) return;
 
@@ -593,10 +645,12 @@
                     update();
                 }
 
-                kindControl.addEventListener('click', function (e) {
-                    var btn = e.target.closest('.seg-btn');
-                    if (btn) activate(kindControl, btn);
-                });
+                if (kindControl) {
+                    kindControl.addEventListener('click', function (e) {
+                        var btn = e.target.closest('.seg-btn');
+                        if (btn) activate(kindControl, btn);
+                    });
+                }
                 bgControl.addEventListener('click', function (e) {
                     var btn = e.target.closest('.seg-btn');
                     if (btn) activate(bgControl, btn);
