@@ -1,4 +1,4 @@
-// "Latest from the network" — a single merged stream of the three Singi Labs
+// "Latest from the network" — a single merged stream of the four Singi Labs
 // accounts' Bluesky posts. Read-only, no auth: the public AT Protocol AppView
 // (public.api.bsky.app) serves getAuthorFeed without a token. All post text is
 // rendered via textContent and every card is a single <a> to the post on
@@ -8,18 +8,21 @@
     if (!root) return;
 
     var ACCOUNTS = [
-        { handle: 'singi.dev',    accent: '#DA702C' },
-        { handle: 'barazo.forum', accent: '#3AA99F' },
-        { handle: 'sifa.id',      accent: '#4385BE' }
+        { handle: 'singi.dev',     accent: '#DA702C' },
+        { handle: 'barazo.forum',  accent: '#3AA99F' },
+        { handle: 'sifa.id',       accent: '#4385BE' },
+        { handle: 'kootana.social', accent: '#CE5D97' }
     ];
     var API = 'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed';
     var MAX_CARDS = 12;
     // Cap each account so a high-volume account (Sifa posts daily) can't crowd
-    // out the quieter ones (Barazo, Singi). Guarantees all three appear.
+    // out the quieter ones (Barazo, Singi, Kootana). Guarantees all four appear.
+    // Kootana is brand new and posts little yet, so its slot may be sparse or
+    // empty until it starts posting — that's expected, not a bug.
     var MAX_PER_ACCOUNT = 5;
     // Prefer posts with a bit of traction (likes + reposts + replies + quotes)
     // to filter out throwaway/dead posts. An account whose posts all fall short
-    // still shows its most recent one, so none of the three ever vanishes.
+    // still shows its most recent one, so none of the four ever vanishes.
     var MIN_REACTIONS = 5;
 
     var accentByHandle = {};

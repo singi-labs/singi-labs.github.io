@@ -66,6 +66,7 @@
     --accent-singi: oklch(65.8% 0.154 49.3);
     --accent-barazo: oklch(67.0% 0.100 186.6);
     --accent-sifa: oklch(59.9% 0.110 247.0);
+    --accent-kootana: oklch(63.5% 0.156 350.5);   /* Flexoki Magenta #CE5D97 */
     --accent-secondary: oklch(63.5% 0.110 291.0);
 
     /* 4pt-based spacing scale */

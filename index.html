@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://singi.dev/">
     <title>Singi Labs — Open foundations for your online life</title>
-    <meta name="description" content="Singi Labs builds open, decentralized software on the AT Protocol. Home of Barazo (community forums) and Sifa (professional identity and trust).">
+    <meta name="description" content="Singi Labs builds open, decentralized software on AT Protocol. Home of Barazo (community forums), Sifa (professional identity and trust), and Kootana (your professional network at events).">
     <meta property="og:title" content="Singi Labs — Open foundations for your online life">
-    <meta property="og:description" content="Singi Labs builds open, decentralized software on the AT Protocol. Home of Barazo (community forums) and Sifa (professional identity and trust).">
+    <meta property="og:description" content="Singi Labs builds open, decentralized software on AT Protocol. Home of Barazo (community forums), Sifa (professional identity and trust), and Kootana (your professional network at events).">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://singi.dev">
     <meta property="og:image" content="https://singi.dev/og-image.png">
@@ -15,7 +15,7 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Singi Labs — Open foundations for your online life">
-    <meta name="twitter:description" content="Singi Labs builds open, decentralized software on the AT Protocol. Home of Barazo (community forums) and Sifa (professional identity and trust).">
+    <meta name="twitter:description" content="Singi Labs builds open, decentralized software on AT Protocol. Home of Barazo (community forums), Sifa (professional identity and trust), and Kootana (your professional network at events).">
     <meta name="twitter:image" content="https://singi.dev/og-image.png">
     <script defer src="https://u.a11y.nl/script.js" data-website-id="e3b70b96-e433-45f8-bfab-9496f66c572d"></script>
     <link rel="icon" href="/favicon.svg">
@@ -155,8 +155,9 @@
             transform: translateX(8px);
         }
 
-        .product-row--barazo:hover { background: rgba(58, 169, 159, 0.08); }
-        .product-row--sifa:hover   { background: rgba(67, 133, 190, 0.08); }
+        .product-row--barazo:hover  { background: rgba(58, 169, 159, 0.08); }
+        .product-row--sifa:hover    { background: rgba(67, 133, 190, 0.08); }
+        .product-row--kootana:hover { background: rgba(206, 93, 151, 0.08); }
 
         .product-index {
             font-family: 'Space Grotesk', sans-serif;
@@ -165,8 +166,9 @@
             font-variant-numeric: tabular-nums;
         }
 
-        .product-row--barazo .product-index { color: var(--accent-barazo); }
-        .product-row--sifa .product-index   { color: var(--accent-sifa); }
+        .product-row--barazo .product-index  { color: var(--accent-barazo); }
+        .product-row--sifa .product-index    { color: var(--accent-sifa); }
+        .product-row--kootana .product-index { color: var(--accent-kootana); }
 
         .product-mark {
             width: 52px;
@@ -194,8 +196,9 @@
             white-space: nowrap;
         }
 
-        .product-row--barazo .product-go { color: var(--accent-barazo); }
-        .product-row--sifa .product-go   { color: var(--accent-sifa); }
+        .product-row--barazo .product-go  { color: var(--accent-barazo); }
+        .product-row--sifa .product-go    { color: var(--accent-sifa); }
+        .product-row--kootana .product-go { color: var(--accent-kootana); }
 
         .product-go .arrow { font-size: 19px; }
 
@@ -582,28 +585,39 @@
                                    mark is visible. The other brand variants and the
                                    alternate icon shapes are hidden by default and only
                                    revealed by the animation cycle. */
-                                .at-barazo, .at-sifa { opacity: 0; }
+                                .at-barazo, .at-sifa, .at-kootana { opacity: 0; }
                                 .tr-2, .tr-3, .bl-2, .bl-3, .br-2, .br-3 { opacity: 0; }
 
                                 @media (prefers-reduced-motion: no-preference) {
+                                    /* Four brand "@" glyphs reveal in turn, each an
+                                       equal ~25% slice of the 12s loop with a ~3%
+                                       crossfade into the next: Singi → Barazo → Sifa
+                                       → Kootana. All four share the same duration so
+                                       the cycle stays evenly spaced. */
                                     @keyframes at-1 {
-                                        0%   { opacity: 1; } 30%  { opacity: 1; }
-                                        33%  { opacity: 0; } 97%  { opacity: 0; }
+                                        0%   { opacity: 1; } 22%  { opacity: 1; }
+                                        25%  { opacity: 0; } 97%  { opacity: 0; }
                                         100% { opacity: 1; }
                                     }
                                     @keyframes at-2 {
-                                        0%   { opacity: 0; } 30%  { opacity: 0; }
-                                        33%  { opacity: 1; } 63%  { opacity: 1; }
-                                        67%  { opacity: 0; } 100% { opacity: 0; }
+                                        0%   { opacity: 0; } 22%  { opacity: 0; }
+                                        25%  { opacity: 1; } 47%  { opacity: 1; }
+                                        50%  { opacity: 0; } 100% { opacity: 0; }
                                     }
                                     @keyframes at-3 {
-                                        0%   { opacity: 0; } 63%  { opacity: 0; }
-                                        67%  { opacity: 1; } 97%  { opacity: 1; }
+                                        0%   { opacity: 0; } 47%  { opacity: 0; }
+                                        50%  { opacity: 1; } 72%  { opacity: 1; }
+                                        75%  { opacity: 0; } 100% { opacity: 0; }
+                                    }
+                                    @keyframes at-4 {
+                                        0%   { opacity: 0; } 72%  { opacity: 0; }
+                                        75%  { opacity: 1; } 97%  { opacity: 1; }
                                         100% { opacity: 0; }
                                     }
-                                    .at-singi  { animation: at-1 9s ease-in-out infinite; }
-                                    .at-barazo { animation: at-2 9s ease-in-out infinite; }
-                                    .at-sifa   { animation: at-3 9s ease-in-out infinite; }
+                                    .at-singi   { animation: at-1 12s ease-in-out infinite; }
+                                    .at-barazo  { animation: at-2 12s ease-in-out infinite; }
+                                    .at-sifa    { animation: at-3 12s ease-in-out infinite; }
+                                    .at-kootana { animation: at-4 12s ease-in-out infinite; }
                                     @keyframes flip {
                                         0%    { transform: scaleX(1); }
                                         29%   { transform: scaleX(1); }
@@ -697,6 +711,14 @@
                                 <path d="M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z" style="fill:#4385BE;"/>
                             </g>
                         </g>
+                        <g class="at-kootana">
+                            <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+                                <path d="M128,71.5C159.183,71.5 184.5,96.817 184.5,128C184.5,159.183 159.183,184.5 128,184.5C96.817,184.5 71.5,159.183 71.5,128C71.5,96.817 96.817,71.5 128,71.5ZM128,104.5C115.03,104.5 104.5,115.03 104.5,128C104.5,140.97 115.03,151.5 128,151.5C140.97,151.5 151.5,140.97 151.5,128C151.5,115.03 140.97,104.5 128,104.5Z" style="fill:#CE5D97;"/>
+                            </g>
+                            <g transform="matrix(0.333333,0,0,0.333333,37.583333,37.083333)">
+                                <path d="M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z" style="fill:#CE5D97;"/>
+                            </g>
+                        </g>
                         <g class="flip-tr">
                             <rect class="tr-1" x="148" y="51.75" width="56" height="56" rx="10" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
                             <circle class="tr-2" cx="176" cy="79.75" r="32" style="fill:none;stroke:#FFFCF0;stroke-width:12px;"/>
@@ -772,6 +794,23 @@
                 </div>
                 <span class="product-go">sifa.id <span class="arrow" aria-hidden="true">&rarr;</span></span>
             </div>
+            <a class="product-row product-row--kootana" href="https://kootana.social" target="_blank" rel="noopener">
+                <span class="product-index" aria-hidden="true">03</span>
+                <!-- Kootana logo (transparent-on-dark) — shared family "@" + arcs + purple ring -->
+                <svg class="product-mark" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="fill-rule:evenodd;clip-rule:evenodd;">
+                    <path transform="matrix(1.333332,0,0,1.333332,150.333332,148.333332)" d="M128,71.5C159.183,71.5 184.5,96.817 184.5,128C184.5,159.183 159.183,184.5 128,184.5C96.817,184.5 71.5,159.183 71.5,128C71.5,96.817 96.817,71.5 128,71.5ZM128,104.5C115.03,104.5 104.5,115.03 104.5,128C104.5,140.97 115.03,151.5 128,151.5C140.97,151.5 151.5,140.97 151.5,128C151.5,115.03 140.97,104.5 128,104.5Z" fill="#CE5D97"/>
+                    <path transform="matrix(1.333332,0,0,1.333332,150.333332,148.333332)" d="M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z" fill="#CE5D97"/>
+                    <path d="M597.7 291.5A110 110 0 1 1 732.5 426.3" fill="none" stroke="#FFFCF0" stroke-width="56" stroke-linecap="round"/>
+                    <path d="M426.3 732.5A110 110 0 1 1 291.5 597.7" fill="none" stroke="#FFFCF0" stroke-width="56" stroke-linecap="round"/>
+                    <circle cx="704" cy="704" r="92" fill="none" stroke="#8B7EC8" stroke-width="40"/>
+                    <circle cx="704" cy="704" r="30" fill="#8B7EC8"/>
+                </svg>
+                <div class="product-text">
+                    <div class="product-name">Kootana</div>
+                    <div class="product-desc">Your professional network, made useful at the events you already attend</div>
+                </div>
+                <span class="product-go">kootana.social <span class="arrow" aria-hidden="true">&rarr;</span></span>
+            </a>
         </section>
 
         <div class="marquee reveal" style="--reveal-delay:.4s" aria-label="Our principles">
@@ -793,8 +832,9 @@
             <h2>Latest from the network</h2>
             <p class="stream-sub">Post stream from
                 <a href="https://bsky.app/profile/singi.dev" target="_blank" rel="noopener">@singi.dev</a>,
-                <a href="https://bsky.app/profile/barazo.forum" target="_blank" rel="noopener">@barazo.forum</a>, and
-                <a href="https://bsky.app/profile/sifa.id" target="_blank" rel="noopener">@sifa.id</a>
+                <a href="https://bsky.app/profile/barazo.forum" target="_blank" rel="noopener">@barazo.forum</a>,
+                <a href="https://bsky.app/profile/sifa.id" target="_blank" rel="noopener">@sifa.id</a>, and
+                <a href="https://bsky.app/profile/kootana.social" target="_blank" rel="noopener">@kootana.social</a>
                 on Bluesky.</p>
         </div>
         <div class="stream-grid" id="stream" aria-live="polite" aria-busy="true">
@@ -804,7 +844,8 @@
             <p class="stream-fallback">Follow us on Bluesky:
                 <a href="https://bsky.app/profile/singi.dev">@singi.dev</a> &middot;
                 <a href="https://bsky.app/profile/barazo.forum">@barazo.forum</a> &middot;
-                <a href="https://bsky.app/profile/sifa.id">@sifa.id</a>
+                <a href="https://bsky.app/profile/sifa.id">@sifa.id</a> &middot;
+                <a href="https://bsky.app/profile/kootana.social">@kootana.social</a>
             </p>
         </noscript>
     </section>
