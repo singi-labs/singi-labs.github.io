@@ -464,6 +464,13 @@
 
             <div class="asset-picker">
                 <div class="picker-row">
+                    <span class="picker-label">Asset</span>
+                    <div class="seg-control" data-control="kind">
+                        <button type="button" class="seg-btn" data-value="mark" aria-pressed="false">Mark</button>
+                        <button type="button" class="seg-btn" data-value="wordmark" aria-pressed="true">Wordmark</button>
+                    </div>
+                </div>
+                <div class="picker-row">
                     <span class="picker-label">Background</span>
                     <div class="seg-control" data-control="bg">
                         <button type="button" class="seg-btn" data-value="dark-bg" data-surface="dark" aria-pressed="true">Dark</button>
@@ -482,7 +489,6 @@
                     <a class="download-btn" data-fmt="png-1024" download>↓ PNG 1024px</a>
                     <a class="download-btn" data-fmt="png-512" download>↓ PNG 512px</a>
                 </div>
-                <p style="font-size: 0.8125rem; color: var(--muted); margin-top: 1rem;">Symbol only for now. The Kootana wordmark lockup is on the way.</p>
             </div>
         </div>
 
@@ -613,9 +619,8 @@
                 var dlPng512 = section.querySelector('[data-fmt="png-512"]');
 
                 function update() {
-                    // Some brands (e.g. Kootana) ship the mark only, with no
-                    // wordmark yet, so they omit the Asset control entirely.
-                    // Default those to the plain mark.
+                    // A brand that ships the mark only can omit the Asset
+                    // control entirely; it then defaults to the plain mark.
                     var kindBtn = kindControl && kindControl.querySelector('[aria-pressed="true"]');
                     var bgBtn = bgControl.querySelector('[aria-pressed="true"]');
                     var kind = kindControl ? safeLookup(KINDS, kindBtn && kindBtn.dataset.value) : KINDS.mark;
